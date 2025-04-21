@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legendario Jeans - Estilo que perdura</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/png" href="./imagenes/favicon-32x32.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+     <!-- Sección Hero -->
+<div class="hero">
+  <div class="hero-header">
+     <a href="./index.html" class="logo">
+        <img src="./24FEC762-47F0-4F9E-8F29-CF139B27135F.webp" alt="Logo de LEGENDARIO JEANS">
+     </a>
+     <div class="hero-content">
+      <h1>Legendario Jeans</h1>
+      
+      <!--<button onclick="location.href='./productos.html'"><h2>Ver productos</h2></button>-->
+  </div>
+  
+  
+  <a href="./carrito.html" class="cart"><i class="fas fa-shopping-cart"></i>
+    <img id="pant-icon" src="./103083_trousers_icon.png" alt="Pantalón" style="display:none; position:absolute; width:30px; height:auto;">
+    
+  </a>
+  </div>
+</div>
+</header>
+
+<main>
+    <div class="portada">
+      <button class="especial" onclick="location.href='./productos.html'">Ver productos</button>
+        
+        <p>Más de 35 años ofreciendo calidad, tradición y estilo. Jeans clásicos que siempre están en tendencia.</p>
+        <img src="./foto local.jpg" alt="Local Legendario Jeans" class="portada-img">
+    </div>
+
+    <section id="nosotros">
+        <h2>Sobre Nosotros</h2>
+        <p>Legendario Jeans es sinónimo de **resistencia, calidad y estilo**. Durante más de tres décadas, hemos fabricado jeans que **se ajustan a cada persona y perduran en el tiempo**.</p>
+        <p>Si buscas un jean que **combina comodidad y durabilidad**, este es tu lugar. ¡Te esperamos en Flores!</p>
+    </section>
+    
+
+
+    <section id="ofertas">
+        <h2>🔥 Promociones Exclusivas 🔥</h2>
+        <p>Renová tu armario con nuestros descuentos especiales. Vení a nuestra tienda y encontrá el ajuste perfecto.</p>
+    </section>
+
+    <aside id="talles">
+        <h2>Guía de Talles</h2>
+        <button onclick="toggleTalles()">Ver talles</button>
+        <div id="tallesContent" style="display: none;">
+            <h3>Jeans</h3>
+            <table>
+                <tr><th>Talle</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr>
+                <tr><td>38</td><td>72-76</td><td>92-96</td></tr>
+                <tr><td>40</td><td>76-80</td><td>96-100</td></tr>
+                <tr><td>42</td><td>80-84</td><td>100-104</td></tr>
+                <tr><td>44</td><td>84-88</td><td>104-108</td></tr>
+                <tr><td>46</td><td>88-92</td><td>108-112</td></tr>
+                <tr><td>48</td><td>92-96</td><td>112-116</td></tr>
+                <tr><td>50</td><td>96-100</td><td>116-120</td></tr>
+                <tr><td>52</td><td>100-104</td><td>120-124</td></tr>
+                <tr><td>54</td><td>104-108</td><td>124-128</td></tr>
+                <tr><td>56</td><td>108-112</td><td>128-132</td></tr>
+            </table>
+
+            <h3>Sweaters</h3>
+            <table>
+                <tr><th>Talle</th><th>Contorno Pecho (cm)</th></tr>
+                <tr><td>S</td><td>86-92</td></tr>
+                <tr><td>M</td><td>92-98</td></tr>
+                <tr><td>L</td><td>98-104</td></tr>
+                <tr><td>XL</td><td>104-110</td></tr>
+                <tr><td>XXL</td><td>110-116</td></tr>
+            </table>
+        </div>
+    </aside>
+    
+</main>
+
+<footer>
+  <div class="footer-info"> 
+    <div class="contact-info"> 
+     
+      <div class="contacto">
+        <h3>Contacto</h3>
+       <p><img src="./telefono.png" alt="Telefono"class=social-icon> +54 11 1234 5678</p> 
+       <p><a href="https://wa.me/541112345678" target="_blank">
+        <img src="./whatsapp.png" alt="WhatsApp" class="social-icon"> Enviar mensaje</a>
+      </p>
+       <p><a href="https://maps.app.goo.gl/2hxNUeELsLzQUU3JA" target="_blank" class="social-icon">📍</a>
+        Legendario Jeans</p>
+       </div> </div>
+       <div class="hours-info"> 
+        <h3>Horarios</h3> <div class="horarios">
+        <p>Lunes a Viernes: 08:00 - 17:00</p> 
+        <p>Sábados: Cerrado</p> 
+      </div> </div><div class="social-info"> <h3>Redes</h3> 
+        <div class="redes">
+        <p>
+          <a href="https://facebook.com/legendariojeans" target="_blank">
+          <img src="./facebook.png" alt="Facebook" class="social-icon"> Facebook</a>
+        </p>
+         <p>
+          <a href="https://instagram.com/legendariojeans" target="_blank">
+            <img src="./instagram.png" alt="Instagram" class="social-icon"> 
+            Instagram</a>
+          </p>
+         </div> </div>
+         
+         
+        </div> 
+        
+</footer>
+
+
+<script>
+    function toggleTalles() {
+        var content = document.getElementById("tallesContent");
+        content.style.display = content.style.display === "none" ? "block" : "none";
+    }
+</script>
+
+</body>
+</html>

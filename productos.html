@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" type="image/png" href="./imagenes/favicon-32x32.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script> (function(){ emailjs.init("z5kLRgpEiDGYL4lhx"); })(); </script>
+
+    
+</head>
+<body>
+   
+      <header>
+        
+          <!-- Sección Hero -->
+<div class="hero">
+  <div class="hero-header">
+     <a href="./index.html" class="logo">
+        <img src="./24FEC762-47F0-4F9E-8F29-CF139B27135F.webp" alt="Logo de LEGENDARIO JEANS">
+     </a>
+     <div class="hero-content">
+      <h1>Legendario Jeans</h1>
+      
+      <!--<button onclick="location.href='./productos.html'"><h2>Ver productos</h2></button>-->
+  </div>
+  
+  
+  <a href="./carrito.html" class="cart"><i class="fas fa-shopping-cart"></i>
+    <img id="pant-icon" src="./103083_trousers_icon.png" alt="Pantalón" style="display:none; position:absolute; width:30px; height:auto;">
+    <span class="cart-count">0</span>
+  </a>
+  </div>
+</div>
+
+        </header>
+        
+
+        <main>
+          
+          <h1 class="productos-tittle">Productos</h1>
+          <!-- Buscador con menu desplegable -->
+           <div id="controls-container">
+          <div id="search-container">
+            <label for="search-options">Buscar productos:</label>
+            <select id="search-options">
+                <option value="">-- Seleccione un producto --</option>
+                <option value="ver-todo">Ver todo</option>
+                <option value="pantalón clásico">Pantalón Clásico</option>
+                <option value="camisa de gabardina">Camisa de Gabardina</option>
+                <option value="pantalón moderno">Pantalón Moderno</option>
+                <option value="costura gruesa">Costura Gruesa</option>
+            </select>
+            <button id="search-button">Buscar</button>
+        </div>
+        <!--menu para ordenacion-->
+        <div id="sort-container">
+          <label for="sort-options">Ordenar:</label>
+          <select id="sort-options">
+              <option value="precio-asc">Precio: Menor a mayor</option>
+              <option value="precio-desc">Precio: Mayor a menor</option>
+          </select>
+          <button id="sort-button">Ordenar</button>
+      </div>
+    </div>
+        
+          <section class="product-container">
+            
+            <div class="product-card" data-name="Pantalón Clásico">
+               <h2>Pantalón Clásico</h2>
+               <img src="./imagenes/blue-jeans-fabric-details.jpg" alt="Pantalón Clásico">
+               <p>Descripción del pantalón clásico.</p>
+               <p>Precio: $50</p>
+            </div>
+            <div class="product-card" data-name="Pantalón de Gabardina">
+               <h2>Camisa de Gabardina</h2>
+               <img src="./24FEC762-47F0-4F9E-8F29-CF139B27135F.webp" alt="Pantalón de Gabardina">
+               <p>Descripción del pantalón de Gabardina.</p>
+               <p>Precio: $85</p>
+            </div>
+            <div class="product-card" data-name="Costura Gruesa">
+               <h2>Costura Gruesa</h2>
+               <img src="./24FEC762-47F0-4F9E-8F29-CF139B27135F.webp" alt="Pantalón Costura Gruesa">
+               <p>Descripción del pantalón con costura gruesa.</p>
+               <p>Precio: $80</p>
+            </div>
+            <div class="product-card" data-name="Pantalón Moderno">
+              <h2>Pantalón Azul</h2>
+              <img src="./blue-jeans-fabric-details.jpg" alt="Pantalón Moderno">
+              <p>Descripción del pantalón moderno.</p>
+              <p>Precio: $95</p>
+              <div class="cantidad-container">
+                  <label for="talle-1">Talle:</label>
+                  <select id="talle-1">
+                      <option value="38">38</option>
+                      <option value="40">40</option>
+                      <option value="42">42</option>
+                  </select>
+                 
+                  <label for="cantidad-1">Cantidad:</label>
+                  <input type="number" id="cantidad-1" class="cantidad" value="1" min="1">
+              </div>
+              <button class="add-to-cart" data-id="1">Agregar al carrito</button>
+          </div>
+       
+
+         <div class="product-card" data-name="Pantalón Moderno">
+          <h2>Pantalón Moderno</h2>
+          <img src="./imagenes/blue-jeans-fabric-details.jpg" alt="Pantalón Moderno">
+          <p>Descripción del pantalón moderno.</p>
+          <p>Precio: $120</p>
+          <div class="cantidad-container">
+              <label for="talle-2">Talle:</label>
+              <select id="talle-2">
+                  <option value="38">38</option>
+                  <option value="40">40</option>
+                  <option value="42">42</option>
+              </select>
+             
+              <label for="cantidad-2">Cantidad:</label>
+              <input type="number" id="cantidad-2" class="cantidad" value="1" min="1">
+          </div>
+          <button class="add-to-cart" data-id="2">Agregar al carrito</button>
+      </div>
+     
+
+     <div class="product-card" data-name="Pantalón Moderno">
+      <h2>Pantalón Celeste</h2>
+      <img src="./imagenes/blue-jeans-fabric-details.jpg" alt="Pantalón Moderno">
+      <p>Descripción del pantalón moderno.</p>
+      <p>Precio: $150</p>
+      <div class="cantidad-container">
+          <label for="talle-3">Talle:</label>
+          <select id="talle-3">
+              <option value="38">38</option>
+              <option value="40">40</option>
+              <option value="42">42</option>
+          </select>
+         
+          <label for="cantidad-3">Cantidad:</label>
+          <input type="number" id="cantidad-3" class="cantidad" value="1" min="1">
+      </div>
+      <button class="add-to-cart" data-id="3">Agregar al carrito</button>
+  </div>
+ 
+
+ <div class="product-card" data-name="Pantalón Moderno">
+  <h2>Pantalón Moderno</h2>
+  <img src="./imagenes/blue-jeans-fabric-details.jpg" alt="Pantalón Moderno">
+  <p>Descripción del pantalón moderno.</p>
+  <p>Precio: $45</p>
+  <div class="cantidad-container">
+      <label for="talle-1">Talle:</label>
+      <select id="talle-1">
+          <option value="38">38</option>
+          <option value="40">40</option>
+          <option value="42">42</option>
+      </select>
+     
+      <label for="cantidad-1">Cantidad:</label>
+      <input type="number" id="cantidad-1" class="cantidad" value="1" min="1">
+  </div>
+  <button class="add-to-cart" data-id="1">Agregar al carrito</button>
+</div>
+
+
+<div class="product-card" data-name="Pantalón Moderno">
+  <h2>Pantalón Moderno</h2>
+  <img id="main-image" src="./imagenes/blue-jeans-fabric-details.jpg" alt="Pantalón Moderno" width="300">
+  <p>Descripción del pantalón moderno.</p>
+  <p>Precio: $45</p>
+  <div class="cantidad-container">
+      <label for="talle-1">Talle:</label>
+      <select id="talle-1">
+          <option value="38">38</option>
+          <option value="40">40</option>
+          <option value="42">42</option>
+      </select>
+     
+      <label for="cantidad-1">Cantidad:</label>
+      <input type="number" id="cantidad-1" class="cantidad" value="1" min="1">
+  </div>
+  <button class="add-to-cart" data-id="1">Agregar al carrito</button>
+</div>
+
+
+
+         
+            <!-- Agrega más productos aquí -->
+           
+             <!--aca vendran las cards generadas por la api-->
+          </section>
+          <button id="back-to-top" class="back-to-top">↑</button>
+
+<div class="sera invisible" class="oculto">
+         <!----> <div class="cart-container">
+            <h2>Carrito de Compras</h2>
+            <div class="cart-items"></div>
+            <p>Total: $<span class="cart-total">0.00</span></p>
+            <button class="clear-cart">Vaciar Carrito</button>
+            <button onclick="location.href='carrito.html'" class="ver-carrito-btn">Ver Carrito</button>
+          </div>
+          </div>
+          
+        </main>
+    <footer>
+      <div class="footer-info"> 
+        <div class="contact-info"> 
+         
+          <div class="contacto">
+            <h3>Contacto</h3>
+           <p><img src="./telefono.png" alt="Telefono"class=social-icon> +54 11 1234 5678</p> 
+           <p><a href="https://wa.me/541112345678" target="_blank">
+            <img src="./whatsapp.png" alt="WhatsApp" class="social-icon"> Enviar mensaje</a>
+          </p>
+           <p><a href="https://maps.app.goo.gl/2hxNUeELsLzQUU3JA" target="_blank" class="social-icon">📍</a>
+            Legendario Jeans</p>
+           </div> </div>
+           <div class="hours-info"> 
+            <h3>Horarios</h3> <div class="horarios">
+            <p>Lunes a Viernes: 08:00 - 17:00</p> 
+            <p>Sábados: Cerrado</p> 
+          </div> </div><div class="social-info"> <h3>Redes</h3> 
+            <div class="redes">
+            <p>
+              <a href="https://facebook.com/legendariojeans" target="_blank">
+              <img src="./facebook.png" alt="Facebook" class="social-icon"> Facebook</a>
+            </p>
+             <p>
+              <a href="https://instagram.com/legendariojeans" target="_blank">
+                <img src="./instagram.png" alt="Instagram" class="social-icon"> 
+                Instagram</a>
+              </p>
+             </div> </div>
+             
+             
+            </div> 
+            
+  </footer>
+  
+  
+  <script src="./sript2.js"></script>
+</body>
+</html>

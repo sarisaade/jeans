@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/png" href="./imagenes/favicon-32x32.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+     <script> (function(){ emailjs.init("z5kLRgpEiDGYL4lhx"); })(); </script>
+</head>
+<body>
+  <header>
+        
+    <!-- Sección Hero -->
+<div class="hero">
+<div class="hero-header">
+<a href="./index.html" class="logo">
+  <img src="./24FEC762-47F0-4F9E-8F29-CF139B27135F.webp" alt="Logo de LEGENDARIO JEANS">
+</a>
+<div class="hero-content">
+<h1>Legendario Jeans</h1>
+
+<!--<button onclick="location.href='./productos.html'"><h2>Ver productos</h2></button>-->
+</div>
+
+
+<a href="./carrito.html" class="cart"><i class="fas fa-shopping-cart"></i>
+<img id="pant-icon" src="./103083_trousers_icon.png" alt="Pantalón" style="display:none; position:absolute; width:30px; height:auto;">
+<span class="cart-count">0</span>
+</a>
+</div>
+</div>
+
+  </header>
+            <button class="especial" onclick="location.href='./productos.html'">Ver productos</button>
+        
+      <div class="cart-container">
+        <h2>Carrito de Compras</h2>
+        <div class="cart-items"></div>
+        <p>Total: $<span class="cart-total">0.00</span></p>
+        <button class="clear-cart">Vaciar Carrito</button>
+        <button id="confirmar-carrito-btn" class="confirmar-carrito-btn">Confirmar Carrito</button>
+        <button onclick="location.href='productos.html'" class="volver-a-productos">Seguir Comprando</button>
+        
+        <!-- Cuadro de diálogo para ingresar datos -->
+<div id="dialog" class="dialog" style="display:none;">
+  
+  <form id="confirmation-form" action="https://formspree.io/f/mpwzdjlz" method="POST" novalidate>
+    <h2>Ingrese sus datos para confirmar la compra</h2>
+    <div class="form-group">
+      <input type="text" id="buyer-name" name="name" placeholder="Nombre" required>
+      <span class="error-message" id="name-error"></span>
+    </div>
+    <div class="form-group">
+      <input type="email" id="buyer-email" name="email" placeholder="Correo Electrónico" required>
+      <span class="error-message" id="email-error"></span>
+    </div>
+    <div class="form-group">
+      <input type="tel" id="buyer-phone" name="phone" placeholder="Teléfono" required>
+      <span class="error-message" id="phone-error"></span>
+    </div>
+    
+    <button type="submit" id="comprar-btn" class="comprar-btn">Comprar</button>
+  </form>
+  <button onclick="location.href='carrito.html'" class="close-btn">&times;</button> <!-- Botón de cierre -->
+
+ 
+</div>
+
+
+
+      
+      
+        
+
+
+        
+        <!-- Mensaje de confirmación estilizado -->
+        <div id="confirmation-message" class="confirmation-message" style="display:none;">
+          <h2>Compra Confirmada</h2>
+          <p> Al hacer clic en el botón de "Comprar", será redirigido a WhatsApp donde podrá confirmar su compra con todos los detalles proporcionados. Le agradecemos por su compra. Si tiene alguna pregunta adicional, no dude en contactarnos. ¡Gracias por confiar en nosotros!</p>
+          <button onclick="document.getElementById('confirmation-message').style.display='none'">Cerrar</button>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-info"> 
+        <div class="contact-info"> 
+         
+          <div class="contacto">
+            <h3>Contacto</h3>
+           <p><img src="./telefono.png" alt="Telefono"class=social-icon> +54 11 1234 5678</p> 
+           <p><a href="https://wa.me/541112345678" target="_blank">
+            <img src="./whatsapp.png" alt="WhatsApp" class="social-icon"> Enviar mensaje</a>
+          </p>
+           <p><a href="https://maps.app.goo.gl/2hxNUeELsLzQUU3JA" target="_blank" class="social-icon">📍</a>
+            Legendario Jeans</p>
+           </div> </div>
+           <div class="hours-info"> 
+            <h3>Horarios</h3> <div class="horarios">
+            <p>Lunes a Viernes: 08:00 - 17:00</p> 
+            <p>Sábados: Cerrado</p> 
+          </div> </div><div class="social-info"> <h3>Redes</h3> 
+            <div class="redes">
+            <p>
+              <a href="https://facebook.com/legendariojeans" target="_blank">
+              <img src="./facebook.png" alt="Facebook" class="social-icon"> Facebook</a>
+            </p>
+             <p>
+              <a href="https://instagram.com/legendariojeans" target="_blank">
+                <img src="./instagram.png" alt="Instagram" class="social-icon"> 
+                Instagram</a>
+              </p>
+             </div> </div>
+             
+             
+            </div> 
+            
+  </footer>
+    <script src="./sript2.js"></script>
+</body>
+</html>
