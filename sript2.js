@@ -337,3 +337,14 @@ function updateCartCounter() {
         cartCounterElement.textContent = "0"; // Reinicia el contador a cero
     }
 }
+//detectar dispositivo para mensaje de whatsapp
+function detectarDispositivo() {
+    var urlMovil = "whatsapp://send?phone=541154511489";
+    var urlWeb = "https://wa.me/541154511489";
+
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      window.location.href = urlMovil;
+    } else {
+      window.location.href = urlWeb;
+    }
+  }
