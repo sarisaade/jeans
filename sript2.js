@@ -339,8 +339,8 @@ function updateCartCounter() {
 }
 //detectar dispositivo para mensaje de whatsapp
 function detectarDispositivo() {
-    var urlMovil = "whatsapp://send?phone=541154511489";
-    var urlWeb = "https://wa.me/541154511489";
+    var urlMovil = "whatsapp://send?phone=5491154511489";
+    var urlWeb = "https://wa.me/5491154511489";
 
     if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       window.location.href = urlMovil;
