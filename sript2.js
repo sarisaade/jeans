@@ -280,18 +280,30 @@ document.getElementById("back-to-top").addEventListener("click", function() {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
 //cambio de imagenes
-const images = [
-    "./imagenes/blue-jeans-fabric-details.jpg",
-    "./imagenes/.jpg",
-    "./foto local.jpg",
-    "./imagenes/pantalon-trasero.jpg"
-];
-let index = 0;
+const productImages = {
+    "pantalon-moderno": [
+        "./blue-jeans-fabric-details.jpg",
+        "./jean azul prueba.webp",
+        "./otro pantalon prueba.webp"
+    ],
+    "pantalon-clasico": [
+        "./imagenes/clasico-frente.jpg",
+        "./imagenes/clasico-trasero.jpg",
+        "./imagenes/clasico-detalles.jpg"
+    ]
+};
 
-document.getElementById("main-image").addEventListener("click", function() {
-    index = (index + 1) % images.length; // Cambia la imagen en el mismo lugar
-    this.src = images[index];
+document.querySelectorAll("img").forEach(img => {
+    let index = 0;
+    img.addEventListener("click", function() {
+        const images = productImages[this.id]; // Obtiene las imágenes del producto específico
+        if (images) {
+            index = (index + 1) % images.length;
+            this.src = images[index];
+        }
+    });
 });
+
 
 // Confirmar compra
 function confirmPurchase() {
@@ -339,7 +351,7 @@ function updateCartCounter() {
 }
 //detectar dispositivo para mensaje de whatsapp
 function detectarDispositivo() {
-    var urlMovil = "whatsapp://send?phone=5491154511489";
+    var urlMovil = "whatsapp://send?phone=541154511489";
     var urlWeb = "https://wa.me/5491154511489";
 
     if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
