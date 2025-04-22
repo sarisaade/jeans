@@ -664,7 +664,7 @@ footer {
     text-align: center;
     padding: 3px 0; /* Reduce el espacio vertical */
     border-top: 1px solid #ccc;
-    font-size: 10px; /* Reduce el tamaño de fuente */
+    font-size: 15px; /* Reduce el tamaño de fuente */
 }
 
 .footer-info {
@@ -675,7 +675,7 @@ footer {
     padding: 10px; /* Reduce el padding */
     gap: 5px; /* Reduce la separación entre elementos */
     overflow: hidden;
-    font-size: 20px;
+    font-size: 30px;
     margin-left: 20px;
 }
 .footer p{
@@ -684,7 +684,7 @@ footer {
 .footer-info div {
     margin: 2px;
     min-width: 120px; /* Reduce el ancho mínimo de los bloques */
-    font-size: 15px;
+    font-size: 25px;
     text-align: left;
 }
 

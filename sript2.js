@@ -286,11 +286,19 @@ const productImages = {
         "./jean azul prueba.webp",
         "./otro pantalon prueba.webp"
     ],
-    "pantalon-clasico": [
-        "./imagenes/clasico-frente.jpg",
-        "./imagenes/clasico-trasero.jpg",
-        "./imagenes/clasico-detalles.jpg"
-    ]
+    "pantalon-verde": [
+        "./pampero-beige.jpg",
+        "./foto local.jpg",
+        "./panatlon azul.jpg"
+    ],
+    "jean-celeste": [
+        "./panatlon azul.jpg",
+        "./pampero-beige.jpg"
+    ],
+        "costura-camel": ["./blue-jeans-fabric-details.jpg",
+        "./jean azul prueba.webp"
+    ],
+
 };
 
 document.querySelectorAll("img").forEach(img => {
