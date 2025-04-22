@@ -368,3 +368,4 @@ function detectarDispositivo() {
       window.location.href = urlWeb;
     }
   }
+  

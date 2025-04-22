@@ -664,7 +664,7 @@ footer {
     text-align: center;
     padding: 3px 0; /* Reduce el espacio vertical */
     border-top: 1px solid #ccc;
-    font-size: 15px; /* Reduce el tamaño de fuente */
+    font-size: 30px; /* Reduce el tamaño de fuente */
 }
 
 .footer-info {
@@ -737,7 +737,77 @@ footer a:hover {
     margin-top: 5px; /* Reduce espacio antes del copyright */
     padding: 0;
 }
+.boton-contacto {
+    background-color: #00BFFF; /* Color celeste */
+    border: none;
+    color: white;
+    padding: 5px 10px; /* Botón compacto */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px; /* Tamaño de fuente */
+    border-radius: 4px; /* Esquinas suaves */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px; /* Espacio superior para bajar el botón */
+  }
 
+  .boton-contacto:hover {
+    background-color: #1E90FF; /* Color celeste más oscuro al pasar el mouse */
+  }
+/* Estilo para el formulario de contacto */ 
+.contacto-tittle{
+    text-align: left;
+    margin-top: 20px;
+    
+  
+  }
+  .contact-form { 
+    margin: 50px auto;
+     padding: 20px;
+      border: 1px solid #ccc; 
+      border-radius: 10px; 
+      max-width: 60%;
+      background-color:  rgb(239, 242, 245);
+     }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+  }
+  
+  form input, form textarea, form button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  form button {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  form button:hover {
+    background-color: #555;
+  }
+  
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .review-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
   
 @media (max-width: 480px) {
     footer {
