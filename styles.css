@@ -808,6 +808,14 @@ footer a:hover {
     border: 1px solid #ccc;
     background-color: #f9f9f9;
   }
+  @media (max-width: 480px) {
+    .contacto-tittle{
+        margin-top: 25px;
+    }
+    .boton-contacto{
+        padding:3px 5px; /* Botón compacto */
+        font-size: 8px;
+    }
   
 @media (max-width: 480px) {
     footer {
