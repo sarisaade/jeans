@@ -172,6 +172,7 @@ body {
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 #search-button:hover, #sort-button:hover {
@@ -650,9 +651,10 @@ body {
 }
 @media (max-width: 480px) {
     .back-to-top {
-        width: 35px;  /* Reducir el tamaño del botón */
-        height: 35px;
-        font-size: 20px;  /* Hacer la flecha un poco más pequeña */
+        width: 40px;  /* Reducir el tamaño del botón */
+        height: 40px;
+        font-size: 18px;  /* Hacer la flecha un poco más pequeña */
+        
     }
 }
 
@@ -737,21 +739,20 @@ footer a:hover {
     margin-top: 5px; /* Reduce espacio antes del copyright */
     padding: 0;
 }
-.boton-contacto {
+/*.boton-contacto {
     background-color: #00BFFF; /* Color celeste */
-    border: none;
+    /*border: none;
     color: white;
-    padding: 5px 10px; /* Botón compacto */
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px; /* Tamaño de fuente */
-    border-radius: 4px; /* Esquinas suaves */
-    cursor: pointer;
+    padding: 10px 15px; /* Botón compacto */
+   /* text-decoration: none;
+    font-size: 18px; /* Tamaño de fuente */
+   /* border-radius: 4px; /* Esquinas suaves */
+    /*cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 20px; /* Espacio superior para bajar el botón */
+    margin-top: 20px; /* Ajusta el espacio entre la imagen y el botón */
+   /* display: inline-block;
   }
-
+  
   .boton-contacto:hover {
     background-color: #1E90FF; /* Color celeste más oscuro al pasar el mouse */
   }
@@ -778,7 +779,7 @@ footer a:hover {
     
   }
   
-  form input, form textarea, form button {
+  form input, form button {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -791,6 +792,15 @@ footer a:hover {
     cursor: pointer;
     border-radius: 10px;
   }
+  .form-group input,
+.form-group textarea {
+  width: 100%; /* Asegura que todos ocupen el mismo ancho */
+  max-width: 500px; /* Opcional: establece un ancho máximo */
+  box-sizing: border-box; /* Incluye el relleno y el borde en el ancho total */
+  padding: 10px; /* Para un diseño consistente */
+  margin-bottom: 10px; /* Espaciado entre los elementos */
+}
+
   
   form button:hover {
     background-color: #555;
@@ -819,10 +829,26 @@ footer a:hover {
   
 @media (max-width: 480px) {
     footer {
-        font-size: 11px; /* Reduce aún más el tamaño de fuente */
+        font-size: 8px; /* Reduce aún más el tamaño de fuente */
         max-width: fit-content;
         margin-right: 0px;
         margin-left: 0px;
+        padding: 5px; /* Reduce el espaciado interno */
+        
+    }
+    footer-info{
+        display: flex;
+        justify-content: space-between; /* Mantiene la alineación horizontal */
+        align-items:flex-start; /* Asegura que los elementos estén bien alineados */
+        flex-wrap: nowrap; /* Evita que los elementos se amontonen */
+        padding: 5px;
+        gap: 5px; /* Ajusta la separación */
+        width: 90%;
+        overflow: hidden;
+        max-width: 95%;
+        padding: 5px; /* Reduce el espaciado interno */
+        margin: 0 auto; /* Centra el contenedor */
+        font-size: 8px; /* Tamaño de fuente más pequeño */
     }
 
     @media (max-width: 320px) 
@@ -832,12 +858,14 @@ footer a:hover {
             justify-content: space-between; /* Mantiene la alineación horizontal */
             align-items:flex-start; /* Asegura que los elementos estén bien alineados */
             flex-wrap: nowrap; /* Evita que los elementos se amontonen */
-            padding: 5px;
+            padding: 10px;
             gap: 5px; /* Ajusta la separación */
             width: 90%;
             overflow: hidden;
-            max-width: 100vw;
-            
+            max-width: 95%;
+            padding: 5px; /* Reduce el espaciado interno */
+            margin: 0 auto; /* Centra el contenedor */
+            font-size: 8px; /* Tamaño de fuente más pequeño */
             
         }
         .contact-info, .hours-info, .social-info {
@@ -857,23 +885,25 @@ footer a:hover {
 .social-info h3 {
     margin: 0; /* Asegura que todos los títulos estén al mismo nivel */
     padding: 5px 0; /* Establece separación uniforme */
+    font-size: 12px; /* Tamaño de fuente más pequeño */
+    text-align: center;
 }
 
     
     .footer-info h3 {
-        font-size: 15px;
+        font-size: 17px;
         
         margin: 3px;
         
     }
 
     .footer-info p {
-        font-size: 10px;
+        font-size: 12px;
         margin: 2px 0;
     }
 
     footer a {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .social-icon {
@@ -882,7 +912,7 @@ footer a:hover {
     }
    /* Estilos de la Portada */
 .portada {
-    margin-top: 50px;
+    margin-top: 20px;
     text-align: center;
     padding: 40px;
     background-color: #0066cc; /* Azul vibrante */
@@ -892,11 +922,70 @@ footer a:hover {
 .portada img {
     width: 60%;
     max-width: 500px;
-    margin-top: 20px;
+    margin-top: 10px;
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
-
+.botones {
+    display: flex; /* Coloca los botones en fila */
+    gap: 10px; /* Espacio entre los botones */
+    justify-content: center; /* Centra los botones horizontalmente */
+    flex-wrap: nowrap; /* Evita que los botones salten a una nueva línea */
+    margin-top: 20px;
+   
+  }
+  
+  .boton-contacto,
+  .especial {
+    flex: 0 0 calc(50% - 10px); /* Cada botón ocupa el 50% del contenedor menos el espacio del gap */
+    max-width: 300px; /* Elimina cualquier límite en el ancho */
+    background: linear-gradient(135deg, #0077ff, #00c8ff);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .boton-contacto:hover,
+  .especial:hover {
+    background-color: #1E90FF; /* Color más oscuro al pasar el mouse */
+  }
+  
+  /* Ajuste adicional para pantallas pequeñas */
+  @media (max-width: 480px) {
+    .boton-contacto,
+    .especial {
+      flex: 0 0 45%; /* Reduce el tamaño de los botones para que haya espacio */
+      padding: 8px 12px; /* Compacta el relleno para pantallas más pequeñas */
+      font-size: 12px; /* Reduce el tamaño de la fuente */
+    }
+  
+    .botones {
+      gap: 5px; /* Menor espacio entre los botones en pantallas pequeñas */
+    }
+  }
+  
+  /* Ajuste adicional para pantallas más pequeñas, como 320px */
+  @media (max-width: 320px) {
+    .boton-contacto,
+    .especial {
+      flex: 0 0 48%; /* Los botones ocupan casi la mitad del espacio disponible */
+      padding: 6px 8px; /* Reduce aún más el relleno */
+      font-size: 11px; /* Ajusta el tamaño de la fuente */
+    }
+  
+    .botones {
+      gap: 4px; /* Reduce el espacio entre botones para pantallas muy pequeñas */
+    }
+  }
+  
+  
 /* Estilos del Menú de Navegación */
 nav ul {
     list-style: none;
@@ -928,6 +1017,31 @@ main {
     flex: 3;
     padding: 20px;
 }
+/*seccion sobre nosotros*/
+.sobre-nosotros {
+    background-color: #E0F7FF; /* Fondo claro */
+    border: 1px solid #ddd; /* Bordes sutiles */
+    border-radius: 8px; /* Esquinas redondeadas */
+    padding: 20px; /* Espaciado interno */
+    max-width: 800px; /* Ancho máximo */
+    margin: 20px auto; /* Centra la sección */
+    text-align: center; /* Centra el texto */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+  }
+  
+  .sobre-nosotros h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Color del texto */
+    margin-bottom: 15px; /* Espaciado debajo del título */
+  }
+  
+  .sobre-nosotros p {
+    font-size: 18px;
+    color: #555; /* Color secundario del texto */
+    line-height: 1.6; /* Mejora la legibilidad */
+  }
+  
 
 /* Estilos del Aside */
 aside {
@@ -977,14 +1091,23 @@ th {
   
   .close-btn {
     position: absolute;
-    top: 2px;
-    right: 5px;
+    top: -4px;
+    right: -4px;
     background-color: transparent;
     border-radius: 2px;
     color: #555;
     border: none;
-    font-size: 15px;
+    font-size: 30px;
     cursor: pointer;
+    
+  }
+  .close-btn:hover {
+    
+    color: #0059b3;
+    background-color: transparent;
+   margin-top: -5px;
+   margin-right: -5px;
+ 
   }
   
   
