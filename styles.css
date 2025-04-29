@@ -678,7 +678,8 @@ footer {
     gap: 5px; /* Reduce la separación entre elementos */
     overflow: hidden;
     font-size: 30px;
-    margin-left: 20px;
+    margin-left: 25px;
+    margin-right: 10px;
 }
 .footer p{
     margin-bottom: 0;
@@ -827,47 +828,43 @@ footer a:hover {
         font-size: 8px;
     }
   
-@media (max-width: 480px) {
-    footer {
-        font-size: 8px; /* Reduce aún más el tamaño de fuente */
-        max-width: fit-content;
-        margin-right: 0px;
-        margin-left: 0px;
-        padding: 5px; /* Reduce el espaciado interno */
-        
-    }
-    footer-info{
-        display: flex;
-        justify-content: space-between; /* Mantiene la alineación horizontal */
-        align-items:flex-start; /* Asegura que los elementos estén bien alineados */
-        flex-wrap: nowrap; /* Evita que los elementos se amontonen */
-        padding: 5px;
-        gap: 5px; /* Ajusta la separación */
-        width: 90%;
-        overflow: hidden;
-        max-width: 95%;
-        padding: 5px; /* Reduce el espaciado interno */
-        margin: 0 auto; /* Centra el contenedor */
-        font-size: 8px; /* Tamaño de fuente más pequeño */
-    }
-
-    @media (max-width: 320px) 
-    {
+    @media (max-width: 480px) {
+        footer {
+            font-size: 8px;
+            max-width: fit-content;
+            margin: 0 auto; /* Centra el footer horizontalmente */
+            padding: 5px;
+        }
+    
         .footer-info {
             display: flex;
-            justify-content: space-between; /* Mantiene la alineación horizontal */
-            align-items:flex-start; /* Asegura que los elementos estén bien alineados */
-            flex-wrap: nowrap; /* Evita que los elementos se amontonen */
-            padding: 10px;
-            gap: 5px; /* Ajusta la separación */
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: nowrap;
+            gap: 5px;
             width: 90%;
             overflow: hidden;
             max-width: 95%;
-            padding: 5px; /* Reduce el espaciado interno */
-            margin: 0 auto; /* Centra el contenedor */
-            font-size: 8px; /* Tamaño de fuente más pequeño */
-            
+            font-size: 8px;
+            margin: 0 auto; /* Centra el footer horizontalmente */
         }
+    }
+    
+    @media (max-width: 320px) {
+        .footer-info {
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: nowrap;
+            padding: 10px;
+            gap: 5px;
+            width: 90%;
+            overflow: hidden;
+            max-width: 90%;
+            margin-right:0 auto;
+            font-size: 8px;
+        }
+    }
+   
         .contact-info, .hours-info, .social-info {
             display: flex;
             flex-direction: column; /* Mantiene los elementos internos en columna */
