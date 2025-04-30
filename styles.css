@@ -1107,7 +1107,23 @@ th {
  
   }
   
-  
-  
-  
-  
+  /*para el cambio de fotos*/
+  .image-container {
+    position: relative;
+    display: inline-block;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.info-text {
+    position: absolute;
+    bottom: 20px;
+    right: 5px;
+    font-size: 12px;
+    color: white; /* Texto claro para contraste */
+    opacity: 0.8; /* Ligera transparencia */
+    pointer-events: none; /* Evita cualquier comportamiento de clic */
+}

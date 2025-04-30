@@ -298,7 +298,13 @@ const productImages = {
         "costura-camel": ["./blue-jeans-fabric-details.jpg",
         "./jean azul prueba.webp"
     ],
+    "jean-clasico": ["./imagenes jeans legendario/jean clasico.jpg",
+        "./imagenes jeans legendario/jean clasico front.PNG",
+        "./imagenes jeans legendario/jean clasico espalda.JPG"],
 
+"jean-oxido": ["./imagenes jeans legendario/jean oxido.jpg",
+    "./imagenes jeans legendario/jean oxido front.JPG",
+    "./imagenes jeans legendario/jean oxido back (2).JPG"],
 };
 
 document.querySelectorAll("img").forEach(img => {
