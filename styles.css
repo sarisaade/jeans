@@ -1120,10 +1120,25 @@ img {
 
 .info-text {
     position: absolute;
-    bottom: 20px;
+    bottom: 150px;
     right: 5px;
-    font-size: 12px;
+    font-size: 5px;
     color: white; /* Texto claro para contraste */
     opacity: 0.8; /* Ligera transparencia */
     pointer-events: none; /* Evita cualquier comportamiento de clic */
 }
+.info-icon {
+    width: 25px;
+    height: auto;
+    color: white;
+ 
+}
+ .info-icon {
+  width: 24px;
+  height: auto;
+  mix-blend-mode: difference;
+  
+}
+
+  
+  
