@@ -305,6 +305,23 @@ const productImages = {
 "jean-oxido": ["./jean oxido (1).jpg",
     "./jean oxido front.JPG",
     "./jean oxido back (2).JPG"],
+    
+    "clasico-gris": ["./clasico gris f.JPG",
+        "./clasico gris b.JPG" ],
+
+   "clasico-gris-oscuro": ["./gris oscuro front.JPG", 
+    "./gris oscuro front 2.JPG",
+    "./gris oscuro.JPG"],
+    
+    "bull-negro": ["./bull negro front.JPG",
+        "./bull negro back.JPG"],
+
+"blue-black": ["./blue black.JPG",
+    "./blue black back.JPG"],
+
+    "campera-lana-lisa":["./campera lana lisa con bolsillo",]
+
+   
 };
 
 document.querySelectorAll("img").forEach(img => {
