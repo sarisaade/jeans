@@ -298,12 +298,12 @@ const productImages = {
         "costura-camel": ["./blue-jeans-fabric-details.jpg",
         "./jean azul prueba.webp"
     ],
-    "jean-clasico": ["./jean clasico.jpg",
+    "jean-clasico": [
         "./jean clasico front.PNG",
         "./jean clasico espalda.JPG"],
 
-"jean-oxido": ["./jean oxido (1).jpg",
-    "./jean oxido front.JPG",
+"jean-oxido": [
+    "./oxido front.JPG",
     "./jean oxido back (2).JPG"],
     
     "clasico-gris": ["./clasico gris f.JPG",
@@ -319,7 +319,7 @@ const productImages = {
 "blue-black": ["./blue black.JPG",
     "./blue black back.JPG"],
 
-    "campera-lana-lisa":["./campera lana lisa con bolsillo",]
+   
 
    
 };
