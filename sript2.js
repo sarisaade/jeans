@@ -46,7 +46,7 @@ function initPage() {
     });
 }
 
-// Agregar producto al carrito
+// Agregar producto al carrito con alerta para precio por mayor
 function addToCart(productId, productName, productPrice, productTalle, productQuantity) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const product = { id: productId, name: productName, price: productPrice, talle: productTalle, quantity: productQuantity };
@@ -60,12 +60,54 @@ function addToCart(productId, productName, productPrice, productTalle, productQu
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    let totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
-    localStorage.setItem("cartCount", totalCount);
+    let totalUnits = cart.reduce((acc, item) => acc + item.quantity, 0);
+    localStorage.setItem("cartCount", totalUnits);
 
     updateCartCount();
     displayCart();
+
+    // Mostrar alerta si el total es menor a 3 unidades
+    if (totalUnits < 3) {
+        const faltantes = 3 - totalUnits;
+        alert(`Agrega ${faltantes} unidad(es) más para acceder al precio por mayor.`);
+    }
 }
+function showNotification(message) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.style.display = 'block';
+
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+
+function addToCart(productId, productName, productPrice, productTalle, productQuantity) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const product = { id: productId, name: productName, price: productPrice, talle: productTalle, quantity: productQuantity };
+
+    const existingProduct = cart.find(item => item.id === productId && item.talle === productTalle);
+    if (existingProduct) {
+        existingProduct.quantity += productQuantity;
+    } else {
+        cart.push(product);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    let totalUnits = cart.reduce((acc, item) => acc + item.quantity, 0);
+    localStorage.setItem("cartCount", totalUnits);
+
+    updateCartCount();
+    displayCart();
+
+    // Mostrar notificación en lugar de alert
+    if (totalUnits < 3) {
+        const faltantes = 3 - totalUnits;
+        showNotification(`Agrega ${faltantes} unidad(es) más para acceder al precio por mayor.`);
+    }
+}
+
 // Función para cambiar el estado del botón
 function changeButtonState(button) {
     button.style.backgroundColor = '#4CAF50'; // Cambiar a verde

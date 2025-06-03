@@ -1,53 +1,52 @@
-function createCard(product) {
-    return `
-    <div class="product-card">
-        <h2>${product.title}</h2>
-        <img src="${product.image}" alt="${product.title}">
-        <p>${product.description}</p>
-        <p>Precio: $${product.price}</p>
-        <button class="add-to-cart" data-id="${product.id}" data-name="${product.title}" data-price="${product.price}">Agregar al carrito</button>
-    </div>`;
-}
-// Función para mostrar los datos en el HTML y añadir eventos de clic
-async function displayData() {
-    const main = document.querySelector('.product-container');
-    const data = await fetchData();
-    if (data && Array.isArray(data)) {
-        main.innerHTML += data.map(createCard).join('');
-    }
-// Añadir eventos de clic a los nuevos botones "Agregar al carrito"
-document.querySelectorAll('.increase-quantity').forEach(button => {
-    button.addEventListener('click', function() {
-        const productId = parseInt(button.getAttribute('data-id'));
-        const productTalle = button.getAttribute('data-talle');
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+document.addEventListener('DOMContentLoaded', initPage);
 
-        // Buscar el producto dentro del carrito para obtener su nombre y precio
-        const product = cart.find(item => item.id === productId && item.talle === productTalle);
-        
-        if (product) {
-            addToCart(productId, product.name, product.price, productTalle, 1); // ✅ Ahora los valores son correctos
-        } else {
-            console.error("Error: Producto no encontrado en el carrito.");
-        }
+function initPage() {
+    displayCart();
+    updateCartCount();
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function(event) {
+            const productCard = this.closest('.product-card');
+            const productId = parseInt(this.getAttribute('data-id'));
+            let productName = this.getAttribute('data-name');
+            let productPrice = parseFloat(this.getAttribute('data-price'));
+
+            // Recuperar datos si vienen como null
+            if (!productName || isNaN(productPrice)) {
+                productName = productCard.querySelector('h2').textContent;
+                productPrice = parseFloat(productCard.querySelector('p:nth-of-type(2)').textContent.replace(/[^0-9.]/g, ''));
+            }
+
+            const productTalle = document.querySelector(`#talle-${productId}`).value;
+            const productQuantity = parseInt(document.querySelector(`#cantidad-${productId}`).value);
+
+            if (productTalle && productQuantity > 0) {
+                addToCart(productId, productName, productPrice, productTalle, productQuantity);
+                updateCartIndicator();
+            } else {
+                alert("Selecciona un talle y una cantidad válida.");
+            }
+        });
     });
-});
 
+    document.querySelector('.clear-cart').addEventListener('click', () => {
+        localStorage.removeItem('cart');
+        localStorage.setItem("cartCount", 0);
+        updateCartCount();
+        displayCart();
+    });
+
+    document.getElementById('confirmar-carrito-btn').addEventListener('click', () => {
+        document.getElementById('dialog').style.display = 'block';
+    });
+
+    document.getElementById('confirmation-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        confirmPurchase();
+    });
 }
 
-
-// Ejecutar la función al cargar la página
-document.addEventListener('DOMContentLoaded', displayData);
-// Función para mostrar notificación de producto agregado
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.textContent = message;
-    document.body.appendChild(notification);
-    setTimeout(() => {
-        document.body.removeChild(notification);
-    }, 200);
-}
+// Agregar producto al carrito
 function addToCart(productId, productName, productPrice, productTalle, productQuantity) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const product = { id: productId, name: productName, price: productPrice, talle: productTalle, quantity: productQuantity };
@@ -61,35 +60,63 @@ function addToCart(productId, productName, productPrice, productTalle, productQu
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // **Actualizar y almacenar el contador en `localStorage` correctamente**
     let totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
     localStorage.setItem("cartCount", totalCount);
-    
+
     updateCartCount();
     displayCart();
 }
-
-window.addEventListener("storage", (event) => {
-    if (event.key === "cartCount") {
-        document.querySelectorAll(".cart-count").forEach(el => el.textContent = event.newValue);
-    }
-});
-
-
-function updateCartCount() {
-    let totalCount = localStorage.getItem("cartCount");
-
-    // Si no hay datos en localStorage, inicializarlo correctamente
-    if (!totalCount || isNaN(totalCount)) {
-        totalCount = 0;
-        localStorage.setItem("cartCount", totalCount);
-    }
-
-    document.querySelectorAll(".cart-count").forEach(el => el.textContent = totalCount);
+// Función para cambiar el estado del botón
+function changeButtonState(button) {
+    button.style.backgroundColor = '#4CAF50'; // Cambiar a verde
+    const originalText = button.textContent;
+    button.textContent = 'Producto agregado';
+    button.disabled = true; // Deshabilitar el botón
+// Revertir el cambio después de 1 segundo
+    setTimeout(() => {
+        button.style.backgroundColor = '';
+        button.textContent = originalText;
+        button.disabled = false;
+    }, 500);
 }
 
+// Mostrar carrito
+function displayCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartContainer = document.querySelector('.cart-items');
+    cartContainer.innerHTML = '';
 
-// Función para eliminar una unidad del producto del carrito
+    cart.forEach(product => {
+        const listItem = document.createElement('div');
+        listItem.classList.add('cart-item');
+        listItem.innerHTML = `
+            <button class="decrease-quantity" data-id="${product.id}" data-talle="${product.talle}">-</button>
+            <p>${product.quantity} x ${product.name} (Talle: ${product.talle}) - Precio: $${(product.price * product.quantity).toFixed(2)}</p>
+            <button class="increase-quantity" data-id="${product.id}" data-talle="${product.talle}">+</button>
+        `;
+        cartContainer.appendChild(listItem);
+    });
+
+    updateCartTotal();
+
+    document.querySelectorAll('.decrease-quantity').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = parseInt(button.getAttribute('data-id'));
+            const productTalle = button.getAttribute('data-talle');
+            removeFromCart(productId, productTalle);
+        });
+    });
+
+    document.querySelectorAll('.increase-quantity').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = parseInt(button.getAttribute('data-id'));
+            const productTalle = button.getAttribute('data-talle');
+            addToCart(productId, null, null, productTalle, 1);
+        });
+    });
+}
+
+// Eliminar productos
 function removeFromCart(productId, productTalle) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const existingProduct = cart.find(item => item.id === productId && item.talle === productTalle);
@@ -115,262 +142,26 @@ function removeFromCart(productId, productTalle) {
     }
 }
 
-// Función para mostrar los productos en el carrito
-function displayCart() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartContainer = document.querySelector('.cart-items');
-    cartContainer.innerHTML = '';
-    cart.forEach(product => {
-        const listItem = document.createElement('div');
-        listItem.classList.add('cart-item');
-        listItem.innerHTML = `
-            <button class="decrease-quantity" data-id="${product.id}" data-talle="${product.talle}">-</button>
-            <p>${product.quantity} x ${product.name} (Talle: ${product.talle}) - Precio: $${(product.price * product.quantity).toFixed(2)}</p>
-            <button class="increase-quantity" data-id="${product.id}" data-talle="${product.talle}">+</button>
-        `;
-        cartContainer.appendChild(listItem);
-    });
-    updateCartTotal();
-// Añadir funcionalidad a los botones de eliminación y aumento de cantidad
-    document.querySelectorAll('.decrease-quantity').forEach(button => {
-        button.addEventListener('click', function() {
-            const productId = parseInt(button.getAttribute('data-id'));
-            const productTalle = button.getAttribute('data-talle');
-            removeFromCart(productId, productTalle);
-        });
-    });
-    document.querySelectorAll('.increase-quantity').forEach(button => {
-        button.addEventListener('click', function() {
-            const productId = parseInt(button.getAttribute('data-id'));
-            const productTalle = button.getAttribute('data-talle');
-            addToCart(productId, null, null, productTalle, 1); // Incrementar la cantidad en 1
-        });
-    });
-}
-// Función para actualizar el total del carrito
+
+// Actualizar total del carrito
 function updateCartTotal() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartTotal = cart.reduce((total, product) => total + (product.price * product.quantity), 0);
     document.querySelector('.cart-total').textContent = cartTotal.toFixed(2);
 }
-// Función para mostrar las imágenes adicionales al hacer clic en "Ver más"
-function addViewMoreButton() {
-    document.querySelectorAll('.ver-mas').forEach(button => {
-        button.addEventListener('click', () => {
-            const productId = button.getAttribute('data-id');
-            const extraImages = document.getElementById(`extra-images-${productId}`);
-            if (extraImages.style.display === 'none' || extraImages.style.display === '') {
-                extraImages.style.display = 'block';
-                button.textContent = "Ver menos";
-            } else {
-                extraImages.style.display = 'none';
-                button.textContent = "Ver más";
-            }
-        });
-    });
-}
-// Función para inicializar la página
-function initPage() {
-    displayCart();
-    addViewMoreButton();
 
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', function() {
-            const productId = parseInt(button.getAttribute('data-id'));
-            const productName = button.getAttribute('data-name');
-            const productPrice = parseFloat(button.getAttribute('data-price'));
-            const productTalle = document.querySelector(`#talle-${productId}`).value;
-            const productQuantity = parseInt(document.querySelector(`#cantidad-${productId}`).value);
-            if (productTalle && productQuantity > 0) {
-                addToCart(productId, productName, productPrice, productTalle, productQuantity);
-                changeButtonState(button);
-            } else {
-                alert("Por favor, selecciona un talle y una cantidad válida.");
-            }
-        });
-    });
-    
-      
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', (event) => {
-          const pantIcon = document.getElementById('pant-icon');
-          const buttonRect = event.target.getBoundingClientRect(); // Coordenadas del botón
-          const cart = document.querySelector('.cart');
-      
-          // Posición inicial: donde está el botón
-          pantIcon.style.display = 'block';
-          pantIcon.style.position = 'absolute';
-          pantIcon.style.left = `${buttonRect.left}px`;
-          pantIcon.style.top = `${buttonRect.top}px`;
-      
-          // Animación hacia el carrito
-          pantIcon.style.transition = 'all 1.5s ease'; // Animación suave
-          setTimeout(() => {
-            pantIcon.style.left = `${cart.offsetLeft + cart.clientWidth / 2}px`; // Posición dentro del carrito
-            pantIcon.style.top = `${cart.offsetTop + cart.clientHeight / 2}px`; // Posición dentro del carrito
-          }, 50); // Pequeño retraso para la transición
-      
-          // Mantener el pantalón dentro del carrito o hacer que desaparezca
-          setTimeout(() => {
-            pantIcon.style.transition = '';
-            pantIcon.style.display = 'none'; // El pantalón desaparece
-            console.log('Animación completada y el ícono desapareció.');
-            updateCartIndicator(); // Llamar al indicador visual
-          }, 1550); // Tiempo total de la animación
-        });
-      });
-      //let cartItemCount = 0; // Contador global de ítems en el carrito
+function updateCartCount() {
+    let totalCount = localStorage.getItem("cartCount");
 
-// Selecciona todos los botones "Agregar al carrito"
-document.querySelectorAll('.add-to-cart').forEach(button => {
-  button.addEventListener('click', (event) => {
-    // Encuentra el contenedor del producto relacionado al botón clicado
-    const productCard = event.target.closest('.product-card');
-    const quantityInput = productCard.querySelector('.cantidad'); // Selecciona el campo de cantidad
-
-    // Captura el valor de la cantidad seleccionada
-    const quantity = parseInt(quantityInput.value, 10);
-
-    // Validación: suma solo si la cantidad es válida y mayor que cero
-    if (!isNaN(quantity) && quantity > 0) {
-      cartItemCount += quantity; // Suma la cantidad seleccionada al contador global
-
-      // Actualiza el contador visual del carrito
-      const cartCount = document.querySelector('.cart-count');
-      cartCount.textContent = cartItemCount;
-      
-      // Animación visual del contador (opcional)
-      cartCount.style.transition = 'all 0.5s ease';
-      cartCount.style.transform = 'scale(1.2)';
-      setTimeout(() => {
-        cartCount.style.transform = 'scale(1)';
-      }, 500);
-
-      console.log(`Añadido: ${quantity} producto(s). Total en el carrito: ${cartItemCount}`);
-    } else {
-      console.log('Selecciona una cantidad válida antes de agregar al carrito.');
+    // Si no hay datos en localStorage, inicializarlo correctamente
+    if (!totalCount || isNaN(totalCount)) {
+        totalCount = 0;
+        localStorage.setItem("cartCount", totalCount);
     }
-  });
-});
 
-// Vaciar el carrito y reiniciar el contador
-document.querySelector('.clear-cart').addEventListener('click', () => {
-  cartItemCount = 0; // Reinicia el contador del carrito
-  const cartCount = document.querySelector('.cart-count');
-  cartCount.textContent = cartItemCount; // Actualiza el número en el carrito
-  console.log('El carrito ha sido vaciado.');
-});
-
-
-
-
-      
-      
-document.querySelector('.clear-cart').addEventListener('click', function() {
-        localStorage.removeItem('cart');
-        displayCart();
-    });
- document.getElementById('confirmar-carrito-btn').addEventListener('click', function() {
-        document.getElementById('dialog').style.display = 'block';
-    });
-
-    document.getElementById('confirmation-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-         // Validar número de teléfono
-        const phoneInput = document.getElementById('buyer-phone');
-        const phonePattern = /^[0-9]{10,15}$/; // Permitir solo números de 10 a 15 dígitos
-        if (!phonePattern.test(phoneInput.value)) {
-            alert('Por favor, ingrese un número de teléfono válido.');
-            return;
-        }// Validar correo electrónico
-        const emailInput = document.getElementById('buyer-email');
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(emailInput.value)) {
-            alert('Por favor, ingrese un correo electrónico válido.');
-            return;
-        }
-        // Obtener los datos del comprador
-    const buyerName = document.getElementById('buyer-name').value;
-    const buyerPhone = document.getElementById('buyer-phone').value;
-    const buyerEmail = document.getElementById('buyer-email').value;
-// Obtener los productos del carrito
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let cartDetails = `Detalles del Carrito:\n`;
-    cart.forEach(product => {
-        cartDetails += `${product.quantity} x ${product.name} (Talle: ${product.talle}) - Precio: $${(product.price * product.quantity).toFixed(2)}\n`;
-    });
-    document.getElementById('comprar-btn').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevenir el envío del formulario
-    // Datos del formulario
-        const buyerName = document.getElementById('buyer-name').value;
-        const buyerPhone = document.getElementById('buyer-phone').value;
-        const buyerEmail = document.getElementById('buyer-email').value;
-    
-       
-        document.addEventListener('DOMContentLoaded', function() {
-           
-           
-            document.getElementById('confirmation-form').addEventListener('submit', function(event) {
-                event.preventDefault();
-                
-                // Validar datos del formulario
-                const buyerName = document.getElementById('buyer-name').value;
-                const buyerPhone = document.getElementById('buyer-phone').value;
-                const buyerEmail = document.getElementById('buyer-email').value;
-                
-              
-                
-        
-                // Enviar el correo utilizando EmailJS
-                emailjs.send('service_9olg4ok', 'template_hsl3vca', templateParams)
-                    .then(function(response) {
-                        console.log('Correo enviado exitosamente!', response.status, response.text);
-                        document.getElementById('confirmation-message').style.display = 'block';
-                    }, function(error) {
-                        console.log('Fallo en el envío del correo...', error);
-                    });
-            });
-        });
-         
-    // Enviar el correo utilizando EmailJS
-        emailjs.send('service_9olg4ok', 'template_hsl3vca', templateParams)
-            .then(function(response) {
-                console.log('Correo enviado exitosamente!', response.status, response.text);
-                document.getElementById('confirmation-message').style.display = 'block';
-            }, function(error) {
-                console.log('Fallo en el envío del correo...', error);
-            });
-    });
-    // Mostrar mensaje de confirmación estilizado
-const confirmationMessage = document.getElementById('confirmation-message');
-confirmationMessage.innerHTML = `
-  <h2>Compra Confirmada</h2>
-  <p>¡Gracias por su compra, ${document.getElementById('buyer-name').value}Ud.
- será redirigido a WhatsApp donde podrá confirmar su compra con todos los detalles proporcionados y le indicaremos la forma de pago. Si tiene alguna pregunta adicional, no dude en contactarnos. ¡Gracias por confiar en nosotros!</p>
-`;
-confirmationMessage.style.display = 'block';
-document.getElementById('dialog').style.display = 'none';
-// Esperar 5 segundos antes de redirigir a WhatsApp
-setTimeout(() => {
-  // Mensaje a enviar por WhatsApp
-  const message = `Hola, soy ${document.getElementById('buyer-name').value}. Quiero comprar. Mis datos son:\nTeléfono: ${document.getElementById('buyer-phone').value}\nEmail: ${document.getElementById('buyer-email').value}\n${cartDetails}`;
-
-  // Codificar el mensaje para la URL
-  const encodedMessage = encodeURIComponent(message);
-
-  // Redirigir a WhatsApp con el mensaje
-  window.location.href = `https://wa.me/5491154511489?text=${encodedMessage}`;
-
-  // Ocultar el mensaje de confirmación después de redirigir
-  confirmationMessage.style.display = 'none';
-}, 2000);
-// Vaciar el carrito después de la confirmación
-        localStorage.removeItem('cart');
-        displayCart();
-    });
+    document.querySelectorAll(".cart-count").forEach(el => el.textContent = totalCount);
 }
-// Ejecutar la función initPage cuando el DOM esté cargado
-document.addEventListener('DOMContentLoaded', initPage);
+
 
 //Buscador
 document.getElementById('search-button').addEventListener('click', () => {
@@ -436,19 +227,195 @@ window.addEventListener("scroll", function() {
     }
 });
 
+// Función para mostrar notificación de producto agregado
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    setTimeout(() => {
+        document.body.removeChild(notification);
+    }, 200);
+}
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', (event) => {
+      const pantIcon = document.getElementById('pant-icon');
+      const buttonRect = event.target.getBoundingClientRect(); // Coordenadas del botón
+      const cart = document.querySelector('.cart');
+      // Cambiar el botón
+      event.target.textContent = "Producto agregado";
+      event.target.classList.add('added-to-cart');
+      event.target.disabled = true; // Opcional: deshabilita el botón después de agregar el producto
+      // Restaurar el botón después de 3 segundos
+      setTimeout(() => {
+        event.target.textContent = "Agregar al carrito";
+        event.target.classList.remove('added-to-cart');
+        event.target.disabled = false;
+    }, 3000);
+  
+      // Posición inicial: donde está el botón
+      pantIcon.style.display = 'block';
+      pantIcon.style.position = 'absolute';
+      pantIcon.style.left = `${buttonRect.left}px`;
+      pantIcon.style.top = `${buttonRect.top}px`;
+  
+      // Animación hacia el carrito
+      pantIcon.style.transition = 'all 1.5s ease'; // Animación suave
+      setTimeout(() => {
+        pantIcon.style.left = `${cart.offsetLeft + cart.clientWidth / 2}px`; // Posición dentro del carrito
+        pantIcon.style.top = `${cart.offsetTop + cart.clientHeight / 2}px`; // Posición dentro del carrito
+      }, 50); // Pequeño retraso para la transición
+  
+      // Mantener el pantalón dentro del carrito o hacer que desaparezca
+      setTimeout(() => {
+        pantIcon.style.transition = '';
+        pantIcon.style.display = 'none'; // El pantalón desaparece
+        console.log('Animación completada y el ícono desapareció.');
+        updateCartIndicator(); // Llamar al indicador visual
+      }, 1550); // Tiempo total de la animación
+    });
+  });
+
 document.getElementById("back-to-top").addEventListener("click", function() {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
 //cambio de imagenes
-const images = [
-    "./imagenes/blue-jeans-fabric-details.jpg",
-    "./imagenes/.jpg",
-    "./foto local.jpg",
-    "./imagenes/pantalon-trasero.jpg"
-];
-let index = 0;
+const productImages = {
+    "pantalon-moderno": [
+        "./blue-jeans-fabric-details.jpg",
+        "./jean azul prueba.webp",
+        "./otro pantalon prueba.webp"
+    ],
+    "pantalon-verde": [
+        "./pampero-beige.jpg",
+        "./foto local.jpg",
+        "./panatlon azul.jpg"
+    ],
+    "jean-celeste": [
+        "./panatlon azul.jpg",
+        "./pampero-beige.jpg"
+    ],
+        "costura-camel": ["./blue-jeans-fabric-details.jpg",
+        "./jean azul prueba.webp"
+    ],
+    "jean-clasico": [
+        "./jean clasico front.PNG",
+        "./jean clasico espalda.JPG"],
 
-document.getElementById("main-image").addEventListener("click", function() {
-    index = (index + 1) % images.length; // Cambia la imagen en el mismo lugar
-    this.src = images[index];
+"jean-oxido": [
+    "./oxido front.JPG",
+    "./jean oxido back (2).JPG"],
+    
+    "clasico-gris": ["./clasico gris f.JPG",
+        "./clasico gris b.JPG" ],
+
+   "clasico-gris-oscuro": ["./gris oscuro front.JPG", 
+    "./gris oscuro front 2.JPG",
+    "./gris oscuro.JPG"],
+    
+    "bull-negro": ["./bull negro front.JPG",
+        "./bull negro back.JPG"],
+
+"blue-black": ["./blue black.JPG",
+    "./blue black back.JPG"],
+
+   
+
+   
+};
+
+document.querySelectorAll("img").forEach(img => {
+    let index = 0;
+    img.addEventListener("click", function() {
+        const images = productImages[this.id]; // Obtiene las imágenes del producto específico
+        if (images) {
+            index = (index + 1) % images.length;
+            this.src = images[index];
+        }
+    });
 });
+//cambio de icono pasa fotos a blanco o negro
+document.querySelector(".info-icon").classList.toggle("blanco");
+
+
+
+// Confirmar compra con mínimo de unidades
+function confirmPurchase() {
+    const buyerName = document.getElementById('buyer-name').value.trim();
+    const buyerPhone = document.getElementById('buyer-phone').value.trim();
+    const buyerEmail = document.getElementById('buyer-email').value.trim();
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Verificar que todos los campos estén completos
+    if (!buyerName || !buyerPhone || !buyerEmail || cart.length === 0) {
+        alert("Por favor, complete todos los campos y agregue al menos un producto al carrito antes de confirmar la compra.");
+        return;
+    }
+
+    // Verificar cantidad mínima
+    function mostrarMensaje(unidadesFaltantes) {
+        const modal = document.getElementById("mensajeModal");
+        const mensajeTexto = document.getElementById("mensajeTexto");
+        mensajeTexto.innerText = `Te faltan ${unidadesFaltantes} unidades para alcanzar el precio por mayor. Para compras minoristas, consulte el precio por whatsapp.`;
+        modal.style.display = "block";
+    }
+    
+    function cerrarModal() {
+        document.getElementById("mensajeModal").style.display = "none";
+    }
+    
+    // También puedes asegurarte de que el botón esté correctamente vinculado
+    document.getElementById("cerrarBtn").addEventListener("click", cerrarModal);
+    
+    
+    // Verificar cantidad mínima
+    const totalUnits = cart.reduce((acc, product) => acc + product.quantity, 0);
+    if (totalUnits < 3) {
+        const unidadesFaltantes = 3 - totalUnits;
+        mostrarMensaje(unidadesFaltantes);
+        return;
+    }
+    
+
+    let cartDetails = `Detalles del Carrito:\n`;
+    cart.forEach(product => {
+        cartDetails += `${product.quantity} x ${product.name} (Talle: ${product.talle}) - Precio: $${(product.price * product.quantity).toFixed(2)}\n`;
+    });
+
+    setTimeout(() => {
+        const message = `Hola, soy ${buyerName}. Quiero comprar.\nTeléfono: ${buyerPhone}\nEmail: ${buyerEmail}\n${cartDetails}`;
+        const encodedMessage = encodeURIComponent(message);
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const whatsappURL = isMobile 
+            ? `https://api.whatsapp.com/send?phone=5491154511489&text=${encodedMessage}` 
+            : `https://web.whatsapp.com/send?phone=5491154511489&text=${encodedMessage}`;
+
+        window.location.href = whatsappURL;
+    }, 2000);
+
+    // Vaciar el carrito y reiniciar el contador
+    localStorage.removeItem('cart');
+    updateCartCounter();
+    displayCart();
+}
+
+
+// Función para actualizar el contador manualmente
+function updateCartCounter() {
+    const cartCounterElement = document.getElementById('cart-counter'); // Ajusta el ID según tu HTML
+    if (cartCounterElement) {
+        cartCounterElement.textContent = "0"; // Reinicia el contador a cero
+    }
+}
+//detectar dispositivo para mensaje de whatsapp
+function detectarDispositivo() {
+    var urlMovil = "whatsapp://send?phone=541154511489";
+    var urlWeb = "https://wa.me/5491154511489";
+
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      window.location.href = urlMovil;
+    } else {
+      window.location.href = urlWeb;
+    }
+  }
+  
