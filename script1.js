@@ -356,13 +356,15 @@ function confirmPurchase() {
     function mostrarMensaje(unidadesFaltantes) {
         const modal = document.getElementById("mensajeModal");
         const mensajeTexto = document.getElementById("mensajeTexto");
-        mensajeTexto.innerText = `Te faltan ${unidadesFaltantes} unidades para alcanzar el precio por mayor. Para compras minoristas, consulte el precio por whatsapp.`;
+        mensajeTexto.innerText = `Te faltan ${unidadesFaltantes} unidades para alcanzar el precio por mayor. Para compras minoristas, sera redirigido al sitio minorista.`;
         modal.style.display = "block";
     }
     
     function cerrarModal() {
-        document.getElementById("mensajeModal").style.display = "none";
-    }
+    document.getElementById("mensajeModal").style.display = "none";
+    window.location.href = "https://sarisaade.github.io/menor-legendario/"; // Reemplaza con la URL correcta
+}
+
     
     // También puedes asegurarte de que el botón esté correctamente vinculado
     document.getElementById("cerrarBtn").addEventListener("click", cerrarModal);
