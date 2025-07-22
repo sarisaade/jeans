@@ -356,13 +356,17 @@ function confirmPurchase() {
     function mostrarMensaje(unidadesFaltantes) {
         const modal = document.getElementById("mensajeModal");
         const mensajeTexto = document.getElementById("mensajeTexto");
-        mensajeTexto.innerText = `Te faltan ${unidadesFaltantes} unidades para alcanzar el precio por mayor. Para compras minoristas, sera redirigido al sitio minorista.`;
+        mensajeTexto.innerText = `Te faltan ${unidadesFaltantes} unidades para alcanzar el precio por mayor. Agrega más productos al carrito para completar la compra.`;
         modal.style.display = "block";
     }
     
     function cerrarModal() {
     document.getElementById("mensajeModal").style.display = "none";
-    window.location.href = "https://sarisaade.github.io/menor-legendario/"; // Reemplaza con la URL correcta
+    //localStorage.clear();
+    window.location.href="productos.html";
+
+
+   // window.location.href = "https://sarisaade.github.io/menor-legendario/"; // Reemplaza con la URL correcta
 }
 
     
@@ -396,7 +400,7 @@ function confirmPurchase() {
     }, 2000);
 
     // Vaciar el carrito y reiniciar el contador
-    localStorage.removeItem('cart');
+   localStorage.removeItem('cart');
     updateCartCounter();
     displayCart();
 }
@@ -404,7 +408,7 @@ function confirmPurchase() {
 
 // Función para actualizar el contador manualmente
 function updateCartCounter() {
-    const cartCounterElement = document.getElementById('cart-counter'); // Ajusta el ID según tu HTML
+   const cartCounterElement = document.getElementById('cart-counter'); // Ajusta el ID según tu HTML
     if (cartCounterElement) {
         cartCounterElement.textContent = "0"; // Reinicia el contador a cero
     }
