@@ -1201,23 +1201,13 @@ img {
 
 .carousel-img {
   width: 100%;
-  display: block;
-}
-
-.hidden {
   display: none;
 }
 
-.prev, .next {
-  position: absolute;
-  top: 45%;
-  transform: translateY(-50%);
-  background-color: rgba(255,255,255,0.7);
-  border: none;
-  font-size: 14px;
-  cursor: pointer;
-  padding: 5px;
+.carousel-img.active {
+  display: block;
 }
 
-.prev { left: 5px; }
-.next { right: 5px; }
+.prev, .next {
+  display: none !important;
+}

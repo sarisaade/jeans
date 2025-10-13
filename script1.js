@@ -447,4 +447,24 @@ function detectarDispositivo() {
       window.location.href = urlWeb;
     }
   }
-  
+  document.addEventListener("DOMContentLoaded", function () {
+  const carousels = document.querySelectorAll('.carousel');
+
+  carousels.forEach(carousel => {
+    const images = carousel.querySelectorAll('.carousel-img');
+    let index = 0;
+
+    function showImage(i) {
+      images.forEach(img => img.classList.remove('active'));
+      images[i].classList.add('active');
+    }
+
+    showImage(index); // mostrar la primera imagen
+
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      showImage(index);
+    }, 3000); // cambia cada 3 segundos
+  });
+});
+
