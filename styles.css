@@ -1192,3 +1192,32 @@ img {
     border-radius: 5px;
     cursor: pointer;
 }
+.carousel {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.carousel-img {
+  width: 100%;
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,0.7);
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.prev { left: 5px; }
+.next { right: 5px; }

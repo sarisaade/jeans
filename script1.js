@@ -306,7 +306,7 @@ const productImages = {
     "./oxido front.JPG",
     "./jean oxido back (2).JPG"],
     
-    "clasico-gris": ["./clasico gris f.JPG",
+    "clasico-gris-claro": ["./imagenes/jeangris claro clasico back.JPG",
         "./clasico gris b.JPG" ],
 
    "clasico-gris-oscuro": ["./gris oscuro front.JPG", 
@@ -323,6 +323,29 @@ const productImages = {
 
    
 };
+document.querySelectorAll('.carousel').forEach(carousel => {
+  const images = carousel.querySelectorAll('.carousel-img');
+  let index = 0;
+
+  const showImage = i => {
+    images.forEach((img, idx) => {
+      img.classList.toggle('hidden', idx !== i);
+    });
+  };
+
+  carousel.querySelector('.prev').addEventListener('click', () => {
+    index = (index - 1 + images.length) % images.length;
+    showImage(index);
+  });
+
+  carousel.querySelector('.next').addEventListener('click', () => {
+    index = (index + 1) % images.length;
+    showImage(index);
+  });
+
+  showImage(index);
+});
+
 
 document.querySelectorAll("img").forEach(img => {
     let index = 0;
