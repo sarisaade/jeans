@@ -184,7 +184,7 @@ function activarBotones() {
 
       const id = btn.dataset.id;
       const name = btn.dataset.name;
-      const price = parseFloat(btn.dataset.price);
+      e = parseFloat(btn.dataset.price);
       const images = JSON.parse(btn.dataset.images);
       const image = images[0] || "";
 

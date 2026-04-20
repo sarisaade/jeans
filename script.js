@@ -35,7 +35,6 @@ async function cargarProductos() {
 
       const talles = generarTalles(p);
 
-      // 🔵 dots solo si hay más de 1 imagen
       let dotsHTML = "";
       if (imagenes.length > 1) {
         dotsHTML = `<div class="dots">
@@ -55,7 +54,7 @@ async function cargarProductos() {
         </div>
 
         <h2>${p.Nombre}</h2>
-        <p>$${p.Precio}</p>
+        <p class="price" id="price-${p.ID}">$${p.Precio}</p>
 
         <div class="talles-container" id="talles-${p.ID}">
           ${talles}
@@ -67,20 +66,20 @@ async function cargarProductos() {
           data-id="${p.ID}"
           data-name="${p.Nombre}"
           data-price="${p.Precio}"
+          data-precio52="${p.Precio52 || ''}"
+          data-precio54="${p.Precio54 || ''}"
+          data-precio56="${p.Precio56 || ''}"
           data-images='${JSON.stringify(imagenes)}'>
           Agregar
         </button>
       `;
 
-      // 👉 CLICK IMAGEN (carrusel)
+      // 👉 IMAGEN (carrusel)
       const imgEl = card.querySelector(".product-img");
       const dots = card.querySelectorAll(".dot");
 
       imgEl.addEventListener("click", () => {
-        if (imagenes.length <= 1) {
-          activarZoom(imgEl);
-          return;
-        }
+        if (imagenes.length <= 1) return;
 
         let index = parseInt(imgEl.dataset.index);
         index = (index + 1) % imagenes.length;
@@ -88,14 +87,8 @@ async function cargarProductos() {
         imgEl.src = imagenes[index];
         imgEl.dataset.index = index;
 
-        // actualizar dots
         dots.forEach(d => d.classList.remove("active"));
         if (dots[index]) dots[index].classList.add("active");
-      });
-
-      // 👉 DOBLE CLICK = ZOOM
-      imgEl.addEventListener("dblclick", () => {
-        activarZoom(imgEl);
       });
 
       container.appendChild(card);
@@ -107,13 +100,6 @@ async function cargarProductos() {
   } catch (error) {
     console.error("Error cargando productos:", error);
   }
-}
-
-// =====================
-// ZOOM
-// =====================
-function activarZoom(img) {
-  img.classList.toggle("zoomed");
 }
 
 // =====================
@@ -149,6 +135,25 @@ function activarTalles() {
         .forEach(b => b.classList.remove("selected"));
 
       btn.classList.add("selected");
+
+      // 👉 CAMBIO DE PRECIO EN PANTALLA
+      const productId = container.id.replace("talles-", "");
+      const priceEl = document.getElementById(`price-${productId}`);
+      const addBtn = document.querySelector(`.add-to-cart[data-id="${productId}"]`);
+
+      let price = parseFloat(addBtn.dataset.price);
+
+      if (btn.dataset.talle === "52" && addBtn.dataset.precio52) {
+        price = parseFloat(addBtn.dataset.precio52);
+      }
+      if (btn.dataset.talle === "54" && addBtn.dataset.precio54) {
+        price = parseFloat(addBtn.dataset.precio54);
+      }
+      if (btn.dataset.talle === "56" && addBtn.dataset.precio56) {
+        price = parseFloat(addBtn.dataset.precio56);
+      }
+
+      priceEl.textContent = `$${price}`;
     });
   });
 }
@@ -163,7 +168,7 @@ function activarBotones() {
 
       const id = btn.dataset.id;
       const name = btn.dataset.name;
-      const price = parseFloat(btn.dataset.price);
+
       const images = JSON.parse(btn.dataset.images);
       const image = images[0] || "";
 
@@ -177,6 +182,10 @@ function activarBotones() {
       const talle = talleSel.dataset.talle;
       const stock = parseInt(talleSel.dataset.stock);
       const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value);
+
+      // 🔥 PRECIO REAL (EL QUE VE EL USUARIO)
+      const priceText = document.getElementById(`price-${id}`).textContent;
+      const price = parseFloat(priceText.replace("$", ""));
 
       if (cantidad > stock) {
         alert("Sin stock");
@@ -252,13 +261,12 @@ function mostrarCarrito() {
 }
 
 // =====================
-// RESTO IGUAL
+// RESTO
 // =====================
 function cambiarCantidad(id, talle, cambio) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   const prod = cart.find(p => p.id === id && p.talle === talle);
-
   if (!prod) return;
 
   prod.quantity += cambio;
@@ -294,15 +302,6 @@ function actualizarContador() {
 }
 
 function eventosCarrito() {
-  const vaciar = document.querySelector(".clear-cart");
-  if (vaciar) {
-    vaciar.onclick = () => {
-      localStorage.removeItem("cart");
-      actualizarContador();
-      mostrarCarrito();
-    };
-  }
-
   const form = document.getElementById("confirmation-form");
 
   if (form) {
