@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo</title>
+  <style>
+    .product-card { border:1px solid #ccc; padding:10px; margin:10px; }
+    .carousel-img { max-width:200px; display:block; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+  <h1>Catálogo de Productos</h1>
+  <div id="lista-productos"></div>
+
+  <!-- PapaParse -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script>
+  async function cargarProductos() {
+    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQl7KtXHWzjj_m98haEFRGuX4kbNI306hlJ5cOFiOOULxjHI1UAkJUV9anWTD7MtMWNAhYPB59H3iZy/pub?output=csv";
+
+    const respuesta = await fetch(url);
+    const texto = await respuesta.text();
+
+    // Parsear CSV con encabezados
+    const resultado = Papa.parse(texto, { header: true, skipEmptyLines: true });
+    console.log("Fila cruda:", resultado.data[0]); // ver nombres exactos
+
+  const productos = resultado.data.map(fila => {
+  const clean = {};
+  for (const clave in fila) {
+    clean[clave.trim()] = fila[clave]?.trim();
+  }
+  return {
+    id: clean["ID"],
+    nombre: clean["Nombre"],
+    precio: clean["Precio"],
+    descripcion: clean["Descripcion"],
+    imagen1: clean["Imagen1"] || 'fallback-image.jpg',
+    imagen2: clean["Imagen2"] || 'fallback-image.jpg',
+    imagen3: clean["Imagen3"] || 'fallback-image.jpg',
+    stock: clean["Stock"]
+  };
+});
+// Renderizar productos
+productos.forEach(producto => {
+  const contenedor = document.getElementById('product-container');
+  const card = document.createElement('div');
+  card.classList.add('product-card');
+  card.innerHTML = `
+    <h2>${producto.nombre}</h2>
+    <img src="${producto.imagen1}" alt="${producto.nombre}" onerror="this.src='fallback-image.jpg';">
+    <img src="${producto.imagen2}" alt="${producto.nombre}" onerror="this.src='fallback-image.jpg';">
+    <img src="${producto.imagen3}" alt="${producto.nombre}" onerror="this.src='fallback-image.jpg';">
+    <p>${producto.descripcion}</p>
+    <p>Precio: $${producto.precio}</p>
+    <p>Stock: ${producto.stock}</p>
+  `;
+  contenedor.appendChild(card);
+});
+
+    console.log("Productos:", productos); // confirmá que imagen1 trae el link
+
+    const contenedor = document.getElementById("lista-productos");
+    productos.forEach(p => {
+      if (!p.nombre) return; // evita filas vacías
+
+      const item = document.createElement("div");
+      item.classList.add("product-card");
+
+      const imagenes = [p.imagen1, p.imagen2, p.imagen3]
+        .filter(url => url && url !== "")
+        .map((url, i) => `<img src="${url}" class="carousel-img ${i > 0 ? 'hidden' : ''}" alt="${p.nombre} ${i+1}">`)
+        .join("");
+
+      item.innerHTML = `
+        <h2>${p.nombre}</h2>
+        <div class="carousel">
+          ${imagenes}
+          <button class="prev">←</button>
+          <button class="next">→</button>
+        </div>
+        <p>${p.descripcion}</p>
+        <p>Por Mayor: $${p.precio}</p>
+        <button class="add-to-cart" data-id="${p.id}">Agregar al carrito</button>
+      `;
+      contenedor.appendChild(item);
+    });
+  }
+
+  cargarProductos();
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+async function cargarProductos() {
+  const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQl7KtXHWzjj_m98haEFRGuX4kbNI306hlJ5cOFiOOULxjHI1UAkJUV9anWTD7MtMWNAhYPB59H3iZy/pub?output=csv";
+  const resp = await fetch(url);
+  const texto = await resp.text();
+
+  const resultado = Papa.parse(texto, { header: true, skipEmptyLines: true });
+  console.log("Fila cruda:", resultado.data[0]); // <-- mirá acá los nombres exactos
+
+  const productos = resultado.data.map(fila => ({
+    nombre: fila["Nombre"],
+    imagen1: fila["Imagen1"]
+  }));
+
+  console.log("Productos:", productos);
+}
+cargarProductos();
+</script>
+
+  <script src="script1.js"></script>
+</body>
+</html>

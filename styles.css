@@ -1211,3 +1211,1077 @@ img {
 .prev, .next {
   display: none !important;
 }
+.carousel-img {
+  cursor: pointer;
+}
+.carousel-img {
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.carousel-img.zoomed {
+  transform: scale(1.5); /* agranda la imagen */
+  z-index: 10;
+  position: relative;
+}
+
+
+.carousel {
+  position: relative;
+}
+
+.carousel-img:hover {
+  filter: brightness(1.1);
+  transition: filter 0.3s ease;
+}
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-img {
+  width: 100%;
+  display: none;
+  transition: transform 0.3s ease;
+}
+
+.carousel-img.active {
+  display: block;
+}
+
+.carousel-img.zoomed {
+  transform: scale(4.5); /* agranda */
+  z-index: 10;
+  position: relative;
+}
+.zoomed {
+  transform: scale(4.5);
+  transition: transform 0.3s ease;
+}
+
+
+.cart-item button {
+  padding: 3px 6px;
+  font-size: 12px;
+}
+
+.cart-item button:last-child {
+  background-color: red;
+  font-size: 10px;
+  padding: 2px 5px;
+}
+/* imagen carrito */
+.cart-img {
+    width: 50px;
+    border-radius: 5px;
+}
+
+/* boton eliminar chico */
+.delete-btn {
+    font-size: 12px;
+    padding: 4px 6px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* zoom */
+.product-img.zoomed {
+    transform: scale(2);
+    z-index: 10;
+    position: relative;
+}
+
+/* pantalon animacion */
+#pant-icon {
+    position: absolute;
+    width: 30px;
+    display: none;
+    z-index: 9999;
+}
+.product-img.zoomed {
+    transform: scale(2);
+    z-index: 10;
+    position: relative;
+}
+
+.cart-img {
+    width: 50px;
+    border-radius: 5px;
+}
+
+.delete-btn {
+    font-size: 12px;
+    padding: 4px 6px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#pant-icon {
+    position: absolute;
+    width: 30px;
+    display: none;
+    z-index: 9999;
+}
+.cart-img {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.btn-eliminar {
+    padding: 4px 8px;
+    font-size: 12px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#pant-icon {
+    position: fixed;
+    width: 40px;
+    top: 20px;
+    right: 80px;
+    z-index: 9999;
+    display: none;
+    pointer-events: none;
+}
+.img-producto {
+    width: 100%;
+    cursor: pointer;
+}
+
+.zoomed {
+    transform: scale(1.5);
+}
+
+.cantidad-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+select, input {
+    padding: 5px;
+}
+.img-producto {
+    width: 100%;
+    cursor: pointer;
+}
+
+.zoomed {
+    transform: scale(1.5);
+}
+
+.cantidad-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+.product-card {
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    background: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Imagen */
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.product-card img:hover {
+    transform: scale(1.05);
+}
+
+/* Nombre */
+.product-card h3 {
+    font-size: 16px;
+    margin: 10px 0 5px;
+    color: #333;
+    min-height: 40px;
+}
+
+/* Precio */
+.product-card p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007BFF;
+    margin: 5px 0 10px;
+}
+
+/* Select talle */
+.product-card select {
+    width: 100%;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+/* Botón */
+.product-card button {
+    width: 100%;
+    background: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.product-card button:hover {
+    background: #0056b3;
+}
+/* Card más compacta */
+.product-card {
+    padding: 10px;
+}
+
+/* Imagen más baja */
+.product-card img {
+    height: 180px; /* antes era más alta */
+    object-fit: cover;
+}
+
+/* Título más chico */
+.product-card h3 {
+    font-size: 14px;
+    margin: 6px 0;
+    min-height: auto;
+}
+
+/* Precio más compacto */
+.product-card .price {
+    font-size: 16px;
+    margin: 4px 0;
+}
+
+/* Select + cantidad más chicos */
+.product-card select,
+.product-card input {
+    padding: 5px;
+    font-size: 13px;
+}
+
+/* Botón más compacto */
+.product-card button {
+    padding: 8px;
+    font-size: 14px;
+}
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card button {
+    margin-top: auto;
+}
+/* ===== FIX DEFINITIVO CARDS ===== */
+
+.product-card {
+    height: auto !important;
+    padding: 10px !important;
+}
+
+/* IMAGEN */
+.product-card img {
+    width: 100% !important;
+    height: 160px !important; /* 🔥 achica la card */
+    object-fit: cover !important;
+    border-radius: 6px;
+}
+
+/* TITULO */
+.product-card h2 {
+    font-size: 14px !important;
+    margin: 6px 0 !important;
+}
+
+/* PRECIO */
+.product-card p {
+    font-size: 15px !important;
+    margin: 4px 0 !important;
+}
+
+/* SELECT + INPUT */
+.product-card select,
+.product-card input {
+    padding: 5px !important;
+    font-size: 13px !important;
+    margin-top: 6px !important;
+}
+
+/* BOTON */
+.product-card button {
+    padding: 8px !important;
+    font-size: 13px !important;
+    margin-top: 8px !important;
+}
+/* Talles en cuadritos */
+.talles-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.talle-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.talle-btn:hover {
+  border-color: black;
+}
+
+/* seleccionado */
+.talle-btn.selected {
+  background: black;
+  color: white;
+  border-color: black;
+}
+/* =========================
+   FIX TOTAL CARDS + TALLES
+========================= */
+
+/* CARD */
+.product-card {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  background: #fff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+}
+
+/* IMAGEN */
+.product-card img {
+  width: 100% !important;
+  height: 160px !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+}
+
+/* TITULO */
+.product-card h2 {
+  font-size: 14px !important;
+  margin: 6px 0 !important;
+}
+
+/* PRECIO */
+.product-card p {
+  font-size: 15px !important;
+  font-weight: bold !important;
+  color: #007BFF !important;
+  margin: 4px 0 !important;
+}
+
+/* CONTENEDOR TALLES */
+.talles-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  justify-content: center !important;
+  margin: 8px 0 !important;
+}
+
+/* CUADRITOS TALLES */
+.talle-btn {
+  width: 32px !important;
+  height: 32px !important;
+  border: 1px solid #ccc !important;
+  background: #fff !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  font-size: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: 0.2s !important;
+}
+
+/* HOVER */
+.talle-btn:hover {
+  border-color: black !important;
+}
+
+/* SELECCIONADO */
+.talle-btn.selected {
+  background: black !important;
+  color: white !important;
+  border-color: black !important;
+}
+
+/* SIN STOCK */
+.talle-btn.disabled {
+  background: #eee !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+  text-decoration: line-through !important;
+}
+
+/* CANTIDAD */
+.product-card input {
+  width: 60px !important;
+  margin: 5px auto !important;
+  text-align: center !important;
+  padding: 5px !important;
+}
+
+/* BOTON */
+.add-to-cart {
+  margin-top: 8px !important;
+  padding: 8px !important;
+  font-size: 13px !important;
+  border-radius: 6px !important;
+}
+
+/* CONTENEDOR GENERAL */
+.product-container {
+  gap: 15px !important;
+}
+/* ===== FIX CARDS (sin romper lo tuyo) ===== */
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Imagen más prolija */
+.product-card img {
+  height: 180px !important;
+  object-fit: cover !important;
+}
+
+/* ===== TALLES CUADRITOS FUNCIONANDO ===== */
+
+.talles-container {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+/* 🔥 CLAVE: esto arregla que NO se puedan tocar */
+.talle-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  padding: 0;
+  
+  position: relative;
+  z-index: 5;
+  pointer-events: auto !important;
+}
+
+/* hover */
+.talle-btn:hover {
+  border-color: black;
+}
+
+/* seleccionado */
+.talle-btn.selected {
+  background: black;
+  color: white;
+}
+
+/* sin stock */
+.talle-btn.disabled {
+  background: #eee;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* ===== CANTIDAD ===== */
+
+.product-card input[type="number"] {
+  width: 60px;
+  margin: 5px auto;
+  display: block;
+}
+
+/* ===== BOTON (separado, no encimado) ===== */
+
+.product-card button {
+  margin-top: 8px !important;
+}
+
+/* ===== EVITA QUE ALGO TAPE LOS TALLES ===== */
+
+.product-card * {
+  pointer-events: auto;
+}
+
+/* ===== FIX CAROUSEL (si tenés varias imágenes) ===== */
+
+.carousel-img {
+  display: none;
+}
+
+.carousel-img.active {
+  display: block;
+}
+
+/* ===== ZOOM ===== */
+
+.carousel-img.zoomed {
+  transform: scale(1.8);
+  z-index: 10;
+  position: relative;
+}
+/* ===== FIX TOTAL TALLES (CLICK SI O SI) ===== */
+
+/* CONTENEDOR */
+/* ===== FIX TALLES VISIBLES Y ORDENADOS ===== */
+
+/* contenedor en grilla prolija */
+.talles-container {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr); /* 5 por fila */
+  gap: 6px;
+  margin: 10px 0;
+}
+
+/* botones */
+.talle-btn {
+  width: 100%;
+  height: 32px;
+
+  background: #fff !important;
+  color: #333 !important; /* 🔥 ESTE ERA EL PROBLEMA */
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+/* hover */
+.talle-btn:hover {
+  border-color: #000;
+}
+
+/* seleccionado */
+.talle-btn.selected {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000;
+}
+
+/* sin stock */
+.talle-btn.disabled {
+  background: #eee !important;
+  color: #aaa !important;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+/* SIN STOCK */
+.talle-btn.disabled {
+  background: #eee;
+  color: #aaa;
+  border-color: #ddd;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* EVITA QUE SE PUEDA HACER CLICK */
+.talle-btn.disabled:hover {
+  border-color: #ddd;
+}
+
+/* 🔥 CLAVE: evita que imágenes o capas tapen */
+.product-card img,
+.carousel,
+.carousel-img {
+  pointer-events: none;
+}
+
+/* pero el zoom sigue funcionando */
+.carousel-img.zoomed {
+  pointer-events: auto;
+}
+/* =========================
+   🔥 FIX CARRUSEL IMÁGENES
+========================= */
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.carousel-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.carousel-img.active {
+  opacity: 1;
+  position: relative;
+}
+
+/* =========================
+   🧱 CARDS MÁS PRO
+========================= */
+
+.product-card {
+  border-radius: 12px;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.product-card h2 {
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+.product-card p {
+  font-size: 16px;
+  font-weight: bold;
+  color: #007BFF;
+}
+
+/* =========================
+   🔢 TALLES PRO (ARREGLADO)
+========================= */
+
+.talles-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.talle-btn {
+  width: 100%;
+  height: 32px;
+
+  background: #fff;
+  color: #333;
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  font-size: 13px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* hover */
+.talle-btn:hover {
+  border-color: #000;
+}
+
+/* seleccionado */
+.talle-btn.selected {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+/* sin stock */
+.talle-btn.disabled {
+  background: #eee;
+  color: #aaa;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* =========================
+   🔢 CANTIDAD
+========================= */
+
+.cantidad {
+  width: 60px;
+  padding: 5px;
+  margin: 8px auto;
+  display: block;
+  text-align: center;
+}
+
+/* =========================
+   🛒 BOTÓN
+========================= */
+
+.add-to-cart {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+
+  background: #007BFF;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.add-to-cart:hover {
+  background: #0056b3;
+}
+/* 🔥 FORZAR CLICK EN TALLES */
+.talle-btn {
+  pointer-events: auto !important;
+  z-index: 9999 !important;
+  position: relative !important;
+}
+
+/* 🔥 EVITA QUE LA IMAGEN BLOQUEE */
+.carousel-img {
+  pointer-events: none !important;
+}
+
+/* 🔥 CARRUSEL */
+.carousel-img {
+  display: none !important;
+}
+
+.carousel-img.active {
+  display: block !important;
+}
+
+/* 🔥 ESTILO TALLES */
+.talle-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+
+.talle-btn.selected {
+  background: black;
+  color: white;
+}
+.carousel {
+  position: relative;
+}
+
+.carousel-img {
+  display: none;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.carousel-img.active {
+  display: block;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.prev { left: 5px; }
+.next { right: 5px; }
+/* CONTENEDOR */
+.qty-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* BOTONES IGUALES */
+.qty-controls button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ➕ AZUL */
+.qty-controls .mas {
+  background-color: #007BFF;
+}
+
+/* ➖ ROJO */
+.qty-controls .menos {
+  background-color: #dc3545;
+}
+
+/* hover */
+.qty-controls .mas:hover {
+  background-color: #0056b3;
+}
+
+.qty-controls .menos:hover {
+  background-color: #a71d2a;
+}
+
+/* número */
+.qty-controls span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+/* botones cantidad */
+.btn-mas,
+.btn-menos {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+}
+
+/* + azul */
+.btn-mas {
+  background-color: #007bff;
+}
+
+/* - rojo */
+.btn-menos {
+  background-color: red;
+}
+.cart-container {
+  margin-top: 120px;
+}
+.seguir-comprando {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.seguir-comprando:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+.acciones-carrito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.clear-cart {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.clear-cart:hover {
+  transform: scale(1.05);
+}
+.product-img {
+  pointer-events: auto !important;
+  cursor: pointer;
+  z-index: 10;
+  position: relative;
+}
+.product-img:hover {
+  opacity: 0.9;
+}
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  gap: 5px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #ccc;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background: black;
+}
+.cart-item button.menos {
+  background-color: #dc3545; /* rojo */
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  transition: transform 0.3s, background-color 0.3s;
+}
+.cart-item button.menos:hover {
+  transform: scale(1.2);
+  background-color: #b02a37; /* rojo más oscuro */
+}
+
+.cart-item button.mas {
+  background-color: #28a745; /* verde */
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  transition: transform 0.3s, background-color 0.3s;
+}
+.cart-item button.mas:hover {
+  transform: scale(1.2);
+  background-color: #218838; /* verde más oscuro */
+}
+.cart-item button.delete-btn {
+  background-color: #6c757d;   /* gris */
+  color: white;
+  font-size: 14px;
+  padding: 6px;
+  border-radius: 50%;          /* círculo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;                 /* ancho fijo */
+  height: 20px;                /* alto fijo */
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+
+.cart-item button.delete-btn:hover {
+  transform: scale(1.1);
+  background-color: #5a6268;   /* gris más oscuro */
+}
+
+.btn-confirmar {background-color: green;}
+
+.img-box {
+  position: relative;
+}
+
+.dots {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-90%);
+}
+
+.dot {
+  height: 6px;
+  width: 6px;
+  margin: 8 3px;
+  background: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.active {
+  background: #333;
+}
+
+/* MODAL */
+.img-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-img {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: 12px;
+  object-fit: contain; /* 🔥 ESTO ARREGLA EL "ZOOM FEO" */
+}
+
+.cerrar {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+}
+.product-card {
+  position: relative;
+  z-index: 1;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}

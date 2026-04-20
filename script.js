@@ -35,14 +35,14 @@ async function cargarProductos() {
 
       const talles = generarTalles(p);
 
-      // 👉 DOTS solo si hay más de 1 imagen
-      let dots = "";
+      // 🔵 dots solo si hay más de 1 imagen
+      let dotsHTML = "";
       if (imagenes.length > 1) {
-        dots = `<div class="dots">`;
-        imagenes.forEach((_, i) => {
-          dots += `<span class="dot ${i === 0 ? "active" : ""}"></span>`;
-        });
-        dots += `</div>`;
+        dotsHTML = `<div class="dots">
+          ${imagenes.map((_, i) => 
+            `<span class="dot ${i === 0 ? "active" : ""}"></span>`
+          ).join("")}
+        </div>`;
       }
 
       const card = document.createElement("div");
@@ -51,7 +51,7 @@ async function cargarProductos() {
       card.innerHTML = `
         <div class="img-box">
           <img src="${img}" class="product-img" data-index="0">
-          ${dots}
+          ${dotsHTML}
         </div>
 
         <h2>${p.Nombre}</h2>
@@ -72,28 +72,30 @@ async function cargarProductos() {
         </button>
       `;
 
-      // =====================
-      // CLICK IMAGEN (carrusel + modal)
-      // =====================
+      // 👉 CLICK IMAGEN (carrusel)
       const imgEl = card.querySelector(".product-img");
-      const dotsEl = card.querySelectorAll(".dot");
+      const dots = card.querySelectorAll(".dot");
 
       imgEl.addEventListener("click", () => {
-
-        // 👉 si tiene varias → carrusel
-        if (imagenes.length > 1) {
-          let index = parseInt(imgEl.dataset.index);
-          index = (index + 1) % imagenes.length;
-
-          imgEl.src = imagenes[index];
-          imgEl.dataset.index = index;
-
-          dotsEl.forEach(d => d.classList.remove("active"));
-          if (dotsEl[index]) dotsEl[index].classList.add("active");
+        if (imagenes.length <= 1) {
+          activarZoom(imgEl);
+          return;
         }
 
-        // 👉 abrir modal
-        abrirModal(imagenes[imgEl.dataset.index]);
+        let index = parseInt(imgEl.dataset.index);
+        index = (index + 1) % imagenes.length;
+
+        imgEl.src = imagenes[index];
+        imgEl.dataset.index = index;
+
+        // actualizar dots
+        dots.forEach(d => d.classList.remove("active"));
+        if (dots[index]) dots[index].classList.add("active");
+      });
+
+      // 👉 DOBLE CLICK = ZOOM
+      imgEl.addEventListener("dblclick", () => {
+        activarZoom(imgEl);
       });
 
       container.appendChild(card);
@@ -108,37 +110,14 @@ async function cargarProductos() {
 }
 
 // =====================
-// MODAL IMAGEN
+// ZOOM
 // =====================
-function abrirModal(src) {
-  let modal = document.querySelector(".img-modal");
-
-  if (!modal) {
-    modal = document.createElement("div");
-    modal.classList.add("img-modal");
-
-    modal.innerHTML = `
-      <span class="cerrar">&times;</span>
-      <img class="modal-img">
-    `;
-
-    document.body.appendChild(modal);
-
-    modal.querySelector(".cerrar").onclick = () => {
-      modal.style.display = "none";
-    };
-
-    modal.onclick = (e) => {
-      if (e.target === modal) modal.style.display = "none";
-    };
-  }
-
-  modal.querySelector(".modal-img").src = src;
-  modal.style.display = "flex";
+function activarZoom(img) {
+  img.classList.toggle("zoomed");
 }
 
 // =====================
-// TALLES (NO TOCAR)
+// TALLES
 // =====================
 function generarTalles(p) {
   let html = "";
@@ -211,7 +190,7 @@ function activarBotones() {
 }
 
 // =====================
-// CARRITO (TODO IGUAL)
+// CARRITO
 // =====================
 function agregarAlCarrito(id, name, price, talle, cantidad, image) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -230,6 +209,9 @@ function agregarAlCarrito(id, name, price, talle, cantidad, image) {
   mostrarCarrito();
 }
 
+// =====================
+// MOSTRAR CARRITO
+// =====================
 function mostrarCarrito() {
   const contenedor = document.querySelector(".cart-items");
   if (!contenedor) return;
@@ -269,10 +251,14 @@ function mostrarCarrito() {
   if (totalEl) totalEl.textContent = total;
 }
 
+// =====================
+// RESTO IGUAL
+// =====================
 function cambiarCantidad(id, talle, cambio) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   const prod = cart.find(p => p.id === id && p.talle === talle);
+
   if (!prod) return;
 
   prod.quantity += cambio;
@@ -307,11 +293,7 @@ function actualizarContador() {
   });
 }
 
-// =====================
-// EVENTOS
-// =====================
 function eventosCarrito() {
-
   const vaciar = document.querySelector(".clear-cart");
   if (vaciar) {
     vaciar.onclick = () => {
@@ -336,6 +318,11 @@ function eventosCarrito() {
 
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+      if (cart.length === 0) {
+        alert("Carrito vacío");
+        return;
+      }
+
       let mensaje = `Hola! soy ${nombre}, quiero comprar:\n\n`;
 
       cart.forEach(p => {
@@ -343,7 +330,6 @@ function eventosCarrito() {
       });
 
       const url = `https://wa.me/5491154511489?text=${encodeURIComponent(mensaje)}`;
-
       window.location.href = url;
     });
   }
