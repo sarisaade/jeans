@@ -302,6 +302,18 @@ function actualizarContador() {
 }
 
 function eventosCarrito() {
+
+  // 🗑️ VACIAR CARRITO
+  const vaciar = document.querySelector(".clear-cart");
+  if (vaciar) {
+    vaciar.onclick = () => {
+      localStorage.removeItem("cart");
+      actualizarContador();
+      mostrarCarrito();
+    };
+  }
+
+  // ✅ CONFIRMAR (WHATSAPP)
   const form = document.getElementById("confirmation-form");
 
   if (form) {
