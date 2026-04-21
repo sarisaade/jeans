@@ -230,8 +230,22 @@ function mostrarCarrito() {
   contenedor.innerHTML = "";
   let total = 0;
 
+  // 👉 total de unidades en TODO el carrito
+  const totalUnidades = cart.reduce((acc, p) => acc + p.quantity, 0);
+
+  const aplicaMayorista = totalUnidades >= 3;
+
   cart.forEach(p => {
-    total += p.price * p.quantity;
+
+    // 👉 precio que ve el cliente (ya con ajuste si corresponde)
+    let precioUnitario = p.price;
+
+    if (!aplicaMayorista) {
+      precioUnitario = p.price + 5000;
+    }
+
+    const subtotal = precioUnitario * p.quantity;
+    total += subtotal;
 
     const item = document.createElement("div");
     item.classList.add("cart-item");
@@ -246,6 +260,9 @@ function mostrarCarrito() {
         <button class="mas">+</button>
       </div>
 
+      <p>$${precioUnitario} c/u</p>
+      <p><strong>$${subtotal}</strong></p>
+
       <button class="delete-btn">X</button>
     `;
 
@@ -256,10 +273,30 @@ function mostrarCarrito() {
     contenedor.appendChild(item);
   });
 
+  // 👉 MENSAJE COMERCIAL (sin mencionar recargo)
+  const aviso = document.createElement("div");
+
+  if (!aplicaMayorista) {
+    const faltan = 3 - totalUnidades;
+
+    aviso.innerHTML = `
+      <p style="color:orange; font-weight:bold;">
+        Te falta agregar ${faltan} prenda(s) para obtener precio mayorista
+      </p>
+    `;
+  } else {
+    aviso.innerHTML = `
+      <p style="color:green; font-weight:bold;">
+        ✔ Ya tenés precio mayorista aplicado
+      </p>
+    `;
+  }
+
+  contenedor.appendChild(aviso);
+
   const totalEl = document.querySelector(".cart-total");
   if (totalEl) totalEl.textContent = total;
 }
-
 // =====================
 // RESTO
 // =====================

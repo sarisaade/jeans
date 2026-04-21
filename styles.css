@@ -2496,3 +2496,61 @@ header {
 .talle-btn {
   border-radius: 999px; /* pill style */
 }
+/* HERO FULL */
+.hero-full {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* OVERLAY tipo Hollister */
+.hero-overlay {
+  position: absolute;
+  bottom: 15%;
+  left: 8%;
+  color: white;
+}
+
+.hero-overlay h2 {
+  font-size: 3rem;
+  letter-spacing: 3px;
+  font-weight: 300;
+}
+
+.hero-overlay p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* BOTÓN MINIMAL */
+.btn-main {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+.btn-main:hover {
+  background: white;
+  color: black;
+}
+
+/* TEXTO ABAJO */
+.brand-text {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1rem;
+  color: #444;
+}

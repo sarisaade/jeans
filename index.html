@@ -34,69 +34,95 @@
 
 <main>
   <div class="portada">
-    <div class="botones">
-      <button class="especial" onclick="location.href='./productos.html'">Ver productos</button>
-      <button class="boton-contacto" onclick="location.href='./contacto.html'">Contactanos</button>
-    </div>
-    <img src="./foto local.jpg" alt="Local Legendario Jeans" class="portada-img">
-    <p>Más de 35 años ofreciendo calidad, tradición y estilo. Jeans clásicos que siempre están en tendencia.</p>
-    
+
+  <h1>Legendario Jeans</h1>
+
+  <p class="subtitulo">
+    Más de 35 años ofreciendo calidad, tradición y estilo.
+  </p>
+
+  <img src="./foto local.jpg" alt="Local Legendario Jeans" class="portada-img">
+
+  <div class="botones">
+    <button class="especial" onclick="location.href='./productos.html'">
+      Ver productos
+    </button>
+
+    <button class="boton-contacto" onclick="location.href='./contacto.html'">
+      Contactanos
+    </button>
   </div>
+
+</div>
   
    
-  <section class="sobre-nosotros">
-    <h2>Sobre Nosotros</h2>
-    <p>
-      Legendario Jeans es sinónimo de <strong>resistencia, calidad y estilo</strong>. Durante más de tres décadas, hemos fabricado jeans que <em>se ajustan a cada persona y perduran en el tiempo</em>.
-    </p>
-    <p>
-      Si buscas un jean que <strong>combina comodidad y durabilidad</strong>, este es tu lugar. ¡Te esperamos en Flores! 🔥
-    </p>
-  </section>
-  
-    
+  <!-- SOBRE NOSOTROS -->
+<section class="sobre-nosotros pro">
+  <h2>Más que jeans, historia</h2>
+  <p>
+    En <strong>Legendario Jeans</strong> llevamos más de 35 años creando prendas que combinan 
+    <strong>resistencia, comodidad y estilo atemporal</strong>.
+  </p>
+  <p>
+    Diseñamos jeans pensados para durar, adaptarse y acompañarte todos los días.
+  </p>
+</section>
 
+<!-- OFERTAS -->
+<section id="ofertas" class="ofertas-pro">
+  <div class="ofertas-box">
+    <h2>🔥 Promociones Exclusivas</h2>
+    <p>Descubrí descuentos únicos y encontrá tu próximo jean favorito.</p>
+    <a href="./productos.html" class="btn-ofertas">Ver productos</a>
+  </div>
+</section>
 
-    <section id="ofertas">
-        <h2>🔥 Promociones Exclusivas 🔥</h2>
-        <p>Renová tu armario con nuestros descuentos especiales. Vení a nuestra tienda y encontrá el ajuste perfecto.</p>
-    </section>
+<!-- GUÍA DE TALLES -->
+<section id="talles" class="talles-pro">
+  <h2>Guía de Talles</h2>
 
-    <aside id="talles">
-        <h2>Guía de Talles</h2>
-        <button onclick="toggleTalles()">Ver talles</button>
-        <div id="tallesContent" style="display: none;">
-            <h3>Jeans</h3>
-            <table>
-                <tr><th>Talle</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr>
-                <tr><td>38</td><td>72-76</td><td>92-96</td></tr>
-                <tr><td>40</td><td>76-80</td><td>96-100</td></tr>
-                <tr><td>42</td><td>80-84</td><td>100-104</td></tr>
-                <tr><td>44</td><td>84-88</td><td>104-108</td></tr>
-                <tr><td>46</td><td>88-92</td><td>108-112</td></tr>
-                <tr><td>48</td><td>92-96</td><td>112-116</td></tr>
-                <tr><td>50</td><td>96-100</td><td>116-120</td></tr>
-                <tr><td>52</td><td>100-104</td><td>120-124</td></tr>
-                <tr><td>54</td><td>104-108</td><td>124-128</td></tr>
-                <tr><td>56</td><td>108-112</td><td>128-132</td></tr>
-            </table>
+  <button class="btn-talles" onclick="toggleTalles()">
+    Ver guía completa
+  </button>
 
-            <h3>Sweaters</h3>
-            <table>
-                <tr><th>Talle</th><th>Contorno Pecho (cm)</th></tr>
-                <tr><td>S</td><td>86-92</td></tr>
-                <tr><td>M</td><td>92-98</td></tr>
-                <tr><td>L</td><td>98-104</td></tr>
-                <tr><td>XL</td><td>104-110</td></tr>
-                <tr><td>XXL</td><td>110-116</td></tr>
-            </table>
-        </div>
-    </aside>
-    
+  <div id="tallesContent" class="talles-content">
+
+    <h3>Jeans</h3>
+    <div class="tabla-container">
+      <table>
+        <tr><th>Talle</th><th>Cintura</th><th>Cadera</th></tr>
+        <tr><td>38</td><td>72-76</td><td>92-96</td></tr>
+        <tr><td>40</td><td>76-80</td><td>96-100</td></tr>
+        <tr><td>42</td><td>80-84</td><td>100-104</td></tr>
+        <tr><td>44</td><td>84-88</td><td>104-108</td></tr>
+        <tr><td>46</td><td>88-92</td><td>108-112</td></tr>
+        <tr><td>48</td><td>92-96</td><td>112-116</td></tr>
+        <tr><td>50</td><td>96-100</td><td>116-120</td></tr>
+        <tr><td>52</td><td>100-104</td><td>120-124</td></tr>
+        <tr><td>54</td><td>104-108</td><td>124-128</td></tr>
+        <tr><td>56</td><td>108-112</td><td>128-132</td></tr>
+      </table>
+    </div>
+
+    <h3>Sweaters</h3>
+    <div class="tabla-container">
+      <table>
+        <tr><th>Talle</th><th>Pecho</th></tr>
+        <tr><td>S</td><td>86-92</td></tr>
+        <tr><td>M</td><td>92-98</td></tr>
+        <tr><td>L</td><td>98-104</td></tr>
+        <tr><td>XL</td><td>104-110</td></tr>
+        <tr><td>XXL</td><td>110-116</td></tr>
+      </table>
+    </div>
+
+  </div>
+</section>
 </main>
 
 <footer>
   <div class="footer-info"> 
+  
     <div class="contact-info"> 
      
       <div class="contacto">
