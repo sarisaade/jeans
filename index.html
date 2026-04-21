@@ -33,93 +33,27 @@
 </header>
 
 <main>
-  <div class="portada">
 
-  <h1>Legendario Jeans</h1>
+  <section class="home-slider">
 
-  <p class="subtitulo">
-    Más de 35 años ofreciendo calidad, tradición y estilo.
-  </p>
-
-  <img src="./foto local.jpg" alt="Local Legendario Jeans" class="portada-img">
-
-  <div class="botones">
-    <button class="especial" onclick="location.href='./productos.html'">
-      Ver productos
-    </button>
-
-    <button class="boton-contacto" onclick="location.href='./contacto.html'">
-      Contactanos
-    </button>
-  </div>
-
-</div>
-  
-   
-  <!-- SOBRE NOSOTROS -->
-<section class="sobre-nosotros pro">
-  <h2>Más que jeans, historia</h2>
-  <p>
-    En <strong>Legendario Jeans</strong> llevamos más de 35 años creando prendas que combinan 
-    <strong>resistencia, comodidad y estilo atemporal</strong>.
-  </p>
-  <p>
-    Diseñamos jeans pensados para durar, adaptarse y acompañarte todos los días.
-  </p>
-</section>
-
-<!-- OFERTAS -->
-<section id="ofertas" class="ofertas-pro">
-  <div class="ofertas-box">
-    <h2>🔥 Promociones Exclusivas</h2>
-    <p>Descubrí descuentos únicos y encontrá tu próximo jean favorito.</p>
-    <a href="./productos.html" class="btn-ofertas">Ver productos</a>
-  </div>
-</section>
-
-<!-- GUÍA DE TALLES -->
-<section id="talles" class="talles-pro">
-  <h2>Guía de Talles</h2>
-
-  <button class="btn-talles" onclick="toggleTalles()">
-    Ver guía completa
-  </button>
-
-  <div id="tallesContent" class="talles-content">
-
-    <h3>Jeans</h3>
-    <div class="tabla-container">
-      <table>
-        <tr><th>Talle</th><th>Cintura</th><th>Cadera</th></tr>
-        <tr><td>38</td><td>72-76</td><td>92-96</td></tr>
-        <tr><td>40</td><td>76-80</td><td>96-100</td></tr>
-        <tr><td>42</td><td>80-84</td><td>100-104</td></tr>
-        <tr><td>44</td><td>84-88</td><td>104-108</td></tr>
-        <tr><td>46</td><td>88-92</td><td>108-112</td></tr>
-        <tr><td>48</td><td>92-96</td><td>112-116</td></tr>
-        <tr><td>50</td><td>96-100</td><td>116-120</td></tr>
-        <tr><td>52</td><td>100-104</td><td>120-124</td></tr>
-        <tr><td>54</td><td>104-108</td><td>124-128</td></tr>
-        <tr><td>56</td><td>108-112</td><td>128-132</td></tr>
-      </table>
+    <div class="home-track">
+      <img src="./blue-jeans-fabric-details.jpg" class="home-slide">
+      <img src="./bull negro front.JPG" class="home-slide">
+      <img src="./campera trabajada bolsillo.jpg" class="home-slide">
     </div>
 
-    <h3>Sweaters</h3>
-    <div class="tabla-container">
-      <table>
-        <tr><th>Talle</th><th>Pecho</th></tr>
-        <tr><td>S</td><td>86-92</td></tr>
-        <tr><td>M</td><td>92-98</td></tr>
-        <tr><td>L</td><td>98-104</td></tr>
-        <tr><td>XL</td><td>104-110</td></tr>
-        <tr><td>XXL</td><td>110-116</td></tr>
-      </table>
+    <div class="home-overlay">
+      <h2>Legendario Jeans</h2>
+      <p>Más de 35 años de trayectoria</p>
+
+      <button onclick="location.href='./productos.html'" class="btn-main">
+        VER PRODUCTOS
+      </button>
     </div>
 
-  </div>
-</section>
+  </section>
+
 </main>
-
 <footer>
   <div class="footer-info"> 
   
@@ -167,6 +101,38 @@
         content.style.display = content.style.display === "none" ? "block" : "none";
     }
 </script>
+<script>
+(function() {
 
+  const track = document.querySelector(".home-track");
+  const slides = document.querySelectorAll(".home-slide");
+
+  if (!track || slides.length === 0) return;
+
+  // 🔥 duplicamos imágenes
+  track.innerHTML += track.innerHTML;
+
+  let index = 0;
+  const total = slides.length;
+
+  setInterval(() => {
+    index++;
+
+    track.style.transition = "transform 0.8s ease-in-out";
+    track.style.transform = `translateX(-${index * 100}%)`;
+
+    // 🔁 cuando llega al final duplicado, resetea SIN animación
+    if (index >= total) {
+      setTimeout(() => {
+        track.style.transition = "none";
+        track.style.transform = "translateX(0)";
+        index = 0;
+      }, 800); // mismo tiempo que la transición
+    }
+
+  }, 3000);
+
+})();
+</script>
 </body>
 </html>

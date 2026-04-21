@@ -237,9 +237,9 @@ function mostrarCarrito() {
 
   cart.forEach(p => {
 
-    // 👉 precio que ve el cliente (ya con ajuste si corresponde)
     let precioUnitario = p.price;
 
+    // 👉 si NO llega a 3 → recargo por prenda
     if (!aplicaMayorista) {
       precioUnitario = p.price + 5000;
     }
@@ -273,7 +273,7 @@ function mostrarCarrito() {
     contenedor.appendChild(item);
   });
 
-  // 👉 MENSAJE COMERCIAL (sin mencionar recargo)
+  // 👉 MENSAJE GLOBAL
   const aviso = document.createElement("div");
 
   if (!aplicaMayorista) {
@@ -281,13 +281,13 @@ function mostrarCarrito() {
 
     aviso.innerHTML = `
       <p style="color:orange; font-weight:bold;">
-        Te falta agregar ${faltan} prenda(s) para obtener precio mayorista
+        Te faltan ${faltan} prenda(s) para eliminar el recargo de $5000 por unidad
       </p>
     `;
   } else {
     aviso.innerHTML = `
       <p style="color:green; font-weight:bold;">
-        ✔ Ya tenés precio mayorista aplicado
+        ✔ Precio mayorista aplicado (sin recargo)
       </p>
     `;
   }
@@ -411,4 +411,21 @@ function animacionCarrito(e) {
     icono.style.transition = "";
     icono.style.transform = "scale(1)";
   }, 700);
+}
+document.addEventListener("DOMContentLoaded", () => {
+  iniciarSlider();
+});
+
+function iniciarSlider() {
+  const track = document.querySelector(".home-track");
+  const slides = document.querySelectorAll(".home-slide");
+
+  if (!track || slides.length === 0) return;
+
+  let index = 0;
+
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }, 3000);
 }

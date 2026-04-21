@@ -2496,61 +2496,190 @@ header {
 .talle-btn {
   border-radius: 999px; /* pill style */
 }
-/* HERO FULL */
-.hero-full {
+/* ===== SLIDER ===== */
+
+.home-slider {
   position: relative;
   width: 100%;
   height: 85vh;
   overflow: hidden;
 }
 
-.hero-img {
-  width: 100%;
+.home-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.8s ease-in-out;
+}
+
+.home-slide {
+  min-width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* OVERLAY tipo Hollister */
-.hero-overlay {
+/* overlay oscuro */
+.home-slider::after {
+  content: "";
   position: absolute;
-  bottom: 15%;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+/* texto */
+.home-overlay {
+  position: absolute;
+  bottom: 20%;
   left: 8%;
   color: white;
+  z-index: 2;
 }
 
-.hero-overlay h2 {
+.home-overlay h2 {
   font-size: 3rem;
-  letter-spacing: 3px;
-  font-weight: 300;
 }
 
-.hero-overlay p {
+.home-overlay p {
   margin-top: 10px;
-  font-size: 1.2rem;
-  opacity: 0.9;
 }
 
-/* BOTÓN MINIMAL */
+/* botón */
 .btn-main {
   margin-top: 20px;
-  padding: 12px 30px;
-  border: 1px solid white;
-  background: transparent;
+  padding: 12px 25px;
+  border: none;
+  background: black;
   color: white;
   cursor: pointer;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
+}
+
+.btn-main:hover {
+  background: #222;
+}
+.home-slider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.25)
+  );
+}
+.home-overlay h2 {
+  font-size: 3rem;
+  font-weight: 300; /* 🔥 más elegante */
+  letter-spacing: 1px;
+}
+
+.home-overlay p {
+  opacity: 0.85;
+}
+.btn-main {
+  margin-top: 20px;
+  padding: 12px 25px;
+
+  background: rgba(255,255,255,0.9);
+  color: black;
+
+  border: none;
+  border-radius: 30px;
+
+  backdrop-filter: blur(5px);
+  transition: 0.3s;
 }
 
 .btn-main:hover {
   background: white;
-  color: black;
+}
+.hero {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+}
+footer {
+  background: #111;
+  color: #ccc;
 }
 
-/* TEXTO ABAJO */
-.brand-text {
-  text-align: center;
+footer h3 {
+  font-weight: 400;
+}
+
+footer p {
+  opacity: 0.8;
+}
+.cart {
+  background: rgba(0,0,0,0.5);
+  padding: 8px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+}
+footer {
+  background: #181818; /* 🔥 menos negro puro */
+  color: #ddd;
   padding: 40px 20px;
-  font-size: 1.1rem;
-  color: #444;
+}
+
+footer h3 {
+  font-weight: 400;
+  color: #f1f1f1;
+  margin-bottom: 10px;
+}
+
+footer p {
+  opacity: 0.8;
+  line-height: 1.5;
+}
+footer a {
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+footer a:hover {
+  color: white;
+}
+.social-icon {
+  opacity: 0.85;
+  transition: 0.3s;
+}
+
+.social-icon:hover {
+  opacity: 1;
+}
+footer {
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+@media (max-width: 768px) {
+
+  footer {
+    padding: 15px 10px;
+  }
+
+  .footer-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 🔥 2 columnas */
+    gap: 15px;
+  }
+
+  .contact-info {
+    grid-column: span 2; /* 👈 ocupa todo arriba */
+  }
+
+  .hours-info,
+  .social-info {
+    font-size: 13px;
+  }
+
+  .footer-info h3 {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .footer-info p {
+    font-size: 12px;
+    margin: 2px 0;
+  }
+
+}
+.footer-info p {
+  line-height: 1.3;
 }
