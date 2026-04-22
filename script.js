@@ -281,7 +281,7 @@ function mostrarCarrito() {
 
     aviso.innerHTML = `
       <p style="color:orange; font-weight:bold;">
-        Te faltan ${faltan} prenda(s) para eliminar el recargo de $5000 por unidad
+        Te faltan ${faltan} prenda(s) para eliminar el recargo de $3000 por unidad
       </p>
     `;
   } else {
