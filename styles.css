@@ -43,7 +43,7 @@ body {
     align-items: center; /* Centrar verticalmente los elementos */
     justify-content: space-between; /* Logo a la izquierda, texto en el centro, carrito a la derecha */
     background: linear-gradient(135deg, #007BFF, #6C63FF); /* Fondo degradado */
-    color: white;
+    color: grey;
     height: 80px; /* Altura ajustada */
     padding: 0 20px; /* Espaciado horizontal interno */
     position: fixed; /* Mantiene la barra fija en la parte superior */
@@ -2507,15 +2507,28 @@ header {
 
 .home-track {
   display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
   height: 100%;
   transition: transform 0.8s ease-in-out;
 }
 
 .home-slide {
-  min-width: 100%;
+  flex: 0 0 100%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
+@media (min-width: 1600px) {
+  .home-slider {
+    height: 75vh;
+  }
+
+  .home-slide {
+    object-position: 50% 20%;
+  }
+}
+
 
 /* overlay oscuro */
 .home-slider::after {
@@ -2682,4 +2695,88 @@ footer {
 }
 .footer-info p {
   line-height: 1.3;
+}
+@media (max-width: 600px) {
+  .menos, .mas {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+}
+#pant-icon {
+  position: fixed;
+  pointer-events: none;
+}
+@media (max-width: 360px) {
+
+  .cart-item {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .cart-item img {
+    width: 50px;
+  }
+
+  .item-info {
+    width: 100%;
+  }
+
+  .qty-controls {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+@media (min-width: 370px) and (max-width: 440px) {
+
+   .cart-item {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .cart-item img {
+    width: 50px;
+  }
+
+  .item-info {
+    width: 100%;
+  }
+
+  .qty-controls {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+#scrollTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: grey;
+  color: white;
+  font-size: 20px;
+
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+/* estado visible */
+#scrollTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }

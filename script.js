@@ -392,7 +392,46 @@ function animacionCarrito(e) {
 
   if (!icono || !carrito) return;
 
-  const start = e.target.getBoundingClientRect();
+  // 📱 MOBILE (animación corta)
+  if (window.innerWidth < 600) {
+
+  const icono = document.getElementById("pant-icon");
+  const carrito = document.querySelector(".cart");
+
+  if (!icono || !carrito) return;
+
+  const btn = e.currentTarget.getBoundingClientRect();
+  const cart = carrito.getBoundingClientRect();
+
+  icono.style.display = "block";
+
+  // arranca desde el botón
+  icono.style.left = btn.left + btn.width / 2 + "px";
+  icono.style.top = btn.top + btn.height / 2 + "px";
+  icono.style.transform = "translate(-50%, -50%) scale(1)";
+
+  setTimeout(() => {
+    icono.style.transition = "all 0.6s ease";
+
+    // va al carrito (centro exacto)
+    icono.style.left = cart.left + cart.width / 2 + "px";
+    icono.style.top = cart.top + cart.height / 2 + "px";
+    icono.style.transform = "translate(-50%, -50%) scale(0.5)";
+    icono.style.opacity = "0.7";
+  }, 50);
+
+  setTimeout(() => {
+    icono.style.display = "none";
+    icono.style.transition = "";
+    icono.style.opacity = "1";
+    icono.style.transform = "scale(1)";
+  }, 650);
+
+  return;
+}
+
+  // 💻 DESKTOP (tu animación original)
+  const start = e.currentTarget.getBoundingClientRect();
   const end = carrito.getBoundingClientRect();
 
   icono.style.display = "block";
@@ -412,20 +451,19 @@ function animacionCarrito(e) {
     icono.style.transform = "scale(1)";
   }, 700);
 }
-document.addEventListener("DOMContentLoaded", () => {
-  iniciarSlider();
+const btn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
 });
 
-function iniciarSlider() {
-  const track = document.querySelector(".home-track");
-  const slides = document.querySelectorAll(".home-slide");
-
-  if (!track || slides.length === 0) return;
-
-  let index = 0;
-
-  setInterval(() => {
-    index = (index + 1) % slides.length;
-    track.style.transform = `translateX(-${index * 100}%)`;
-  }, 3000);
-}
+btn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
