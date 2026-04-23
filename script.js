@@ -13,6 +13,9 @@ const URL = "https://opensheet.elk.sh/1YqfkHm8i9rY975plixaz_cBW9H2k5SDCIuLXrAP9C
 // =====================
 // CARGAR PRODUCTOS
 // =====================
+// =====================
+// CARGAR PRODUCTOS
+// =====================
 async function cargarProductos() {
   const container = document.querySelector(".product-container");
   if (!container) return;
@@ -90,6 +93,18 @@ async function cargarProductos() {
         dots.forEach(d => d.classList.remove("active"));
         if (dots[index]) dots[index].classList.add("active");
       });
+
+      // 🔥 CLICK EN LA CARD → ABRE MODAL
+     card.addEventListener("click", (e) => {
+
+  if (
+    e.target.closest(".add-to-cart") ||
+    e.target.closest(".talle-btn") ||
+    e.target.closest("input")
+  ) return;
+
+  abrirModalConCarrusel(p);
+});
 
       container.appendChild(card);
     });
@@ -467,3 +482,55 @@ btn.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("product-modal");
+  const closeBtn = document.querySelector(".close-modal");
+
+  if (!modal || !closeBtn) return;
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target.id === "product-modal") {
+      modal.style.display = "none";
+    }
+  });
+});
+function abrirModalConCarrusel(p) {
+
+  const modal = document.getElementById("product-modal");
+  const imgEl = document.getElementById("modal-img");
+
+  const prev = document.getElementById("prev-img");
+  const next = document.getElementById("next-img");
+
+  const imagenes = [
+    p.Imagen1,
+    p.Imagen2,
+    p.Imagen3
+  ].filter(img => img && img.trim() !== "");
+
+  let index = 0;
+
+  imgEl.src = imagenes[0];
+
+  // 👉 siguiente
+  next.onclick = () => {
+    index = (index + 1) % imagenes.length;
+    imgEl.src = imagenes[index];
+  };
+
+  // 👉 anterior
+  prev.onclick = () => {
+    index = (index - 1 + imagenes.length) % imagenes.length;
+    imgEl.src = imagenes[index];
+  };
+
+  // info
+  document.getElementById("modal-title").textContent = p.Nombre;
+  document.getElementById("modal-price").textContent = "$" + p.Precio;
+
+  modal.style.display = "flex";
+}
