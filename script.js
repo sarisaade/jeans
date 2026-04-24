@@ -256,7 +256,7 @@ function mostrarCarrito() {
 
     // 👉 si NO llega a 3 → recargo por prenda
     if (!aplicaMayorista) {
-      precioUnitario = p.price + 5000;
+      precioUnitario = p.price + 3000;
     }
 
     const subtotal = precioUnitario * p.quantity;
@@ -296,13 +296,13 @@ function mostrarCarrito() {
 
     aviso.innerHTML = `
       <p style="color:orange; font-weight:bold;">
-        Te faltan ${faltan} prenda(s) para eliminar el recargo de $3000 por unidad
+        Te faltan ${faltan} prenda(s) para alcanzar el precio mayorista
       </p>
     `;
   } else {
     aviso.innerHTML = `
       <p style="color:green; font-weight:bold;">
-        ✔ Precio mayorista aplicado (sin recargo)
+        ✔ Precio mayorista aplicado 
       </p>
     `;
   }
