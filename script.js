@@ -3,8 +3,84 @@ document.addEventListener("DOMContentLoaded", () => {
   actualizarContador();
   mostrarCarrito();
   eventosCarrito();
-});
 
+  // =====================
+  // BOTONES DE PAGO
+  // =====================
+
+  const btnWA = document.getElementById("btn-whatsapp");
+  const btnMP = document.getElementById("btn-mp");
+
+  // 👉 WHATSAPP
+  if (btnWA) {
+    btnWA.addEventListener("click", () => {
+
+      const nombre = document.getElementById("buyer-name")?.value.trim();
+
+      if (!nombre) {
+        alert("Completá tu nombre");
+        return;
+      }
+
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      if (cart.length === 0) {
+        alert("Carrito vacío");
+        return;
+      }
+
+      let mensaje = `Hola! soy ${nombre}, quiero comprar:\n\n`;
+
+      cart.forEach(p => {
+        mensaje += `${p.quantity} x ${p.name} (${p.talle})\n`;
+      });
+
+      const total = document.querySelector(".cart-total")?.textContent || "0";
+      mensaje += `\nTotal: $${total}`;
+
+      const url = `https://wa.me/5491154511489?text=${encodeURIComponent(mensaje)}`;
+      window.location.href = url;
+    });
+  }
+
+  // 👉 MERCADO PAGO
+  if (btnMP) {
+  btnMP.addEventListener("click", () => {
+
+    const nombre = document.getElementById("buyer-name")?.value.trim();
+
+    if (!nombre) {
+      alert("Completá tu nombre");
+      return;
+    }
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+      alert("Carrito vacío");
+      return;
+    }
+
+    let mensaje = `Hola! soy ${nombre}, quiero comprar y pagar con Mercado Pago:\n\n`;
+
+    cart.forEach(p => {
+      mensaje += `${p.quantity} x ${p.name} (${p.talle})\n`;
+    });
+
+    const total = document.querySelector(".cart-total")?.textContent || "0";
+    mensaje += `\nTotal: $${total}`;
+
+    const urlWA = `https://wa.me/5491154511489?text=${encodeURIComponent(mensaje)}`;
+
+    // 👉 abrís WhatsApp en otra pestaña
+    window.open(urlWA, "_blank");
+
+    // 👉 redirigís a Mercado Pago
+    const mpLink = "https://link.mercadopago.com.ar/tu_0link"; // REEMPLAZA con tu link real de Mercado Pago";
+    window.location.href = mpLink;
+  });
+}
+});
 // =====================
 // CONFIG
 // =====================
@@ -187,19 +263,33 @@ function activarBotones() {
       const images = JSON.parse(btn.dataset.images);
       const image = images[0] || "";
 
-      const talleSel = document.querySelector(`#talles-${id} .selected`);
+      const card = btn.closest(".product-card");
 
-      if (!talleSel) {
-        alert("Elegí un talle");
-        return;
-      }
+const talleSel = card.querySelector(".talle-btn.selected");
 
-      const talle = talleSel.dataset.talle;
-      const stock = parseInt(talleSel.dataset.stock);
-      const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value);
+if (!talleSel) {
+  alert("Elegí un talle");
+  return;
+}
+
+const talle = talleSel.dataset.talle;
+const stock = parseInt(talleSel.dataset.stock) || 0;
+
+const cantidadInput = card.querySelector("input");
+const cantidad = parseInt(cantidadInput.value);
+
+if (!cantidad || cantidad <= 0) {
+  alert("Cantidad inválida");
+  return;
+}
+
+if (!talleSel || !cantidad || cantidad <= 0) {
+  alert("Seleccioná talle y cantidad válida");
+  return;
+}
 
       // 🔥 PRECIO REAL (EL QUE VE EL USUARIO)
-      const priceText = document.getElementById(`price-${id}`).textContent;
+      const priceText = card.querySelector(".price").textContent;
       const price = parseFloat(priceText.replace("$", ""));
 
       if (cantidad > stock) {
@@ -296,7 +386,7 @@ function mostrarCarrito() {
 
     aviso.innerHTML = `
       <p style="color:orange; font-weight:bold;">
-        Te faltan ${faltan} prenda(s) para alcanzar el precio mayorista
+        Agrega ${faltan} prenda(s) mas para alcanzar el precio mayorista!
       </p>
     `;
   } else {
@@ -389,7 +479,11 @@ function eventosCarrito() {
       let mensaje = `Hola! soy ${nombre}, quiero comprar:\n\n`;
 
       cart.forEach(p => {
-        mensaje += `${p.quantity} x ${p.name} (${p.talle})\n`;
+       const total = document.querySelector(".cart-total").textContent;
+
+mensaje += `\nTotal: $${total}`;
+const metodo = document.querySelector("#payment-method")?.value;
+mensaje += `\nQuiero pagar con Mercado Pago`;
       });
 
       const url = `https://wa.me/5491154511489?text=${encodeURIComponent(mensaje)}`;

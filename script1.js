@@ -141,24 +141,47 @@ function abrirModal(src) {
 // TALLES (NO TOCAR)
 // =====================
 function generarTalles(p) {
+
   let html = "";
 
-  for (let i = 38; i <= 56; i += 2) {
-    const stock = parseInt(p[`Stock${i}`]) || 0;
+  const tallesNumeros = [38,40,42,44,46,48,50,52,54,56];
+  const tallesLetras = ["S","M","L","XL","XXL"];
 
-    html += `
-      <button 
-        class="talle-btn ${stock === 0 ? "disabled" : ""}" 
-        data-talle="${i}"
-        data-stock="${stock}">
-        ${i}
-      </button>
-    `;
+  // 👉 ver si hay stock en letras
+  const hayLetras = tallesLetras.some(t => parseInt(p[`Stock${t}`]) > 0);
+
+  if (hayLetras) {
+
+    tallesLetras.forEach(t => {
+      const stock = parseInt(p[`Stock${t}`]) || 0;
+
+      if (stock > 0) {
+        html += `
+          <button class="talle-btn" data-talle="${t}" data-stock="${stock}">
+            ${t}
+          </button>
+        `;
+      }
+    });
+
+  } else {
+
+    tallesNumeros.forEach(n => {
+      const stock = parseInt(p[`Stock${n}`]) || 0;
+
+      if (stock > 0) {
+        html += `
+          <button class="talle-btn" data-talle="${n}" data-stock="${stock}">
+            ${n}
+          </button>
+        `;
+      }
+    });
+
   }
 
   return html;
 }
-
 function activarTalles() {
   document.querySelectorAll(".talle-btn").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -378,3 +401,6 @@ function animacionCarrito(e) {
     icono.style.transform = "scale(1)";
   }, 700);
 }
+
+// Debugging: Log Stock38 and StockS for each product
+console.log(p.Stock38, p.StockS);
