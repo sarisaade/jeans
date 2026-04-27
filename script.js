@@ -197,19 +197,49 @@ async function cargarProductos() {
 // TALLES
 // =====================
 function generarTalles(p) {
+
   let html = "";
 
-  for (let i = 38; i <= 56; i += 2) {
-    const stock = parseInt(p[`Stock${i}`]) || 0;
+  // 👉 primero probamos letras
+  const tallesLetras = ["S","M","L","XL","XXL"];
 
-    html += `
-      <button 
-        class="talle-btn ${stock === 0 ? "disabled" : ""}" 
-        data-talle="${i}"
-        data-stock="${stock}">
-        ${i}
-      </button>
-    `;
+  let hayLetras = false;
+
+  tallesLetras.forEach(t => {
+    if (p[`Stock${t}`] && p[`Stock${t}`] !== "" && p[`Stock${t}`] !== "0") {
+      hayLetras = true;
+    }
+  });
+
+  // 👉 SI TIENE LETRAS
+  if (hayLetras) {
+
+    tallesLetras.forEach(t => {
+      const stock = parseInt(p[`Stock${t}`]) || 0;
+
+      html += `
+        <button class="talle-btn ${stock === 0 ? "disabled" : ""}" 
+          data-talle="${t}" 
+          data-stock="${stock}">
+          ${t}
+        </button>
+      `;
+    });
+
+  } else {
+
+    // 👉 SI NO → números
+    for (let i = 38; i <= 56; i += 2) {
+      const stock = parseInt(p[`Stock${i}`]) || 0;
+
+      html += `
+        <button class="talle-btn ${stock === 0 ? "disabled" : ""}" 
+          data-talle="${i}" 
+          data-stock="${stock}">
+          ${i}
+        </button>
+      `;
+    }
   }
 
   return html;
