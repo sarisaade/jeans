@@ -102,7 +102,9 @@ async function cargarProductos() {
 
     container.innerHTML = "";
 
-    data.forEach((p) => {
+    data.forEach((p, index) => {
+
+  p.ID = index; // 🔥 genera ID único
 
       const imagenes = [
         p.Imagen1,
@@ -258,10 +260,10 @@ function activarTalles() {
       btn.classList.add("selected");
 
       // 👉 CAMBIO DE PRECIO EN PANTALLA
-      const productId = container.id.replace("talles-", "");
-      const priceEl = document.getElementById(`price-${productId}`);
-      const addBtn = document.querySelector(`.add-to-cart[data-id="${productId}"]`);
+     const card = btn.closest(".product-card");
 
+const priceEl = card.querySelector(".price");
+const addBtn = card.querySelector(".add-to-cart");
       let price = parseFloat(addBtn.dataset.price);
 
       if (btn.dataset.talle === "52" && addBtn.dataset.precio52) {
