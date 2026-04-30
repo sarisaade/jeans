@@ -510,13 +510,13 @@ function eventosCarrito() {
 
       let mensaje = `Hola! soy ${nombre}, quiero comprar:\n\n`;
 
-      cart.forEach(p => {
-       const total = document.querySelector(".cart-total").textContent;
+cart.forEach(p => {
+  mensaje += `${p.quantity} x ${p.name} (${p.talle})\n`;
+});
+
+const total = document.querySelector(".cart-total").textContent;
 
 mensaje += `\nTotal: $${total}`;
-const metodo = document.querySelector("#payment-method")?.value;
-mensaje += `\nQuiero pagar con Mercado Pago`;
-      });
 
       const url = `https://wa.me/5491154511489?text=${encodeURIComponent(mensaje)}`;
       window.location.href = url;
