@@ -115,6 +115,7 @@ async function cargarProductos() {
       const img = imagenes[0] || "https://via.placeholder.com/300";
 
       const talles = generarTalles(p);
+const colores = generarColores(p);
 
       let dotsHTML = "";
       if (imagenes.length > 1) {
@@ -138,11 +139,12 @@ async function cargarProductos() {
         <p class="price" id="price-${p.ID}">$${p.Precio}</p>
 
         <div class="talles-container" id="talles-${p.ID}">
-          ${talles}
-        </div>
+  ${talles}
+</div>
 
-        <input type="number" id="cantidad-${p.ID}" value="1" min="1">
+${colores}
 
+<input type="number" id="cantidad-${p.ID}" value="1" min="1">
         <button class="add-to-cart"
           data-id="${p.ID}"
           data-name="${p.Nombre}"
@@ -188,12 +190,14 @@ async function cargarProductos() {
     });
 
     activarTalles();
-    activarBotones();
+activarColores();
+activarBotones();
 
   } catch (error) {
     console.error("Error cargando productos:", error);
   }
 }
+
 
 // =====================
 // TALLES
@@ -246,6 +250,35 @@ function generarTalles(p) {
 
   return html;
 }
+function generarColores(p) {
+
+  let html = "";
+
+  for (let i = 1; i <= 6; i++) {
+
+    const color = p[`Color${i}`];
+    const imagen = p[`Imagen${i}`];
+
+    if (color && imagen) {
+
+      html += `
+        <button 
+          class="color-circle"
+          data-image="${imagen}"
+          style="background:${color}">
+        </button>
+      `;
+    }
+  }
+
+  if (html === "") return "";
+
+  return `
+    <div class="colores-container">
+      ${html}
+    </div>
+  `;
+}
 
 function activarTalles() {
   document.querySelectorAll(".talle-btn").forEach(btn => {
@@ -258,6 +291,8 @@ function activarTalles() {
         .forEach(b => b.classList.remove("selected"));
 
       btn.classList.add("selected");
+     
+
 
       // 👉 CAMBIO DE PRECIO EN PANTALLA
      const card = btn.closest(".product-card");
@@ -280,6 +315,29 @@ const addBtn = card.querySelector(".add-to-cart");
     });
   });
 }
+function activarColores() {
+
+  document.querySelectorAll(".color-circle").forEach(btn => {
+
+    btn.addEventListener("mouseenter", () => {
+
+      const card = btn.closest(".product-card");
+
+      card.querySelectorAll(".color-circle")
+        .forEach(b => b.classList.remove("selected"));
+
+      btn.classList.add("selected");
+
+      const img = card.querySelector(".product-img");
+
+      img.src = btn.dataset.image;
+
+    });
+
+  });
+
+}
+
 
 // =====================
 // BOTONES
@@ -510,13 +568,13 @@ function eventosCarrito() {
 
       let mensaje = `Hola! soy ${nombre}, quiero comprar:\n\n`;
 
-cart.forEach(p => {
-  mensaje += `${p.quantity} x ${p.name} (${p.talle})\n`;
-});
-
-const total = document.querySelector(".cart-total").textContent;
+      cart.forEach(p => {
+       const total = document.querySelector(".cart-total").textContent;
 
 mensaje += `\nTotal: $${total}`;
+const metodo = document.querySelector("#payment-method")?.value;
+mensaje += `\nQuiero pagar con Mercado Pago`;
+      });
 
       const url = `https://wa.me/5491154511489?text=${encodeURIComponent(mensaje)}`;
       window.location.href = url;

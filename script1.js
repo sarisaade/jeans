@@ -401,6 +401,3 @@ function animacionCarrito(e) {
     icono.style.transform = "scale(1)";
   }, 700);
 }
-
-// Debugging: Log Stock38 and StockS for each product
-console.log(p.Stock38, p.StockS);

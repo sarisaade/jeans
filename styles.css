@@ -2993,3 +2993,66 @@ footer {
   background: #f5f5f5;
   border-radius: 10px;
 }
+.colores-container{
+  display:flex;
+  gap:8px;
+  margin:10px 0;
+}
+
+.color-circle{
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  border:2px solid #ddd;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.color-circle:hover,
+.color-circle.selected{
+  transform:scale(1.15);
+  border-color:black;
+}
+.colores-container{
+  display:flex;
+  gap:8px;
+  margin:10px 0;
+}
+
+.color-circle{
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  border:2px solid #ddd;
+  cursor:pointer;
+  display:block;
+}
+.colores-container{
+  display:flex;
+  gap:8px;
+  margin:10px 0;
+}
+
+.color-circle{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  border:2px solid #ddd;
+  cursor:pointer;
+  padding:0;
+  outline:none;
+  transition:0.2s;
+}
+
+.color-circle:hover,
+.color-circle.selected{
+  transform:scale(1.15);
+  border-color:black;
+}
+.color-circle{
+  min-width:22px;
+  max-width:22px;
+  min-height:22px;
+  max-height:22px;
+  flex:none;
+}
