@@ -183,6 +183,7 @@ ${colores}
   e.target.closest(".color-circle") ||
   e.target.closest("input")
 ) return;
+const imagenActual = card.querySelector(".product-img").src;
 
  abrirModalConCarrusel(p, imgEl.src);
 });
