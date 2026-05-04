@@ -227,7 +227,19 @@ function activarBotones() {
         return;
       }
 
-      agregarAlCarrito(id, name, price, talle, cantidad, image);
+      const color = colorSel
+  ? colorSel.dataset.color
+  : "";
+
+agregarAlCarrito(
+  id,
+  name,
+  price,
+  talle,
+  cantidad,
+  image,
+  color
+);
       animacionCarrito(e);
     });
   });
@@ -236,7 +248,7 @@ function activarBotones() {
 // =====================
 // CARRITO (TODO IGUAL)
 // =====================
-function agregarAlCarrito(id, name, price, talle, cantidad, image) {
+function agregarAlCarrito(id, name, price, talle, cantidad, image, color) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   const existe = cart.find(p => p.id === id && p.talle === talle);
@@ -244,7 +256,15 @@ function agregarAlCarrito(id, name, price, talle, cantidad, image) {
   if (existe) {
     existe.quantity += cantidad;
   } else {
-    cart.push({ id, name, price, talle, quantity: cantidad, image });
+    cart.push({
+  id,
+  name,
+  price,
+  talle,
+  quantity: cantidad,
+  image,
+  color
+});
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));

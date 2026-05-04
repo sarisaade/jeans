@@ -178,10 +178,11 @@ ${colores}
      card.addEventListener("click", (e) => {
 
   if (
-    e.target.closest(".add-to-cart") ||
-    e.target.closest(".talle-btn") ||
-    e.target.closest("input")
-  ) return;
+  e.target.closest(".add-to-cart") ||
+  e.target.closest(".talle-btn") ||
+  e.target.closest(".color-circle") ||
+  e.target.closest("input")
+) return;
 
  abrirModalConCarrusel(p, imgEl.src);
 });
@@ -265,7 +266,8 @@ function generarColores(p) {
         <button 
           class="color-circle"
           data-image="${imagen}"
-          style="background:${color}">
+          data-color="${color}"
+style="background:${color}"
         </button>
       `;
     }
@@ -319,7 +321,7 @@ function activarColores() {
 
   document.querySelectorAll(".color-circle").forEach(btn => {
 
-    btn.addEventListener("mouseenter", () => {
+    btn.addEventListener("click", () => {
 
       const card = btn.closest(".product-card");
 
@@ -350,12 +352,20 @@ function activarBotones() {
       const id = btn.dataset.id;
       const name = btn.dataset.name;
 
-      const images = JSON.parse(btn.dataset.images);
-      const image = images[0] || "";
+     
 
       const card = btn.closest(".product-card");
+      const images = JSON.parse(btn.dataset.images);
+
+const colorSeleccionado = card.querySelector(".color-circle.selected");
+
+const image = colorSeleccionado
+  ? colorSeleccionado.dataset.image
+  : (images[0] || "");
+
 
 const talleSel = card.querySelector(".talle-btn.selected");
+
 
 if (!talleSel) {
   alert("Elegí un talle");
@@ -365,8 +375,16 @@ if (!talleSel) {
 const talle = talleSel.dataset.talle;
 const colorSel = card.querySelector(".color-circle.selected");
 
+const tieneColores =
+  card.querySelectorAll(".color-circle").length > 0;
+
+if (tieneColores && !colorSel) {
+  alert("Elegí un color");
+  return;
+}
+
 const color = colorSel
-  ? colorSel.style.background
+  ? colorSel.dataset.color
   : "";
 const stock = parseInt(talleSel.dataset.stock) || 0;
 
@@ -589,13 +607,41 @@ function eventosCarrito() {
 
       let mensaje = `Hola! soy ${nombre}, quiero comprar:\n\n`;
 
-      cart.forEach(p => {
-       const total = document.querySelector(".cart-total").textContent;
+     cart.forEach(p => {
+
+  mensaje += `${p.quantity} x ${p.name} (${p.talle})`;
+
+ if (p.color) {
+
+  let nombreColor = p.color;
+
+  const colores = {
+    "#000000": "Negro",
+    "#ffffff": "Blanco",
+    "#f5f5dc": "Crema",
+    "#800020": "Bordo",
+    "#0000ff": "Azul",
+    "#808080": "Gris",
+    "#8b4513": "Marrón",
+    "#556b2f": "Verde militar"
+  };
+
+  const hex = p.color.toLowerCase();
+
+  if (colores[hex]) {
+    nombreColor = colores[hex];
+  }
+
+  mensaje += ` - ${nombreColor}`;
+}
+
+  mensaje += `\n`;
+
+});
+
+const total = document.querySelector(".cart-total").textContent;
 
 mensaje += `\nTotal: $${total}`;
-const metodo = document.querySelector("#payment-method")?.value;
-mensaje += `\nQuiero pagar con Mercado Pago`;
-      });
 
       const url = `https://wa.me/5491154511489?text=${encodeURIComponent(mensaje)}`;
       window.location.href = url;
