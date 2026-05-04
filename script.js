@@ -621,10 +621,11 @@ function eventosCarrito() {
     "#ffffff": "Blanco",
     "#f5f5dc": "Crema",
     "#800020": "Bordo",
-    "#0000ff": "Azul",
+    "#000066": "Marino",
     "#808080": "Gris",
     "#8b4513": "Marrón",
-    "#556b2f": "Verde militar"
+    "#556b2f": "Verde militar",
+    "#0a747c": "Petroleo",
   };
 
   const hex = p.color.toLowerCase();
