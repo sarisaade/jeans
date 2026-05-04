@@ -183,7 +183,7 @@ ${colores}
     e.target.closest("input")
   ) return;
 
-  abrirModalConCarrusel(p);
+ abrirModalConCarrusel(p, imgEl.src);
 });
 
       container.appendChild(card);
@@ -363,6 +363,11 @@ if (!talleSel) {
 }
 
 const talle = talleSel.dataset.talle;
+const colorSel = card.querySelector(".color-circle.selected");
+
+const color = colorSel
+  ? colorSel.style.background
+  : "";
 const stock = parseInt(talleSel.dataset.stock) || 0;
 
 const cantidadInput = card.querySelector("input");
@@ -387,7 +392,7 @@ if (!talleSel || !cantidad || cantidad <= 0) {
         return;
       }
 
-      agregarAlCarrito(id, name, price, talle, cantidad, image);
+      agregarAlCarrito(id, name, price, talle, color, cantidad, image);
       animacionCarrito(e);
     });
   });
@@ -396,7 +401,7 @@ if (!talleSel || !cantidad || cantidad <= 0) {
 // =====================
 // CARRITO
 // =====================
-function agregarAlCarrito(id, name, price, talle, cantidad, image) {
+function agregarAlCarrito(id, name, price, talle, color, cantidad, image) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   const existe = cart.find(p => p.id === id && p.talle === talle);
@@ -404,7 +409,15 @@ function agregarAlCarrito(id, name, price, talle, cantidad, image) {
   if (existe) {
     existe.quantity += cantidad;
   } else {
-    cart.push({ id, name, price, talle, quantity: cantidad, image });
+   cart.push({
+  id,
+  name,
+  price,
+  talle,
+  color,
+  quantity: cantidad,
+  image
+});
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -447,7 +460,15 @@ function mostrarCarrito() {
 
     item.innerHTML = `
       <img src="${p.image}" class="cart-img">
-      <p>${p.name} (${p.talle})</p>
+      <p>
+  ${p.name} 
+  (${p.talle})
+  
+  ${p.color 
+    ? `<span class="cart-color" style="background:${p.color}"></span>` 
+    : ""
+  }
+</p>
 
       <div>
         <button class="menos">-</button>
@@ -682,7 +703,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-function abrirModalConCarrusel(p) {
+function abrirModalConCarrusel(p, imagenActual) {
 
   const modal = document.getElementById("product-modal");
   const imgEl = document.getElementById("modal-img");
@@ -696,9 +717,11 @@ function abrirModalConCarrusel(p) {
     p.Imagen3
   ].filter(img => img && img.trim() !== "");
 
-  let index = 0;
+  let index = imagenes.indexOf(imagenActual);
 
-  imgEl.src = imagenes[0];
+if (index < 0) index = 0;
+
+imgEl.src = imagenes[index];
 
   // 👉 siguiente
   next.onclick = () => {

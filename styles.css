@@ -3056,3 +3056,12 @@ footer {
   max-height:22px;
   flex:none;
 }
+.cart-color{
+  display:inline-block;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  margin-left:6px;
+  border:1px solid #ccc;
+  vertical-align:middle;
+}
