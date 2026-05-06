@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const total = document.querySelector(".cart-total")?.textContent || "0";
     mensaje += `\nTotal: $${total}`;
 
-    const urlWA = `https://wa.me/5491154511489?text=${encodeURIComponent(mensaje)}`;
+    const urlWA = `https://wa.me/5491150620235?text=${encodeURIComponent(mensaje)}`;
 
     // 👉 abrís WhatsApp en otra pestaña
     window.open(urlWA, "_blank");
@@ -703,7 +703,7 @@ const total = document.querySelector(".cart-total").textContent;
 
 mensaje += `\nTotal: $${total}`;
 
-      const url = `https://wa.me/5491154511489?text=${encodeURIComponent(mensaje)}`;
+      const url = `https://wa.me/5491150620235?text=${encodeURIComponent(mensaje)}`;
       window.location.href = url;
     });
   }
