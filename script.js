@@ -472,7 +472,7 @@ function traducirColor(color) {
 function agregarAlCarrito(id, name, price, talle, color, cantidad, image) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  const existe = cart.find(p => p.id === id && p.talle === talle);
+  const existe = cart.find(p => p.id === id && p.talle === talle && p.color===color);
 
   if (existe) {
     existe.quantity += cantidad;
@@ -552,9 +552,9 @@ function mostrarCarrito() {
       <button class="delete-btn">X</button>
     `;
 
-    item.querySelector(".menos").onclick = () => cambiarCantidad(p.id, p.talle, -1);
-    item.querySelector(".mas").onclick = () => cambiarCantidad(p.id, p.talle, 1);
-    item.querySelector(".delete-btn").onclick = () => eliminarProducto(p.id, p.talle);
+    item.querySelector(".menos").onclick = () => cambiarCantidad(p.id, p.talle, p.color, -1);
+item.querySelector(".mas").onclick = () => cambiarCantidad(p.id, p.talle, p.color, 1);
+item.querySelector(".delete-btn").onclick = () => eliminarProducto(p.id, p.talle, p.color);
 
     contenedor.appendChild(item);
   });
@@ -589,13 +589,13 @@ function mostrarCarrito() {
 function cambiarCantidad(id, talle, cambio) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  const prod = cart.find(p => p.id === id && p.talle === talle);
+  const prod = cart.find(p => p.id === id && p.talle === talle && p.color === color);
   if (!prod) return;
 
   prod.quantity += cambio;
 
   if (prod.quantity <= 0) {
-    cart = cart.filter(p => !(p.id === id && p.talle === talle));
+    cart = cart.filter(p => !(p.id === id && p.talle === talle && p.color === color));
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
