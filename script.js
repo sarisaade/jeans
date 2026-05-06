@@ -146,6 +146,7 @@ const colores = generarColores(p);
 </div>
 
 ${colores}
+<p class="color-name"></p>
 
 <input type="number" id="cantidad-${p.ID}" value="1" min="1">
         <button class="add-to-cart"
@@ -335,15 +336,39 @@ function activarColores() {
       btn.classList.add("selected");
 
       const img = card.querySelector(".product-img");
-
       img.src = btn.dataset.image;
+
+      // 👉 NUEVO: mostrar nombre del color
+      const label = card.querySelector(".color-name");
+
+      let nombreColor = btn.dataset.color;
+
+      const colores = {
+        "#000000": "Negro",
+        "#ffffff": "Blanco",
+        "#f5f5dc": "Crema",
+        "#800020": "Bordo",
+        "#000066": "Marino",
+        "#808080": "Gris",
+        "#8b4513": "Marrón",
+        "#556b2f": "Verde militar",
+        "#0a747c": "Petróleo",
+        "#2c2b2b": "Gris oscuro",
+      };
+
+      const hex = nombreColor.toLowerCase();
+
+      if (colores[hex]) {
+        nombreColor = colores[hex];
+      }
+
+      label.textContent = "Color: " + nombreColor;
 
     });
 
   });
 
 }
-
 
 // =====================
 // BOTONES
@@ -625,10 +650,11 @@ function eventosCarrito() {
     "#f5f5dc": "Crema",
     "#800020": "Bordo",
     "#000066": "Marino",
-    "#808080": "Gris",
+    "#808080": "Gris claro",
     "#8b4513": "Marrón",
     "#556b2f": "Verde militar",
     "#0a747c": "Petroleo",
+    "#2c2b2b": "Gris oscuro",
   };
 
   const hex = p.color.toLowerCase();

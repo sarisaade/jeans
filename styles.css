@@ -3171,3 +3171,9 @@ footer {
 .product-card .colores-container{
   min-height:45px;
 }
+.color-name{
+  font-size:14px;
+  margin-top:5px;
+  color:#555;
+  text-align:center;
+}
