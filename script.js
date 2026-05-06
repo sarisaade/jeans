@@ -109,7 +109,10 @@ async function cargarProductos() {
       const imagenes = [
         p.Imagen1,
         p.Imagen2,
-        p.Imagen3
+        p.Imagen3,
+        p.Imagen4,
+        p.Imagen5,
+        p.Imagen6
       ].filter(img => img && img.trim() !== "");
 
       const img = imagenes[0] || "https://via.placeholder.com/300";
