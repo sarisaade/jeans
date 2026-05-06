@@ -586,10 +586,14 @@ item.querySelector(".delete-btn").onclick = () => eliminarProducto(p.id, p.talle
 // =====================
 // RESTO
 // =====================
-function cambiarCantidad(id, talle, cambio) {
+function cambiarCantidad(id, talle, color, cambio) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  const prod = cart.find(p => p.id === id && p.talle === talle && p.color === color);
+   const prod = cart.find(p => 
+  p.id === id && 
+  p.talle === talle && 
+  p.color === color
+);
   if (!prod) return;
 
   prod.quantity += cambio;
@@ -604,10 +608,12 @@ function cambiarCantidad(id, talle, cambio) {
   mostrarCarrito();
 }
 
-function eliminarProducto(id, talle) {
+function eliminarProducto(id, talle, color) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  cart = cart.filter(p => !(p.id === id && p.talle === talle));
+  cart = cart.filter(p => 
+  !(p.id === id && p.talle === talle && p.color === color)
+);
 
   localStorage.setItem("cart", JSON.stringify(cart));
 
