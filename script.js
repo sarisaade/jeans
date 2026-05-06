@@ -444,7 +444,28 @@ if (!talleSel || !cantidad || cantidad <= 0) {
     });
   });
 }
+function traducirColor(color) {
 
+  const colores = {
+    "#000000": "Negro",
+    "#ffffff": "Blanco",
+    "#f5f5dc": "Crema",
+    "#800020": "Bordo",
+    "#000066": "Marino",
+    "#808080": "Gris claro",
+    "#7f7f7f": "Gris claro",
+    "gray": "Gris claro",
+    "grey": "Gris claro",
+    "#8b4513": "Marrón",
+    "#556b2f": "Verde militar",
+    "#0a747c": "Petróleo",
+    "#2c2b2b": "Gris oscuro",
+  };
+
+  const c = color.toLowerCase();
+
+  return colores[c] || color;
+}
 // =====================
 // CARRITO
 // =====================
@@ -510,11 +531,13 @@ function mostrarCarrito() {
       <p>
   ${p.name} 
   (${p.talle})
-  
-  ${p.color 
-    ? `<span class="cart-color" style="background:${p.color}"></span>` 
-    : ""
-  }
+
+  ${p.color ? `
+    <span class="cart-color" style="background:${p.color}"></span>
+    <span class="cart-color-name">
+      ${traducirColor(p.color)}
+    </span>
+  ` : ""}
 </p>
 
       <div>
