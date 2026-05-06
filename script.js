@@ -349,7 +349,7 @@ function activarColores() {
         "#f5f5dc": "Crema",
         "#800020": "Bordo",
         "#000066": "Marino",
-        "#808080": "Gris",
+        "#a7a5a5": "Gris claro",
         "#8b4513": "Marrón",
         "#556b2f": "Verde militar",
         "#0a747c": "Petróleo",
