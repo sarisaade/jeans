@@ -820,10 +820,19 @@ function abrirModalConCarrusel(p, imagenActual) {
   const imagenes = [
     p.Imagen1,
     p.Imagen2,
-    p.Imagen3
+    p.Imagen3,
+    p.Imagen4,
+    p.Imagen5,
+    p.Imagen6
   ].filter(img => img && img.trim() !== "");
 
-  let index = imagenes.indexOf(imagenActual);
+ let index = 0;
+
+imagenes.forEach((img, i) => {
+  if (imagenActual.includes(img)) {
+    index = i;
+  }
+});
 
 if (index < 0) index = 0;
 
