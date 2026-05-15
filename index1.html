@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legendario Jeans - Estilo que perdura</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/png" href="./imagenes/favicon-32x32.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+     <!-- Sección Hero -->
+<div class="hero">
+  <div class="hero-header">
+     <a href="./index.html" class="logo">
+        <img src="./24FEC762-47F0-4F9E-8F29-CF139B27135F.webp" alt="Logo de LEGENDARIO JEANS">
+     </a>
+     <div class="hero-content">
+      <h1>Legendario Jeans</h1>
+      
+      <!--<button onclick="location.href='./productos.html'"><h2>Ver productos</h2></button>-->
+  </div>
+  
+  
+  <a href="./carrito.html" class="cart"><i class="fas fa-shopping-cart"></i>
+    <img id="pant-icon" src="./103083_trousers_icon.png" alt="Pantalón" style="display:none; position:absolute; width:30px; height:auto;">
+    
+  </a>
+  </div>
+</div>
+</header>
+
+<main>
+
+  <section class="home-slider">
+
+    <div class="home-track">
+      <img src="./blue-jeans-fabric-details.jpg" class="home-slide">
+      <img src="./ChatGPT Image 22 abr 2026, 09_36_52.png" class="home-slide">
+      <img src="./ChatGPT Image 27 abr 2026, 09_30_34.png" class="home-slide">
+    </div>
+
+    <div class="home-overlay">
+      <h2>Legendario Jeans</h2>
+      <p>Más de 35 años de trayectoria</p>
+
+      <button onclick="location.href='./productos.html'" class="btn-main">
+        VER PRODUCTOS
+      </button>
+    </div>
+
+  </section>
+
+</main>
+<footer>
+  <div class="footer-info"> 
+  
+    <div class="contact-info"> 
+     
+      <div class="contacto">
+        <h3>Contacto</h3>
+        <p><img src="./telefono.png" alt="Telefono"class=social-icon><a href="tel:+541146122809">+54 11 4612-2809</a>
+        </p> 
+       <p><a href="https://wa.me/541150620235" target="_blank">
+        <img src="./whatsapp.png" alt="WhatsApp" class="social-icon"> Enviar mensaje</a>
+      </p>
+      
+       <p><a href="https://maps.app.goo.gl/2hxNUeELsLzQUU3JA" target="_blank" class="social-icon">📍 Legendario Jeans</p></a>
+        
+       </div> </div>
+       <div class="hours-info"> 
+        <h3>Horarios</h3> <div class="horarios">
+        <p>Lunes a Viernes: 08:30 - 16:30</p> 
+        <p>Sábados: Cerrado</p> 
+        
+       
+      </div> </div><div class="social-info"> <h3>Redes</h3> 
+        <div class="redes">
+        <p>
+          <a href="https://facebook.com/legendariojeans" target="_blank">
+          <img src="./facebook.png" alt="Facebook" class="social-icon"> Facebook</a>
+        </p>
+         <p>
+          <a href="https://instagram.com/legendariojeans" target="_blank">
+            <img src="./instagram.png" alt="Instagram" class="social-icon"> 
+            Instagram</a>
+          </p>
+         </div> </div>
+         
+         
+        </div> 
+        
+</footer>
+
+
+<script>
+    function toggleTalles() {
+        var content = document.getElementById("tallesContent");
+        content.style.display = content.style.display === "none" ? "block" : "none";
+    }
+</script>
+<script>
+(function() {
+
+  const track = document.querySelector(".home-track");
+  const slides = document.querySelectorAll(".home-slide");
+
+  if (!track || slides.length === 0) return;
+
+  // 🔥 duplicamos imágenes
+  track.innerHTML += track.innerHTML;
+
+  let index = 0;
+  const total = slides.length;
+
+  setInterval(() => {
+    index++;
+
+    track.style.transition = "transform 0.8s ease-in-out";
+    track.style.transform = `translateX(-${index * 100}%)`;
+
+    // 🔁 cuando llega al final duplicado, resetea SIN animación
+    if (index >= total) {
+      setTimeout(() => {
+        track.style.transition = "none";
+        track.style.transform = "translateX(0)";
+        index = 0;
+      }, 800); // mismo tiempo que la transición
+    }
+
+  }, 3000);
+
+})();
+</script>
+</body>
+</html>

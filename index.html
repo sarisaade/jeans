@@ -1,138 +1,1277 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legendario Jeans - Estilo que perdura</title>
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="icon" type="image/png" href="./imagenes/favicon-32x32.png">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legendario Jeans</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+ *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#f7f4ef;
+  color:#111;
+  overflow-x:hidden;
+}
+
+img{
+  width:100%;
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+::selection{
+  background:#c89a68;
+  color:white;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:100%;
+
+  height:38px;
+
+  z-index:10000;
+
+  background:#061426;
+
+  color:#fff;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:40px;
+
+  flex-wrap:wrap;
+
+  font-size:13px;
+
+  letter-spacing:1px;
+}
+
+.navbar{
+
+  position:fixed;
+
+  top:34px;
+
+  left:0;
+
+  width:100%;
+
+  margin-top:-1px;
+
+  z-index:9999;
+
+  background:rgba(255,255,255,.94);
+
+  backdrop-filter:blur(10px);
+
+  padding:22px 40px;
+
+  display:grid;
+
+  grid-template-columns:1fr auto 1fr;
+
+  align-items:center;
+
+  transition:.3s ease;
+
+  box-shadow:0 4px 20px rgba(0,0,0,.05);
+}
+
+
+.logo{
+  justify-self:center;
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:54px;
+
+  font-weight:600;
+
+  letter-spacing:2px;
+}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+  font-size:14px;
+  text-transform:uppercase;
+}
+
+.icons{
+  display:flex;
+  gap:20px;
+  font-size:20px;
+  justify-self:end;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+  position:relative;
+
+  min-height:clamp(500px,88vh,900px);
+  padding-top:500px;
+
+  background:
+
+  radial-gradient(circle at top left,
+  rgba(200,154,104,.25),
+  transparent 30%),
+
+  radial-gradient(circle at bottom right,
+  rgba(255,255,255,.08),
+  transparent 30%),
+
+  linear-gradient(to right,
+  rgba(4,15,30,.95),
+  rgba(4,15,30,.45)),
+
+  url(jean\ negro\ sweater\ gris.png);
+
+  background-size:cover;
+
+  background-position:center;
+
+  display:flex;
+
+  align-items:center;
+
+  padding:70px;
+
+  color:white;
+
+  overflow:hidden;
+}
+
+.hero::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:700px;
+  height:700px;
+
+  border-radius:50%;
+
+  background:
+  radial-gradient(circle,
+  rgba(200,154,104,.18),
+  transparent 70%);
+
+  top:-250px;
+  left:-250px;
+
+  animation:glowMove 8s ease-in-out infinite;
+}
+
+@keyframes glowMove{
+
+  0%{
+    transform:translate(0,0);
+  }
+
+  50%{
+    transform:translate(60px,40px);
+  }
+
+  100%{
+    transform:translate(0,0);
+  }
+}
+
+.hero-content{
+  max-width:650px;
+   position:relative;
+  z-index:2;
+  padding-top: 180px;
+}
+
+.hero-sub{
+
+  color:#c89a68;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  margin-bottom:20px;
+
+  font-size:15px;
+}
+
+.hero h1{
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:82px;
+
+  line-height:1;
+
+  margin-bottom:25px;
+
+  font-weight:500;
+
+  text-shadow:0 5px 25px rgba(0,0,0,.25);
+}
+
+.hero p{
+
+  font-size:22px;
+
+  line-height:1.6;
+
+  margin-bottom:35px;
+
+  max-width:520px;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.btn{
+
+  display:inline-block;
+
+  background:
+  linear-gradient(135deg,
+  #d8a673,
+  #b97a46);
+
+  color:white;
+
+  padding:18px 34px;
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+
+  transition:.35s;
+
+  font-size:14px;
+
+  border-radius:3px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  box-shadow:
+  0 10px 30px rgba(200,154,104,.35);
+}
+
+.btn::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-120%;
+
+  width:60%;
+  height:100%;
+
+  background:
+  linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.45),
+    transparent
+  );
+
+  transform:skewX(-20deg);
+
+  transition:.7s;
+}
+
+.btn:hover::before{
+  left:140%;
+}
+
+.btn:hover{
+
+  transform:translateY(-3px);
+
+  box-shadow:
+  0 18px 40px rgba(200,154,104,.45);
+}
+
+/* =========================
+   CATEGORIAS
+========================= */
+
+.categories{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+
+.category-card{
+
+  position:relative;
+
+  overflow:hidden;
+
+  min-height:500px;
+}
+
+.category-card img{
+
+  height:100%;
+
+  object-fit:cover;
+
+  transition:transform .6s ease;
+}
+
+.category-card:hover img{
+  transform:scale(1.05);
+}
+
+.category-card::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+  linear-gradient(
+    to top,
+    rgba(0,0,0,.45),
+    transparent 45%
+  );
+
+  pointer-events:none;
+}
+
+.category-overlay{
+  position:absolute;
+  inset:0;
+
+  background:rgba(0,0,0,.2);
+
+  display:flex;
+  align-items:center;
+
+  padding:60px;
+
+  color:white;
+
+  z-index:2;
+}
+.category-content{
+  max-width:350px;
+
+  position:relative;
+
+  z-index:5;
+}
+
+.category-content span{
+
+  color:#d4a06c;
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+
+  font-size:14px;
+}
+
+.category-content h2{
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:68px;
+
+  margin:20px 0;
+
+  font-weight:500;
+
+  text-shadow:0 5px 25px rgba(0,0,0,.25);
+}
+
+.category-content p{
+
+  line-height:1.7;
+
+  margin-bottom:28px;
+}
+
+/* =========================
+   BANNER
+========================= */
+
+.gift-banner{
+
+  background:#071527;
+
+  color:white;
+
+  padding:70px;
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:40px;
+
+  align-items:center;
+}
+
+.gift-banner h2{
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:64px;
+
+  margin-bottom:18px;
+
+  font-weight:500;
+
+  text-shadow:0 5px 25px rgba(0,0,0,.25);
+}
+
+.gift-banner p{
+
+  margin-bottom:30px;
+
+  line-height:1.8;
+}
+.gift-slider{
+  position:relative;
+
+  width:100%;
+
+  height:100%;
+
+  min-height:420px;
+
+  overflow:hidden;
+
+  border-radius:12px;
+}
+
+.gift-slide{
+
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  opacity:0;
+
+  transition:opacity .8s ease;
+}
+
+.gift-slide.active{
+  opacity:1;
+}
+
+/* =========================
+   PRODUCTOS
+========================= */
+
+.products{
+  padding:90px 40px;
+  text-align:center;
+}
+
+.section-sub{
+
+  color:#b67f4a;
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+
+  margin-bottom:10px;
+
+  font-size:14px;
+}
+
+.section-title{
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:72px;
+
+  margin-bottom:50px;
+
+  font-weight:500;
+
+  text-shadow:0 5px 25px rgba(0,0,0,.25);
+}
+
+.product-grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:30px;
+}
+
+.product-card{
+
+  background:white;
+
+  padding-bottom:20px;
+
+  transition:.35s;
+
+  border-radius:10px;
+
+  overflow:hidden;
+
+  box-shadow:
+  0 8px 20px rgba(0,0,0,.04);
+}
+
+.product-card:hover{
+
+  transform:translateY(-10px);
+
+  box-shadow:
+  0 20px 45px rgba(0,0,0,.12);
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+
+  background:white;
+
+  padding:50px 30px;
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:30px;
+}
+
+.feature{
+  text-align:center;
+}
+
+.feature h4{
+
+  margin:15px 0 8px;
+
+  text-transform:uppercase;
+
+  font-size:14px;
+
+  letter-spacing:1px;
+}
+
+.feature p{
+
+  color:#666;
+
+  font-size:14px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+  background:#061426;
+
+  color:white;
+
+  padding:70px 40px;
+}
+
+.footer-grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:40px;
+}
+
+.footer-grid h3{
+
+  margin-bottom:20px;
+
+  text-transform:uppercase;
+
+  font-size:14px;
+
+  letter-spacing:1px;
+}
+
+.footer-grid p,
+.footer-grid a{
+
+  color:#d5d5d5;
+
+  line-height:2;
+
+  font-size:14px;
+
+  display:block;
+}
+
+.newsletter{
+
+  display:flex;
+
+  margin-top:20px;
+
+  border:1px solid rgba(255,255,255,.3);
+}
+
+.newsletter input{
+
+  flex:1;
+
+  padding:14px;
+
+  background:transparent;
+
+  border:none;
+
+  color:white;
+
+  outline:none;
+}
+
+.newsletter button{
+
+  border:none;
+
+  background:#c89a68;
+
+  color:white;
+
+  padding:0 22px;
+
+  cursor:pointer;
+}
+
+/* =========================
+   BUSCADOR
+========================= */
+
+.search-bar{
+
+  background:white;
+
+  padding:0 40px;
+
+  max-height:0;
+
+  overflow:hidden;
+
+  transition:.3s ease;
+}
+
+.search-bar.active{
+
+  max-height:100px;
+
+  padding:20px 40px;
+}
+
+.search-bar input{
+
+  width:100%;
+
+  padding:16px;
+
+  border:1px solid #ddd;
+
+  outline:none;
+
+  font-size:16px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+  body{
+    padding-top:140px;
+  }
+
+  .topbar{
+    gap:8px;
+    font-size:10px;
+    padding:8px 10px;
+    text-align:center;
+  }
+
+  .navbar{
+
+    top:32px;
+
+    grid-template-columns:1fr;
+
+    gap:12px;
+
+    padding:14px 18px;
+
+    text-align:center;
+  }
+
+  .nav-links{
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:11px;
+  }
+
+  .logo{
+    font-size:32px;
+    line-height:1;
+  }
+
+  .icons{
+    justify-self:center;
+  }
+
+  .hero{
+
+    min-height:auto;
+
+    .hero{
+  padding:140px 18px 70px;
+}
+    background-position:center top;
+  }
+
+  .hero-content{
+    max-width:100%;
+  }
+
+  .hero-sub{
+    font-size:12px;
+    margin-bottom:14px;
+  }
+
+  .hero h1{
+
+    font-size:52px;
+
+    line-height:.95;
+
+    margin-bottom:20px;
+  }
+
+  .hero p{
+
+    font-size:16px;
+
+    line-height:1.5;
+
+    max-width:100%;
+  }
+
+  .btn{
+
+    width:100%;
+
+    text-align:center;
+
+    padding:16px;
+  }
+
+  .categories,
+  .gift-banner,
+  .features,
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .product-grid{
+    grid-template-columns:1fr;
+  }
+
+  .category-overlay{
+    padding:25px;
+  }
+
+  .category-content h2{
+    font-size:42px;
+  }
+
+  .gift-banner{
+    padding:40px 22px;
+  }
+
+  .gift-banner h2{
+    font-size:40px;
+  }
+
+  .section-title{
+    font-size:42px;
+  }
+
+  .products{
+    padding:60px 18px;
+  }
+
+  .features{
+    gap:20px;
+  }
+
+  footer{
+    padding:50px 24px;
+  }
+  .gift-slider{
+  min-height:320px;
+}
+
+
+}
+  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
-<header>
-     <!-- Sección Hero -->
-<div class="hero">
-  <div class="hero-header">
-     <a href="./index.html" class="logo">
-        <img src="./24FEC762-47F0-4F9E-8F29-CF139B27135F.webp" alt="Logo de LEGENDARIO JEANS">
-     </a>
-     <div class="hero-content">
-      <h1>Legendario Jeans</h1>
-      
-      <!--<button onclick="location.href='./productos.html'"><h2>Ver productos</h2></button>-->
-  </div>
-  
-  
-  <a href="./carrito.html" class="cart"><i class="fas fa-shopping-cart"></i>
-    <img id="pant-icon" src="./103083_trousers_icon.png" alt="Pantalón" style="display:none; position:absolute; width:30px; height:auto;">
+  <div class="topbar">
+    <span>ENVIOS A TODO EL PAIS</span>
+    <span>CONSULTA POR EL TUYO</span>
     
-  </a>
   </div>
-</div>
-</header>
 
-<main>
+  <nav class="navbar">
 
-  <section class="home-slider">
-
-    <div class="home-track">
-      <img src="./blue-jeans-fabric-details.jpg" class="home-slide">
-      <img src="./ChatGPT Image 22 abr 2026, 09_36_52.png" class="home-slide">
-      <img src="./ChatGPT Image 27 abr 2026, 09_30_34.png" class="home-slide">
+    <div class="nav-links">
+      
+      <a href="./productos.html">Ir a la Tienda</a>
+      
+      
     </div>
 
-    <div class="home-overlay">
-      <h2>Legendario Jeans</h2>
-      <p>Más de 35 años de trayectoria</p>
+    <div class="logo">
+      LEGENDARIO
+    </div>
 
-      <button onclick="location.href='./productos.html'" class="btn-main">
-        VER PRODUCTOS
-      </button>
+   <div class="icons">
+
+  
+
+   <a href="./carrito.html" class="cart">
+                <i class="fas fa-shopping-cart"></i>
+
+</div>
+
+  </nav>
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="hero-sub">
+        Jeans & Sweaters para PAPA
+      </div>
+
+      <h1>
+        Adelanta tus compras para el<br>
+         Día del Padre
+      </h1>
+
+      <p>
+        Calidad, confort y diseño en prendas pensadas para acompañarte todos los días.
+      </p>
+
+      <a href="./productos.html" class="btn">
+        Ver colección
+      </a>
+
     </div>
 
   </section>
 
-</main>
-<footer>
-  <div class="footer-info"> 
-  
-    <div class="contact-info"> 
-     
-      <div class="contacto">
-        <h3>Contacto</h3>
-        <p><img src="./telefono.png" alt="Telefono"class=social-icon><a href="tel:+541146122809">+54 11 4612-2809</a>
-        </p> 
-       <p><a href="https://wa.me/541150620235" target="_blank">
-        <img src="./whatsapp.png" alt="WhatsApp" class="social-icon"> Enviar mensaje</a>
-      </p>
-      
-       <p><a href="https://maps.app.goo.gl/2hxNUeELsLzQUU3JA" target="_blank" class="social-icon">📍 Legendario Jeans</p></a>
-        
-       </div> </div>
-       <div class="hours-info"> 
-        <h3>Horarios</h3> <div class="horarios">
-        <p>Lunes a Viernes: 08:30 - 16:30</p> 
-        <p>Sábados: Cerrado</p> 
-        
-       
-      </div> </div><div class="social-info"> <h3>Redes</h3> 
-        <div class="redes">
+ <!-- <section class="categories">
+
+  <div class="category-card">
+
+    <img src="blue-jeans-fabric-details.jpg">
+
+    <div class="category-overlay">
+
+      <div class="category-content">
+
+        <span>Clásicos que nunca fallan</span>
+
+        <h2>Jeans</h2>
+
         <p>
-          <a href="https://facebook.com/legendariojeans" target="_blank">
-          <img src="./facebook.png" alt="Facebook" class="social-icon"> Facebook</a>
+          Ajuste perfecto, comodidad y estilo para todos los días.
         </p>
-         <p>
-          <a href="https://instagram.com/legendariojeans" target="_blank">
-            <img src="./instagram.png" alt="Instagram" class="social-icon"> 
-            Instagram</a>
-          </p>
-         </div> </div>
-         
-         
-        </div> 
-        
-</footer>
 
+        <a href="./productos.html?buscar=jean" class="btn">
+          Ver todo
+        </a>
 
-<script>
-    function toggleTalles() {
-        var content = document.getElementById("tallesContent");
-        content.style.display = content.style.display === "none" ? "block" : "none";
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="category-card">
+
+    <img src="https://res.cloudinary.com/diaqczldj/image/upload/v1778074604/Gemini_Generated_Image_9gjqhj9gjqhj9gjq_yvux1c.png">
+
+    <div class="category-overlay">
+
+      <div class="category-content">
+
+        <span>Abrigo que va con todo</span>
+
+        <h2>Sweaters</h2>
+
+        <p>
+          Tejidos suaves y colores versátiles para cualquier ocasión.
+        </p>
+
+        <a href="./productos.html?buscar=sweater" class="btn">
+          Ver todo
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>-->
+
+  <section class="gift-banner">
+
+    <div>
+      <h2>Regalos que importan</h2>
+
+      <p>
+        Encontrá el regalo perfecto con prendas premium listas para regalar.
+      </p>
+
+      <a href="./productos.html" class="btn">Sorprende a papá</a>
+    </div>
+
+   <div class="gift-slider">
+
+  <img src="./medio cierre gris.png" class="gift-slide active">
+
+  <img src="./blue-jeans-fabric-details.jpg" class="gift-slide">
+
+  <img src="./ChatGPT Image 27 abr 2026, 09_30_34.png" class="gift-slide">
+
+</div>
+
+  </section>
+
+ <!-- <section class="products">
+
+    <div class="section-sub">Los más elegidos</div>
+
+    <h2 class="section-title">Best Sellers</h2>
+
+    <div class="product-grid">
+
+      <div class="product-card">
+
+        <div class="product-img">
+          <img src="./pila de jeans costura gruesa.png">
+        </div>
+
+        <div class="product-info">
+          <h3>Jean Clasico Costura Gruesa</h3>
+          <p>Azul clásico</p>
+          <div class="price">$18999</div>
+
+          <div class="colors">
+            <div class="color" style="background:#0b2545"></div>
+            <div class="color" style="background:#577590"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="product-card">
+
+        <div class="product-img">
+          <img src="./sweater cuello redondo.png">
+        </div>
+
+        <div class="product-info">
+          <h3>Sweater Cuello Redondo</h3>
+          <p>Beige</p>
+          <div class="price">$17999</div>
+
+          <div class="colors">
+            <div class="color" style="background:#d9cbb3"></div>
+            <div class="color" style="background:#2d2d2d"></div>
+            <div class="color" style="background:#8b7355"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="product-card">
+
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?q=80&w=1200&auto=format&fit=crop">
+        </div>
+
+        <div class="product-info">
+          <h3>Jean Clasico</h3>
+          <p>Negro</p>
+          <div class="price">$18999</div>
+
+          <div class="colors">
+            <div class="color" style="background:black"></div>
+            <div class="color" style="background:#4b5563"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="product-card">
+
+        <div class="product-img">
+          <img src="./medio cierre gris.png">
+        </div>
+
+        <div class="product-info">
+          <h3>Sweater Medio Cierre</h3>
+          <p>Gris</p>
+          <div class="price">$18999</div>
+
+          <div class="colors">
+            <div class="color" style="background:#0b2545"></div>
+            <div class="color" style="background:#2d2d2d"></div>
+            <div class="color" style="background:#d9cbb3"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>-->
+
+  <section class="features">
+
+    <div class="feature">
+      <h4>Envíos rápidos</h4>
+      <p>A todo el país</p>
+    </div>
+
+    
+
+    <div class="feature">
+      <h4>Cambios</h4>
+      <p>Sin cargo</p>
+    </div>
+
+    <div class="feature">
+      <h4>Compra segura</h4>
+      <p>Protegemos tus datos</p>
+    </div>
+
+  </section>
+
+  <footer>
+
+    <div class="footer-grid">
+
+     <!-- <div>
+        <h3>Suscribite</h3>
+
+        <p>
+          Enterate antes que nadie de nuevos lanzamientos y promociones.
+        </p>
+
+        <form 
+  action="https://formspree.io/f/mpwzdjlz"
+  method="POST"
+  class="newsletter"
+>
+
+  <input 
+    type="email"
+    name="email"
+    placeholder="Tu email"
+    required
+  >
+
+  <button type="submit">
+    →
+  </button>
+
+</form>
+      </div>
+
+      <div>
+        <h3>Comprar</h3>
+        <a href="./productos.html">Jeans</a>
+        <a href="./productos.html">Sweaters</a>
+        <a href="./productos.html">Ofertas</a>
+      </div>
+      -->
+
+      <div>
+  <h3>Ubicación</h3>
+
+  <p><a href="https://maps.app.goo.gl/2hxNUeELsLzQUU3JA" target="_blank" class="social-icon">Argerich 484,<br/> Ciudad de Buenos Aires</p></a>
+</div>
+
+<div>
+  <h3>Horarios</h3>
+
+  <p>
+    Lunes a Viernes<br>
+    8:30 a 16:30 hs
+  </p>
+
+  <p style="margin-top:10px;">
+    Sábados<br>
+    Cerrado
+  </p>
+</div>
+
+      <div>
+        <h3>Ayuda</h3>
+        <a href="./perguntas.html">Preguntas frecuentes</a>
+        <a href="./contacto.html">Contacto</a>
+      </div>
+
+      <div>
+        <h3>Seguinos</h3>
+         <a href="https://instagram.com/legendariojeans" target="_blank">Instagram</a>
+        <a href="https://facebook.com/legendariojeans" target="_blank">Facebook</a>
+        <p><a href="https://wa.me/541150620235" target="_blank">WhatsApp</a></p>
+      </div>
+
+    </div>
+
+  </footer>
+  <script>
+
+// 🔍 abrir buscador
+const btn =
+document.getElementById("search-btn");
+
+const bar =
+document.getElementById("search-bar");
+
+if(btn && bar){
+
+  btn.addEventListener("click", () => {
+
+    bar.classList.toggle("active");
+
+  });
+
+}
+
+// 🔍 buscar
+const input =
+document.getElementById("global-search");
+
+if(input){
+
+  input.addEventListener("keypress", (e) => {
+
+    if(e.key === "Enter"){
+
+      const texto =
+      input.value.trim();
+
+      if(!texto) return;
+
+      window.location.href =
+      `productos.html?buscar=${encodeURIComponent(texto)}`;
+
     }
+
+  });
+
+}
+
+
+const slides =
+document.querySelectorAll(".gift-slide");
+
+let currentSlide = 0;
+
+setInterval(() => {
+
+  slides[currentSlide]
+  .classList.remove("active");
+
+  currentSlide =
+  (currentSlide + 1) % slides.length;
+
+  slides[currentSlide]
+  .classList.add("active");
+
+}, 3000);
+
+
+
 </script>
-<script>
-(function() {
 
-  const track = document.querySelector(".home-track");
-  const slides = document.querySelectorAll(".home-slide");
-
-  if (!track || slides.length === 0) return;
-
-  // 🔥 duplicamos imágenes
-  track.innerHTML += track.innerHTML;
-
-  let index = 0;
-  const total = slides.length;
-
-  setInterval(() => {
-    index++;
-
-    track.style.transition = "transform 0.8s ease-in-out";
-    track.style.transform = `translateX(-${index * 100}%)`;
-
-    // 🔁 cuando llega al final duplicado, resetea SIN animación
-    if (index >= total) {
-      setTimeout(() => {
-        track.style.transition = "none";
-        track.style.transform = "translateX(0)";
-        index = 0;
-      }, 800); // mismo tiempo que la transición
-    }
-
-  }, 3000);
-
-})();
-</script>
 </body>
 </html>
+```

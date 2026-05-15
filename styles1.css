@@ -1,0 +1,66 @@
+.faq-section{
+  max-width:900px;
+  margin:80px auto;
+  padding:0 20px;
+}
+
+.faq-title{
+  text-align:center;
+  font-size:48px;
+  margin-bottom:40px;
+  font-family:'Cormorant Garamond', serif;
+}
+
+.faq-item{
+  border-bottom:1px solid #ddd;
+}
+
+.faq-question{
+  width:100%;
+  background:none;
+  border:none;
+  padding:22px 0;
+  text-align:left;
+  font-size:18px;
+  font-weight:600;
+  cursor:pointer;
+  position:relative;
+}
+
+.faq-question::after{
+  content:"+";
+  position:absolute;
+  right:0;
+  font-size:24px;
+}
+
+.faq-item.active .faq-question::after{
+  content:"−";
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+}
+
+.faq-answer p{
+  padding-bottom:20px;
+  line-height:1.7;
+  color:#555;
+}
+
+.faq-item.active .faq-answer{
+  max-height:300px;
+}
+/* Logo a la izquierda */
+.logo {
+    flex: 0 0 auto; /* Fija el tamaño del logo */
+}
+
+.logo img {
+    width: 50px; /* Ajustar el tamaño del logo */
+    height: auto;
+    border-radius: 50%; /* Logo redondeado */
+    border: 2px solid white; /* Bordes elegantes */
+}

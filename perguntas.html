@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legendario Jeans</title>
+  <link rel="stylesheet" href="styles1.css" />
+</head>
+<body>
+    <header>
+        <div class="hero">
+        <div class="hero-header">
+            <a href="./index.html" class="logo">
+            <img src="./logo legendario.webp" alt="Logo de LEGENDARIO JEANS" />
+            </a>
+            <div class="hero-content">
+            <h1>Legendario Jeans</h1>
+            </div>
+        </div>
+        </div>
+    </header>
+    
+    <main>
+<section class="faq-section">
+
+  <h2 class="faq-title">Preguntas Frecuentes</h2>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿Hacen envíos a todo el país?
+    </button>
+
+    <div class="faq-answer">
+      <p>
+        Sí 😊 realizamos envíos a toda Argentina.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿Cuánto tarda en llegar mi pedido?
+    </button>
+
+    <div class="faq-answer">
+      <p>
+        CABA y GBA: 3 a 5días hábiles.<br>
+        A traves de Correo Argentino.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿Cómo puedo comprar?
+    </button>
+
+    <div class="faq-answer">
+      <p>
+        Elegís los productos, seleccionás talle y color,
+        los agregás al carrito y finalizás el pedido por WhatsApp.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿Aceptan Mercado Pago?
+    </button>
+
+    <div class="faq-answer">
+      <p>
+        Sí 😊 aceptamos Mercado Pago y transferencia bancaria.
+      </p>
+    </div>
+  </div>
+
+ 
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿Los productos tienen cambio?
+    </button>
+
+    <div class="faq-answer">
+      <p>
+        Sí. Aceptamos cambios por talle o producto.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿Cómo los contacto?
+    </button>
+
+    <div class="faq-answer">
+      <p>
+        Podés escribirnos por WhatsApp o Instagram 😊
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      ¿Abren los Sabados?
+    </button>
+
+    <div class="faq-answer">
+      <p>
+       No, nuestro horario de atención es de Lunes a Viernes de 8.30 a 16.30hs.
+      </p>
+    </div>
+  </div>
+
+</section>
+<script>
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item => {
+
+  const question = item.querySelector(".faq-question");
+
+  question.addEventListener("click", () => {
+
+    item.classList.toggle("active");
+
+  });
+
+});
+</script>
