@@ -666,7 +666,7 @@ footer {
     text-align: center;
     padding: 3px 0; /* Reduce el espacio vertical */
     border-top: 1px solid #ccc;
-    font-size: 30px; /* Reduce el tamaño de fuente */
+    font-size: 20px; /* Reduce el tamaño de fuente */
 }
 
 .footer-info {
@@ -674,10 +674,10 @@ footer {
     justify-content:space-between;
     align-items:flex-start;
     flex-wrap: nowrap;
-    padding: 10px; /* Reduce el padding */
+    padding: 5px; /* Reduce el padding */
     gap: 5px; /* Reduce la separación entre elementos */
     overflow: hidden;
-    font-size: 30px;
+    font-size: 20px;
     margin-left: 25px;
     margin-right: 10px;
 }
@@ -687,13 +687,13 @@ footer {
 .footer-info div {
     margin: 2px;
     min-width: 120px; /* Reduce el ancho mínimo de los bloques */
-    font-size: 25px;
+    font-size: 20px;
     text-align: left;
 }
 
 .footer-info h3 {
     margin-bottom: 5px; /* Reduce espacio debajo del título */
-    font-size: 16px; /* Tamaño más compacto */
+    font-size: 14px; /* Tamaño más compacto */
 }
 .redes{
     justify-content: flex-end;
@@ -710,13 +710,13 @@ footer {
 
 .footer-info p {
     margin: 2px 0; /* Reduce márgenes */
-    font-size: 12px;
+    font-size: 10px;
 }
 
 footer a {
     color: white;
     text-decoration: none;
-    font-size: 12px; /* Reduce el tamaño de los enlaces */
+    font-size: 10px; /* Reduce el tamaño de los enlaces */
 }
 
 footer a:hover {
@@ -736,7 +736,7 @@ footer a:hover {
 }
 .copyright {
     text-align: center;
-    font-size: 12px; /* Ajusta el tamaño si es necesario */
+    font-size: 10px; /* Ajusta el tamaño si es necesario */
     margin-top: 5px; /* Reduce espacio antes del copyright */
     padding: 0;
 }
