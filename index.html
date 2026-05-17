@@ -590,7 +590,7 @@ a{
 
   background:white;
 
-  padding:50px 30px;
+  padding:20px 30px;
 
   display:grid;
 
@@ -832,12 +832,35 @@ footer{
 
     padding:16px;
   }
+   .features{
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    padding:20px 10px;
+  }
+
+  .feature{
+    padding:0;
+  }
+
+  .feature h4{
+    font-size:11px;
+    margin:6px 0 4px;
+    line-height:1.2;
+  }
+
+  .feature p{
+    font-size:10px;
+    line-height:1.2;
+  }
+
+
+}
 
   .categories,
   .gift-banner,
-  .features,
+  
   .footer-grid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr 1fr ;
   }
 
   .product-grid{
@@ -868,9 +891,7 @@ footer{
     padding:60px 18px;
   }
 
-  .features{
-    gap:20px;
-  }
+ 
 
   footer{
     padding:50px 24px;
@@ -878,9 +899,24 @@ footer{
   .gift-slider{
   min-height:320px;
 }
+@media(max-width:480px){
 
+  .features{
+    gap:6px;
+    padding:16px 6px;
+  }
+
+  .feature h4{
+    font-size:10px;
+  }
+
+  .feature p{
+    font-size:9px;
+  }
 
 }
+
+
   </style>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
