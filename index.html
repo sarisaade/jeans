@@ -798,6 +798,7 @@ footer{
 
   .hero-content{
     max-width:100%;
+    padding-top: 18px;
   }
 
   .hero-sub{
@@ -831,10 +832,32 @@ footer{
 
     padding:16px;
   }
+.features{
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    padding:20px 10px;
+  }
+
+  .feature{
+    padding:0;
+  }
+
+  .feature h4{
+    font-size:11px;
+    margin:6px 0 4px;
+    line-height:1.2;
+  }
+
+  .feature p{
+    font-size:10px;
+    line-height:1.2;
+  }
+
+
 
   .categories,
   .gift-banner,
-  .features,
+  
   .footer-grid{
     grid-template-columns:1fr 1fr;
   }
@@ -873,10 +896,44 @@ footer{
 
   footer{
     padding:50px 24px;
+     font-size: 15px;
   }
+  .footer-grid h3{
+  font-size:10px;
+}
+
+.footer-grid p,
+.footer-grid a{
+  font-size:11px;
+  line-height:1.4;
+}
+footer{
+  padding:20px 10px;
+}
+.footer-grid{
+  gap:20px;
+}
   .gift-slider{
   min-height:320px;
 }
+.footer-grid{font-size: 10px;}
+@media(max-width:480px){
+
+  .features{
+    gap:6px;
+    padding:16px 6px;
+  }
+
+  .feature h4{
+    font-size:10px;
+  }
+
+  .feature p{
+    font-size:9px;
+  }
+
+}
+
 
 
 }
