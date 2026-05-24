@@ -5,28 +5,209 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
 
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
 
     <!-- ICONOS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:100%;
+
+  height:38px;
+
+  z-index:10000;
+
+  background:#061426;
+
+  color:#fff;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:40px;
+
+  flex-wrap:wrap;
+
+  font-size:13px;
+
+  letter-spacing:1px;
+}
+
+.navbar{
+
+  position:fixed;
+
+  top:34px;
+
+  left:0;
+
+  width:100%;
+
+  margin-top:-1px;
+
+  z-index:9999;
+
+  background:rgba(255,255,255,.94);
+
+  backdrop-filter:blur(10px);
+
+  padding:22px 40px;
+
+  display:grid;
+
+  grid-template-columns:1fr auto 1fr;
+
+  align-items:center;
+
+  transition:.3s ease;
+
+  box-shadow:0 4px 20px rgba(0,0,0,.05);
+}
+
+
+.logo{
+  justify-self:center;
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:54px;
+
+  font-weight:600;
+
+  letter-spacing:2px;
+}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+  font-size:14px;
+  text-transform:uppercase;
+}
+
+.icons{
+  display:flex;
+  gap:20px;
+  font-size:20px;
+  justify-self:end;
+}
+.cart{
+  position:relative;
+
+  font-size:22px;
+
+  transition:.3s ease;
+
+  cursor:pointer;
+}
+
+.cart:hover{
+  transform:scale(1.1);
+  color:#c89a68;
+}
+@media(max-width:768px){
+
+  body{
+    padding-top:140px;
+  }
+
+  .topbar{
+    gap:8px;
+    font-size:10px;
+    padding:8px 10px;
+    text-align:center;
+  }
+
+  .navbar{
+
+    top:32px;
+
+    grid-template-columns:1fr;
+
+    gap:12px;
+
+    padding:14px 18px;
+
+    text-align:center;
+  }
+
+  .nav-links{
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:11px;
+  }
+
+  .logo{
+    font-size:32px;
+    line-height:1;
+  }
+
+  .icons{
+    justify-self:center;
+  }
+  }
+
+  </style>
 
 <body>
 
 <!-- HEADER -->
 <header>
-    <div class="hero">
-        <div class="hero-header">
+    <div class="topbar">
+    <span>ENVIOS A TODO EL PAIS</span>
+    <span>CONSULTA POR EL TUYO</span>
+    
+  </div>
 
-            <a href="./index.html" class="logo">
-                <img src="./24FEC762-47F0-4F9E-8F29-CF139B27135F.webp">
-            </a>
+  <nav class="navbar">
 
-            <div class="hero-content">
-                <h1>Legendario Jeans</h1>
-            </div>
+    <div class="nav-links">
+  <a href="./index.html" class="mini-logo">
+    LEGENDARIO
+  </a>
+</div>
 
-            <a href="./carrito.html" class="cart">
+  
+
+   <div class="icons">
+
+  
+
+           <a href="./carrito.html" class="cart">
                 <i class="fas fa-shopping-cart"></i>
 
                 <!-- 🔥 PANTALON ANIMADO -->
@@ -52,6 +233,83 @@
 
 <!-- SCRIPT -->
 <script src="./script.js"></script>
+
+
+<script>
+
+window.addEventListener("load", () => {
+
+  const params =
+  new URLSearchParams(window.location.search);
+
+  const categoria =
+  params.get("cat");
+
+  if(!categoria) return;
+
+  const filtrar = setInterval(() => {
+
+    const cards =
+    document.querySelectorAll(".product-card");
+
+    if(cards.length === 0) return;
+
+    cards.forEach(card => {
+
+      const tituloEl =
+      card.querySelector("h2");
+
+      if(!tituloEl) return;
+
+      const titulo =
+      tituloEl.textContent.toLowerCase();
+
+      let mostrar = false;
+
+      // 👉 JEANS
+      if(categoria === "jeans"){
+
+        if(
+          titulo.includes("jean") ||
+          titulo.includes("denim")
+        ){
+          mostrar = true;
+        }
+
+      }
+
+      // 👉 SWEATERS
+      if(categoria === "sweaters"){
+
+        if(
+          titulo.includes("sweater") ||
+          titulo.includes("buzo") ||
+          titulo.includes("tricot")
+        ){
+          mostrar = true;
+        }
+
+      }
+
+      card.style.display =
+      mostrar ? "block" : "none";
+
+    });
+
+    clearInterval(filtrar);
+
+  }, 500);
+
+});
+
+</script>
+<a 
+  href="https://wa.me/5491150620235"
+  class="whatsapp-float"
+  target="_blank"
+>
+  <i class="fab fa-whatsapp"></i>
+</a>
 <div id="product-modal" class="product-modal">
   <div class="modal-box">
     <span class="close-modal">&times;</span>
@@ -65,6 +323,5 @@
     <p id="modal-price"></p>
   </div>
 </div>
-
 </body>
 </html>
