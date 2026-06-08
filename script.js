@@ -215,13 +215,18 @@ function generarTalles(p) {
   // 👉 primero probamos letras
   const tallesLetras = ["S","M","L","XL","XXL"];
 
-  let hayLetras = false;
+ let hayLetras = false;
 
-  tallesLetras.forEach(t => {
-    if (p[`Stock${t}`] && p[`Stock${t}`] !== "" && p[`Stock${t}`] !== "0") {
-      hayLetras = true;
-    }
-  });
+tallesLetras.forEach(t => {
+
+  // si la columna existe, aunque tenga 0, es una prenda con talles S-M-L
+  if (p[`Stock${t}`] !== undefined && p[`Stock${t}`] !== "") {
+
+    hayLetras = true;
+
+  }
+
+});
 
   // 👉 SI TIENE LETRAS
   if (hayLetras) {
