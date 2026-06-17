@@ -252,10 +252,7 @@ a{
   font-weight:500;
 
   text-shadow:0 5px 25px rgba(0,0,0,.25);
- 
-  animation: argentinaGlow 3s ease-in-out infinite;
 }
-
 
 .hero p{
 
@@ -988,104 +985,35 @@ footer{
   }
 
 }
-...todo tu CSS...
-
-@media(max-width:480px){
-
-  .footer{
-    ...
-  }
-
-}
-
-/* ==================================
-   PAPELITOS ARGENTINA
-================================== */
-
-.argentina-confetti{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-  z-index:5;
-}
-
-.confetti-piece{
-  position:absolute;
-  top:-20px;
-  width:7px;
-  height:18px;
-  border-radius:2px;
-  animation-name:argentinaFall;
-  animation-timing-function:linear;
-  animation-iteration-count:infinite;
-}
-
-@keyframes argentinaFall{
-
-  0%{
-    transform:
-    translateY(-50px)
-    translateX(0)
-    rotate(0deg);
-  }
-
-  100%{
-    transform:
-    translateY(110vh)
-    translateX(120px)
-    rotate(720deg);
-  }
-
-}
-
-/* =====================
-   EFECTO SELECCION ARGENTINA
-===================== */
-
-.hero h1{
-  animation: argentinaGlow 3s ease-in-out infinite;
-}
-
-@keyframes argentinaGlow{
-
-  0%{
-    text-shadow:
-      0 0 8px rgba(255,255,255,.4),
-      0 0 20px rgba(255,255,255,.3);
-  }
-
-  25%{
-    text-shadow:
-      0 0 15px rgba(117,170,219,.8),
-      0 0 35px rgba(117,170,219,.6),
-      0 0 55px rgba(117,170,219,.4);
-  }
-
-  50%{
-    text-shadow:
-      0 0 20px rgba(255,255,255,.9),
-      0 0 40px rgba(255,255,255,.7),
-      0 0 65px rgba(255,255,255,.5);
-  }
-
-  75%{
-    text-shadow:
-      0 0 15px rgba(117,170,219,.8),
-      0 0 35px rgba(117,170,219,.6),
-      0 0 55px rgba(117,170,219,.4);
-  }
-
-  100%{
-    text-shadow:
-      0 0 8px rgba(255,255,255,.4),
-      0 0 20px rgba(255,255,255,.3);
-  }
-
-}
 
   </style>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TG82404XV4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TG82404XV4');
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x0vst7kqeb");
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x0vst7kqeb");
+</script>
 </head>
 <body>
 
@@ -1410,7 +1338,6 @@ footer{
     </div>
 
   </footer>
-  <div class="argentina-confetti"></div>
   <script>
 
 // 🔍 abrir buscador
@@ -1473,43 +1400,7 @@ setInterval(() => {
 
 }, 3000);
 
-// PAPELITOS ARGENTINA
 
-const container =
-document.querySelector(".argentina-confetti");
-
-const colores = [
-"#75AADB",
-"#ffffff",
-"#75AADB",
-"#ffffff"
-];
-
-for(let i=0;i<120;i++){
-
-  const papel =
-  document.createElement("div");
-
-  papel.classList.add("confetti-piece");
-
-  papel.style.left =
-  Math.random()*100 + "%";
-
-  papel.style.background =
-  colores[Math.floor(Math.random()*colores.length)];
-
-  papel.style.animationDuration =
-  (6 + Math.random()*8) + "s";
-
-  papel.style.animationDelay =
-  Math.random()*10 + "s";
-
-  papel.style.opacity =
-  0.5 + Math.random()*0.5;
-
-  container.appendChild(papel);
-
-}
 
 </script>
 <a 
