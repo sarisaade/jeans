@@ -689,6 +689,7 @@ function eventosCarrito() {
     "#556b2f": "Verde militar",
     "#0a747c": "Petroleo",
     "#2c2b2b": "Gris oscuro",
+    "#a3805d": "Beige",
   };
 
   const hex = p.color.toLowerCase();
