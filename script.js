@@ -364,7 +364,6 @@ function activarColores() {
         "#E67E22": "Naranja",
         "#7A9A5B": "Verde ",
         "#D4A72C": "Amarillo",
-        "#E8D5B5": "Beige",
         "#C94C4C": "Rojo",
         "#3F69B1": "Francia",
         "#E98B7A": "Salmon",
