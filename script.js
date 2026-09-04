@@ -359,6 +359,18 @@ function activarColores() {
         "#556b2f": "Verde militar",
         "#0a747c": "Petróleo",
         "#2c2b2b": "Gris oscuro",
+        "#A9573D": "Terracota",
+        "#2AB7A9": "Turquesa",  
+        "#E67E22": "Naranja",
+        "#7A9A5B": "Verde ",
+        "#D4A72C": "Amarillo",
+        "#E8D5B5": "Beige",
+        "#C94C4C": "Rojo",
+        "#3F69B1": "Francia",
+        "#E98B7A": "Salmon",
+        "#73C9C2": "Celeste Agua",
+
+      
       };
 
       const hex = nombreColor.toLowerCase();
