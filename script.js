@@ -198,6 +198,7 @@ const imagenActual = card.querySelector(".product-img").src;
     activarTalles();
 activarColores();
 activarBotones();
+filtrarProductos(); // 🔥 llamamos a la función de filtrado después de cargar los productos
 
   } catch (error) {
     console.error("Error cargando productos:", error);
@@ -262,23 +263,25 @@ tallesLetras.forEach(t => {
   return html;
 }
 function generarColores(p) {
-
   let html = "";
 
   for (let i = 1; i <= 6; i++) {
-
     const color = p[`Color${i}`];
+    const nombreColor = traducirColor(color);
     const imagen = p[`Imagen${i}`];
 
     if (color && imagen) {
+      const nombreColor = traducirColor(color);
 
       html += `
-        <button 
+        <button
           class="color-circle"
           data-image="${imagen}"
-          data-color="${color}"
-style="background:${color}"
-        </button>
+          data-color="${nombreColor}"
+          aria-label="Color ${nombreColor}"
+          title="${nombreColor}"
+          style="background:${color}"
+        ></button>
       `;
     }
   }
@@ -359,16 +362,15 @@ function activarColores() {
         "#556b2f": "Verde militar",
         "#0a747c": "Petróleo",
         "#2c2b2b": "Gris oscuro",
-        "#A9573D": "Terracota",
-        "#2AB7A9": "Turquesa",  
-        "#E67E22": "Naranja",
-        "#7A9A5B": "Verde ",
-        "#D4A72C": "Amarillo",
-        "#C94C4C": "Rojo",
-        "#3F69B1": "Francia",
-        "#E98B7A": "Salmon",
-        "#73C9C2": "Celeste Agua",
-
+        "#a9573d": "Terracota",
+"#2ab7a9": "Turquesa",
+"#e67e22": "Naranja",
+"#7a9a5b": "Verde",
+"#d4a72c": "Amarillo",
+"#c94c4c": "Rojo",
+"#3f69b1": "Francia",
+"#e98b7a": "Salmon",
+"#73c9c2": "Celeste Agua",
       
       };
 
@@ -468,19 +470,28 @@ function traducirColor(color) {
     "#f5f5dc": "Crema",
     "#800020": "Bordo",
     "#000066": "Marino",
-    "#808080": "Gris claro",
-    "#7f7f7f": "Gris claro",
-    "gray": "Gris claro",
-    "grey": "Gris claro",
+    
+    "#a7a5a5": "Gris claro",
+    
     "#8b4513": "Marrón",
     "#556b2f": "Verde militar",
     "#0a747c": "Petróleo",
     "#2c2b2b": "Gris oscuro",
+    "#a3805d": "Beige",
+    "#a9573d": "Terracota",
+"#2ab7a9": "Turquesa",
+"#e67e22": "Naranja",
+"#7a9a5b": "Verde",
+"#d4a72c": "Amarillo",
+"#c94c4c": "Rojo",
+"#3f69b1": "Francia",
+"#e98b7a": "Salmón",
+"#73c9c2": "Celeste agua",
   };
 
-  const c = color.toLowerCase();
+   const codigo = (color || "").toLowerCase();
 
-  return colores[c] || color;
+  return colores[codigo] || color;
 }
 // =====================
 // CARRITO
@@ -509,7 +520,32 @@ function agregarAlCarrito(id, name, price, talle, color, cantidad, image) {
   actualizarContador();
   mostrarCarrito();
 }
+function obtenerCategoriaMayorista(nombre) {
+  const producto = (nombre || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 
+  if (
+    producto.includes("jean") ||
+    producto.includes("bermuda") ||
+    producto.includes("bull") ||
+    producto.includes("gabardina") ||
+    producto.includes("pantalon")
+  ) {
+    return "abajo";
+  }
+
+  if (
+    producto.includes("remera") ||
+    producto.includes("sweater") ||
+    producto.includes("buzo")
+  ) {
+    return "arriba";
+  }
+
+  return null;
+}
 // =====================
 // MOSTRAR CARRITO
 // =====================
@@ -523,18 +559,34 @@ function mostrarCarrito() {
   let total = 0;
 
   // 👉 total de unidades en TODO el carrito
-  const totalUnidades = cart.reduce((acc, p) => acc + p.quantity, 0);
+ const prendasAbajo = cart.reduce((total, p) => {
+  return obtenerCategoriaMayorista(p.name) === "abajo"
+    ? total + p.quantity
+    : total;
+}, 0);
 
-  const aplicaMayorista = totalUnidades >= 3;
+const prendasArriba = cart.reduce((total, p) => {
+  return obtenerCategoriaMayorista(p.name) === "arriba"
+    ? total + p.quantity
+    : total;
+}, 0);
+
+const mayoristaAbajo = prendasAbajo >= 3;
+const mayoristaArriba = prendasArriba >= 3;
 
   cart.forEach(p => {
 
-    let precioUnitario = p.price;
+   const categoria = obtenerCategoriaMayorista(p.name);
 
-    // 👉 si NO llega a 3 → recargo por prenda
-    if (!aplicaMayorista) {
-      precioUnitario = p.price + 3000;
-    }
+const aplicaMayorista =
+  (categoria === "abajo" && mayoristaAbajo) ||
+  (categoria === "arriba" && mayoristaArriba);
+
+let precioUnitario = p.price;
+
+if (!aplicaMayorista) {
+  precioUnitario = p.price + 3000;
+}
 
     const subtotal = precioUnitario * p.quantity;
     total += subtotal;
@@ -576,24 +628,33 @@ item.querySelector(".delete-btn").onclick = () => eliminarProducto(p.id, p.talle
   });
 
   // 👉 MENSAJE GLOBAL
-  const aviso = document.createElement("div");
+  // 👉 MENSAJE DE PRECIO MAYORISTA
+const aviso = document.createElement("div");
+const mensajes = [];
 
-  if (!aplicaMayorista) {
-    const faltan = 3 - totalUnidades;
-
-    aviso.innerHTML = `
-      <p style="color:orange; font-weight:bold;">
-        Agrega ${faltan} prenda(s) mas para alcanzar el precio mayorista!
-      </p>
-    `;
+if (prendasAbajo > 0) {
+  if (mayoristaAbajo) {
+    mensajes.push("✔ Precio mayorista aplicado en jeans y bermudas.");
   } else {
-    aviso.innerHTML = `
-      <p style="color:green; font-weight:bold;">
-        ✔ Precio mayorista aplicado 
-      </p>
-    `;
+    mensajes.push(
+      `Te faltan ${3 - prendasAbajo} jean(es) o bermuda(s) para precio mayorista.`
+    );
   }
+}
 
+if (prendasArriba > 0) {
+  if (mayoristaArriba) {
+    mensajes.push("✔ Precio mayorista aplicado en remeras, sweaters y buzos.");
+  } else {
+    mensajes.push(
+      `Te faltan ${3 - prendasArriba} remera(s), sweater(s) o buzo(s) para precio mayorista.`
+    );
+  }
+}
+
+aviso.innerHTML = mensajes
+  .map((mensaje) => `<p style="font-weight:bold;">${mensaje}</p>`)
+  .join("");
   contenedor.appendChild(aviso);
 
   const totalEl = document.querySelector(".cart-total");
@@ -873,3 +934,68 @@ imgEl.src = imagenes[index];
 
   modal.style.display = "flex";
 }
+function normalizarTexto(texto) {
+  return (texto || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function filtrarProductos() {
+  const input = document.getElementById("product-search");
+  const mensaje = document.getElementById("search-results");
+
+  if (!input) return;
+
+  const busqueda = normalizarTexto(input.value);
+  const tarjetas = document.querySelectorAll(".product-card");
+  let cantidad = 0;
+
+  tarjetas.forEach((tarjeta) => {
+    const colores = Array.from(
+      tarjeta.querySelectorAll(".color-circle")
+    )
+      .map((boton) => boton.dataset.color || "")
+      .join(" ");
+
+    const contenido = normalizarTexto(
+      `${tarjeta.textContent} ${colores}`
+    );
+
+    const coincide = !busqueda || contenido.includes(busqueda);
+
+    tarjeta.style.display = coincide ? "" : "none";
+
+    if (coincide) cantidad++;
+  });
+
+  if (!mensaje) return;
+
+  if (!busqueda) {
+    mensaje.textContent = "";
+  } else if (cantidad === 0) {
+    mensaje.textContent = "No encontramos productos con esa búsqueda.";
+  } else {
+    mensaje.textContent =
+      `${cantidad} producto${cantidad === 1 ? "" : "s"} encontrado${cantidad === 1 ? "" : "s"}.`;
+  }
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("product-search");
+
+  if (!input) return;
+
+  const parametros = new URLSearchParams(window.location.search);
+  const busquedaInicial = parametros.get("buscar");
+
+  if (busquedaInicial) {
+  input.value = busquedaInicial;
+}
+
+filtrarProductos();
+
+input.addEventListener("input", () => {
+  filtrarProductos();
+});
+
+});

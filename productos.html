@@ -245,6 +245,43 @@ a{
 
 
   }
+  .buscador-productos {
+  max-width: 620px;
+  margin: 0 auto 35px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.buscador-productos label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  padding: 0 16px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .06);
+}
+
+.buscador-productos i {
+  color: #777;
+}
+
+.buscador-productos input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 15px 0;
+  font: inherit;
+  font-size: 15px;
+}
+
+#search-results {
+  min-height: 22px;
+  margin: 12px 0 0;
+  color: #555;
+  font-size: 14px;
+}
 
   </style>
 
@@ -291,6 +328,19 @@ a{
   Jeans y Sweaters para Hombre
   <span>Legendario Jeans</span>
 </h1>
+<div class="buscador-productos">
+  <label for="product-search">
+    <i class="fas fa-search"></i>
+    <input
+      id="product-search"
+      type="search"
+      placeholder="Buscar jeans, sweaters, colores..."
+      autocomplete="off"
+    >
+  </label>
+
+  <p id="search-results" aria-live="polite"></p>
+</div>
     <div class="product-container">
         
         

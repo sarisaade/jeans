@@ -1114,6 +1114,14 @@ footer{
   }
 
 }
+#search-btn {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+  font-size: 20px;
+  padding: 4px;
+}
 
   </style>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -1141,7 +1149,9 @@ footer{
 
    <div class="icons">
 
-  
+  <button id="search-btn" type="button" aria-label="Buscar">
+  <i class="fas fa-search"></i>
+</button>
 
    <a href="./carrito.html" class="cart">
                 <i class="fas fa-shopping-cart"></i>
@@ -1149,6 +1159,14 @@ footer{
 </div>
 
   </nav>
+  <div id="search-bar" class="search-bar">
+  <input
+    id="global-search"
+    type="search"
+    placeholder="Buscar jeans, sweaters o colores..."
+    autocomplete="off"
+  >
+</div>
 
   <section class="hero">
 
