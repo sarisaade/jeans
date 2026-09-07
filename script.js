@@ -112,7 +112,11 @@ async function cargarProductos() {
         p.Imagen3,
         p.Imagen4,
         p.Imagen5,
-        p.Imagen6
+        p.Imagen6,
+        p.Imagen7,
+        p.Imagen8,
+        p.Imagen9,
+        p.Imagen10
       ].filter(img => img && img.trim() !== "");
 
       const img = imagenes[0] || "https://via.placeholder.com/300";
@@ -265,7 +269,7 @@ tallesLetras.forEach(t => {
 function generarColores(p) {
   let html = "";
 
-  for (let i = 1; i <= 6; i++) {
+  for (let i = 1; i <= 10; i++) {
     const color = p[`Color${i}`];
     const nombreColor = traducirColor(color);
     const imagen = p[`Imagen${i}`];
@@ -901,7 +905,11 @@ function abrirModalConCarrusel(p, imagenActual) {
     p.Imagen3,
     p.Imagen4,
     p.Imagen5,
-    p.Imagen6
+    p.Imagen6,
+    p.Imagen7,
+    p.Imagen8,
+    p.Imagen9,
+    p.Imagen10
   ].filter(img => img && img.trim() !== "");
 
  let index = 0;
