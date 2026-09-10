@@ -542,6 +542,8 @@ function obtenerCategoriaMayorista(nombre) {
 
   if (
     producto.includes("remera") ||
+   
+    producto.includes("chomba") ||
     producto.includes("sweater") ||
     producto.includes("buzo")
   ) {
@@ -648,10 +650,10 @@ if (prendasAbajo > 0) {
 
 if (prendasArriba > 0) {
   if (mayoristaArriba) {
-    mensajes.push("✔ Precio mayorista aplicado en remeras, sweaters y buzos.");
+    mensajes.push("✔ Precio mayorista aplicado en remeras, chombas, sweaters y buzos.");
   } else {
     mensajes.push(
-      `Te faltan ${3 - prendasArriba} remera(s), sweater(s) o buzo(s) para precio mayorista.`
+      `Te faltan ${3 - prendasArriba} remera(s), chomba(s), sweater(s) o buzo(s) para precio mayorista.`
     );
   }
 }
